@@ -462,17 +462,16 @@ public class CreateJPanel extends javax.swing.JPanel {
         
         //name
         String name = txtName.getText();
-        String nameValidate = "/^[A-Z][a-zA-Z]{1,30}$";
+        String nameValidate = "[A-Z][A-Za-z]{1,30}";
         pattern = Pattern.compile(nameValidate);
         
         if(name.equals("") || name.isEmpty()){
             JOptionPane.showMessageDialog(null, "Please enter your full name");
+        }
+        else{
             if(!name.equals("") || !name.isEmpty()){
                 if(!pattern.matcher(name).matches()){
                     JOptionPane.showMessageDialog(null, "Entered name is not correct!!"); }
-                else{
-                    i++;
-                    }
                 
             }
             
@@ -480,26 +479,29 @@ public class CreateJPanel extends javax.swing.JPanel {
         
         //address
         String address = txtAddress.getText();
-        String addressValidate = "[0-9]{1,}\\s[A-Za-z]{2,}\\s[A-Za-z]{2,}\\s[A-Za-z]{2,}\\s[A-Za-z]{2,}\\s[A-Za-z]{2,}\\s[A-Za-z]{2,}$";
+        String addressValidate = "[0-9]{1,3}\\s[A-Za-z]{1,30}\\s[A-Za-z]{1,30}\\s[A-Za-z]{1,30}";
         pattern = Pattern.compile(addressValidate);
         
         if(address.equals("") || address.isEmpty()){
             JOptionPane.showMessageDialog(null, "Please enter your address");
+        }
+        else{
             if(!address.equals("") || !address.isEmpty()){
                 if(!pattern.matcher(address).matches()){
                     JOptionPane.showMessageDialog(null, "Enter the street number, lane and city!!"); 
-                    
-                }i++;
+                }
             }
         }    
         
         //email
         String email = txtEmail.getText();
-        String emailValidate = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        String emailValidate = "[a-z0-9!-_.&#*]{2,100}[@][a-z]{3,100}[.][a-z]{3}";
         pattern = Pattern.compile(emailValidate);
         
         if(email.equals("") || email.isEmpty()){
             JOptionPane.showMessageDialog(null, "Please enter your Email Address");
+        }
+        else{
             if(!email.equals("") || !email.isEmpty()){
                 if(!pattern.matcher(email).matches()){
                     JOptionPane.showMessageDialog(null, "Entered email address is not correct!!");
@@ -511,7 +513,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         
         //fax
         String fax = txtFax.getText();
-        String faxValidate = "/^[0-9]{3}-[0-9]{3}-[0-9]{4}/$";
+        String faxValidate = "[0-9]{3}-[0-9]{3}-[0-9]{4}";
         pattern = Pattern.compile(faxValidate);
         
         if(!fax.equals("") || !fax.isEmpty()){
@@ -521,7 +523,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         }
         
         //bankaccount
-        String accountValidate = "/^[0-9]{4,17}$/gm";
+        String accountValidate = "[0-9]{4,17}";
         String bank = txtBank.getText();
         pattern = Pattern.compile(accountValidate);
         
@@ -533,11 +535,13 @@ public class CreateJPanel extends javax.swing.JPanel {
         
         String phone = txtPhone.getText();
         String home = txtHome.getText();
-        String phoneValidate = "/^[0-9]{3}-[0-9]{3}-[0-9]{4}";
+        String phoneValidate = "[0-9]{3}-[0-9]{3}-[0-9]{4}";
         pattern = Pattern.compile(phoneValidate);
         
         if(phone.equals("") || phone.isEmpty()){
             JOptionPane.showMessageDialog(null, "Please enter your phone number ");
+        }
+        else{
             if(!phone.equals("") || !phone.isEmpty()){
                 if(!pattern.matcher(phone).matches()){
                     JOptionPane.showMessageDialog(null, "Please use format 123-123-1234");
@@ -555,11 +559,11 @@ public class CreateJPanel extends javax.swing.JPanel {
         
         //Device ID
         String device = txtDevice.getText();
-        String deviceValidate = "/^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$";
+        String deviceValidate = "[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}";
         pattern = Pattern.compile(deviceValidate);
         
         if(!device.equals("") || !device.isEmpty()){
-            if(pattern.matcher(device).matches()){
+            if(!pattern.matcher(device).matches()){
                     JOptionPane.showMessageDialog(null, "Please enter the correct Device Identifier!!");
             }
         }
@@ -567,58 +571,65 @@ public class CreateJPanel extends javax.swing.JPanel {
         
         //HealthPlan
         String health = txtHealth.getText();
-        String healthValidate = "/^[0-9][A-Z]{2}[0-9]-[A-Z]{2}[0-9]-[A-Z]{2}[0-9]{2}$";
+        String healthValidate = "[0-9][A-Z]{2}[0-9]-[A-Z]{2}[0-9]-[A-Z]{2}[0-9]{2}";
         pattern = Pattern.compile(healthValidate);
         
         if(!health.equals("") || !health.isEmpty()){
-            if(pattern.matcher(healthValidate).matches()){
+            if(!pattern.matcher(healthValidate).matches()){
                     JOptionPane.showMessageDialog(null, "Please enter the correct Health Beneficiary Number.");
             }
         }
         
         //IP
         String ip = txtIp.getText();
-        String ipValidate = "/^[0-9]{3}.[0-9]{3}.[0-9]{3}.[0-9]{3}$";
+        String ipValidate = "[0-9]{3}.[0-9]{3}.[0-9]{3}.[0-9]{3}";
         pattern = Pattern.compile(ipValidate);
         
         if(!ip.equals("") || !ip.isEmpty()){
-            if(pattern.matcher(ipValidate).matches()){
+            if(!pattern.matcher(ipValidate).matches()){
                 JOptionPane.showMessageDialog(null, "Please enter the correct IP address.");
             }
         }
                 
         //Drivers License
         String license = txtLicense.getText();
-        String licenseValidate = "/^[A-Z][0-9]{8}$";
+        String licenseValidate = "[A-Z][0-9]{8}";
         pattern = Pattern.compile(licenseValidate);
         
-        if(!license.equals("") || !license.isEmpty()){
-            if(pattern.matcher(licenseValidate).matches()){
-                JOptionPane.showMessageDialog(null, "Please enter the correct Driver's License Number.");
+        if(license.equals("") || license.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please enter your Driver's License Number.");
+        }
+        else{
+            if(!license.equals("") || !license.isEmpty()){
+                if(!pattern.matcher(licenseValidate).matches()){
+                    JOptionPane.showMessageDialog(null, "Please enter the correct Driver's License Number.");
+                }
             }
         }
         
         //License Plate
         String plate = txtPlate.getText();
-        String plateValidate = "/^[A-Z]{2}\\s[0-9]{4}";
+        String plateValidate = "[A-Z]{2}\\s[0-9]{4}";
         pattern = Pattern.compile(plateValidate);
         
         if(!plate.equals("") || !plate.isEmpty()){
-            if(pattern.matcher(plateValidate).matches()){
+            if(!pattern.matcher(plateValidate).matches()){
                     JOptionPane.showMessageDialog(null, "Please enter the correct License Plate.");
             }
         }
         
         //Medical Record Number
         String medical = txtMedical.getText();
-        String medicalValidate = "/^[0-9]{7}$";
+        String medicalValidate = "[0-9]{7}";
         pattern = Pattern.compile(medicalValidate);
         
         
         if(medical.equals("") || medical.isEmpty()){
             JOptionPane.showMessageDialog(null, "Please enter your Medical Record Number.");
+        }
+        else{
             if(!medical.equals("") || !medical.isEmpty()){
-                if(pattern.matcher(medical).matches()){
+                if(!pattern.matcher(medical).matches()){
                     JOptionPane.showMessageDialog(null, "Please enter the correct Medical Record Number.");
                     
                 }i++;
@@ -627,23 +638,25 @@ public class CreateJPanel extends javax.swing.JPanel {
         
         //device serial
         String serialDevice = txtSerialDevice.getText();
-        String serialValidate = "/^[0-9A-Za-z]$";
+        String serialValidate = "[0-9A-Za-z]";
         pattern = Pattern.compile(serialValidate);
         
         if(!serialDevice.equals("") || !serialDevice.isEmpty()){
-            if(pattern.matcher(serialDevice).matches()){
+            if(!pattern.matcher(serialDevice).matches()){
                 JOptionPane.showMessageDialog(null, "Please enter the correct Device Serial Number.");
             }
         }
         
         //ssn
         String ssn = txtSSN.getText();
-        String ssnValidate = "/^[0-9]{3}-[0-9]{2}-[0-9]{4}$";
+        String ssnValidate = "[0-9]{3}-[0-9]{2}-[0-9]{4}";
         pattern = Pattern.compile(ssnValidate);
         
         if(ssn.equals("") || ssn.isEmpty()){
             JOptionPane.showMessageDialog(null, "Please enter your SSN.");
-            if(pattern.matcher(ssn).matches()){
+        }
+        else{
+            if(!pattern.matcher(ssn).matches()){
                 JOptionPane.showMessageDialog(null, "Please use format 123-12-1234.");
                 
             }i++;
@@ -652,13 +665,15 @@ public class CreateJPanel extends javax.swing.JPanel {
         
         //unicode
         String unicode = txtUnique.getText();
-        String unicodeValidate = "[a-zA-Z0-9]$";
+        String unicodeValidate = "[a-zA-Z0-9]{1,30}";
         pattern = Pattern.compile(unicodeValidate);
         
         if(unicode.equals("") || unicode.isEmpty()){
             JOptionPane.showMessageDialog(null, "Please enter the Unique Character.");
+        }
+        else{
             if(!unicode.equals("") || !unicode.isEmpty()){
-                if(pattern.matcher(unicode).matches()){
+                if(!pattern.matcher(unicode).matches()){
                     JOptionPane.showMessageDialog(null, "Please enter the correct Unique Character.");
                     
                 }i++;
@@ -667,11 +682,11 @@ public class CreateJPanel extends javax.swing.JPanel {
         
         //vehicle ID
         String vehicle = txtVehicle.getText();
-        String vehicleValidate = "/^[(A-H|J-N|P|R-Z|0-9)]{17}$";                                   //SALVA2AE4EH877482
+        String vehicleValidate = "[(A-H|J-N|P|R-Z|0-9)]{17}";                                   //SALVA2AE4EH877482
         pattern = Pattern.compile(vehicleValidate);
         
         if(!vehicle.equals("") || !vehicle.isEmpty()){
-            if(pattern.matcher(vehicle).matches()){
+            if(!pattern.matcher(vehicle).matches()){
                 JOptionPane.showMessageDialog(null, "Please enter the correct Vehicle Identifier.");
             }
         }
