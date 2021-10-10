@@ -5,6 +5,8 @@
  */
 package ModelArray;
 
+import java.util.Date;
+
 /**
  *
  * @author vachanabelgavi
@@ -17,8 +19,8 @@ public class Car {
     private int yearOfManufacture;
     private int numberOfSeats;
     private String city;
-    private String maintenanceExpiry;
-    private String date;
+    public Date maintenanceExpiry;
+    public Date date;
     public String availability;
 
     public String getSerialNumber() {
@@ -69,19 +71,19 @@ public class Car {
         this.city = city;
     }
 
-    public String getMaintenanceExpiry() {
+    public Date getMaintenanceExpiry() {
         return maintenanceExpiry;
     }
 
-    public void setMaintenanceExpiry(String maintenanceExpiry) {
+    public void setMaintenanceExpiry(Date maintenanceExpiry) {
         this.maintenanceExpiry = maintenanceExpiry;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

@@ -7,6 +7,14 @@ package ModelUI;
 
 import ModelArray.Car;
 import ModelArray.CarsList;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,7 +29,7 @@ public class CreateJPanel extends javax.swing.JPanel {
     
 
     CarsList cars;
-    
+    DateFormat df;
 
     
     public CreateJPanel(CarsList cars) {
@@ -52,41 +60,46 @@ public class CreateJPanel extends javax.swing.JPanel {
         txtModel = new javax.swing.JTextField();
         txtBrand = new javax.swing.JTextField();
         txtYear = new javax.swing.JTextField();
-        txtCertificate = new javax.swing.JTextField();
         txtSeats = new javax.swing.JTextField();
         txtCity = new javax.swing.JTextField();
-        txtDate = new javax.swing.JTextField();
         RadioBtnYes = new javax.swing.JRadioButton();
         RadioBtnNo = new javax.swing.JRadioButton();
         btnSave = new javax.swing.JButton();
+        dateExpiry = new com.toedter.calendar.JDateChooser();
+        dateDateSaved = new com.toedter.calendar.JDateChooser();
+        jLabel2 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Create Car");
 
-        lblSerialNumber.setText("Car Serial Number");
+        lblSerialNumber.setText("Car Serial Number *");
 
-        lblModel.setText("Car Model");
+        lblModel.setText("Car Model *");
 
-        lblBrand.setText("Car Brand");
+        lblBrand.setText("Car Brand *");
 
-        lblYear.setText("Year of Manufacture");
+        lblYear.setText("Year of Manufacture *");
 
-        lblCity.setText("City");
+        lblCity.setText("City *");
 
-        lblSeats.setText("Number of Seats");
+        lblSeats.setText("Number of Seats *");
 
-        lblCertificate.setText("Maintenance Certificate Expiry");
+        lblCertificate.setText("Maintenance Certificate Expiry *");
 
-        lblAvailability.setText("Availability");
+        lblAvailability.setText("Availability *");
 
-        lblDate.setText("Date");
+        lblDate.setText("Date *");
 
         txtModel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtModelActionPerformed(evt);
             }
         });
+
+        txtYear.setText("0");
+
+        txtSeats.setText("0");
 
         RadioBtnYes.setText("Yes");
         RadioBtnYes.addActionListener(new java.awt.event.ActionListener() {
@@ -109,17 +122,22 @@ public class CreateJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 2, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(204, 51, 0));
+        jLabel2.setText("* Required");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(92, 92, 92)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblYear)
                             .addComponent(lblSerialNumber)
@@ -131,24 +149,23 @@ public class CreateJPanel extends javax.swing.JPanel {
                             .addComponent(lblAvailability)
                             .addComponent(lblDate))
                         .addGap(68, 68, 68)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSerialNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCertificate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSeats, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtModel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtSerialNumber)
+                            .addComponent(txtSeats)
+                            .addComponent(txtCity)
+                            .addComponent(txtYear)
+                            .addComponent(txtBrand)
+                            .addComponent(txtModel)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(RadioBtnYes)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(RadioBtnNo)))
-                        .addGap(0, 394, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(243, 243, 243)
-                .addComponent(btnSave)
+                                .addComponent(RadioBtnNo))
+                            .addComponent(dateExpiry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dateDateSaved, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(202, 202, 202)
+                        .addComponent(btnSave))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -159,7 +176,9 @@ public class CreateJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addComponent(jLabel1)
-                .addGap(39, 39, 39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSerialNumber)
                     .addComponent(txtSerialNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -184,21 +203,21 @@ public class CreateJPanel extends javax.swing.JPanel {
                     .addComponent(lblSeats)
                     .addComponent(txtSeats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCertificate)
-                    .addComponent(txtCertificate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dateExpiry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAvailability)
                     .addComponent(RadioBtnYes)
                     .addComponent(RadioBtnNo))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblDate)
-                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                    .addComponent(dateDateSaved, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
                 .addComponent(btnSave)
-                .addContainerGap(237, Short.MAX_VALUE))
+                .addContainerGap(208, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {RadioBtnNo, RadioBtnYes});
@@ -211,7 +230,7 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        
+        df= new SimpleDateFormat("MMM dd, YYYY", Locale.getDefault());
         //System.out.println(cars);
         //System.out.println("Before Car car = cars.addCar()");
         Car car = cars.addCar();
@@ -219,16 +238,22 @@ public class CreateJPanel extends javax.swing.JPanel {
         String serialNumber = txtSerialNumber.getText();
         String model = txtModel.getText();
         String brand = txtBrand.getText();
-        int yearOfManufacture = Integer.parseInt(txtYear.getText());
-        int numberOfSeats = Integer.parseInt(txtSeats.getText());
+        int yearOfManufacture = 0;
+        yearOfManufacture = Integer.parseInt(txtYear.getText());
+        int numberOfSeats = 0;
+        numberOfSeats = Integer.parseInt(txtSeats.getText());
         String city = txtCity.getText();
-        String maintenanceExpiry = txtCertificate.getText();
-        String date = txtDate.getText();
-        //car.availability = "";
+        Date maintenanceExpiry;
+        maintenanceExpiry = dateExpiry.getDate();
+        Date date;
+        date = dateDateSaved.getDate();
+        String availability;
         if(RadioBtnYes.isSelected())
-            car.availability = RadioBtnYes.getText();
+            availability = RadioBtnYes.getText();
         else
-            car.availability = RadioBtnNo.getText();
+            availability = RadioBtnNo.getText();
+        
+        ValidateFields();
         
         car.setSerialNumber(serialNumber);
         car.setModel(model);
@@ -237,8 +262,12 @@ public class CreateJPanel extends javax.swing.JPanel {
         car.setNumberOfSeats(numberOfSeats);
         car.setCity(city);
         car.setMaintenanceExpiry(maintenanceExpiry);
+        System.out.println(car.getMaintenanceExpiry());
         car.setDate(date);
-        car.setAvailability(car.availability);
+        System.out.println(car.getDate());
+        //System.out.println("In create " + availability);
+
+        car.setAvailability(availability);
         
         JOptionPane.showMessageDialog(this, "New Car added.");
         
@@ -248,8 +277,8 @@ public class CreateJPanel extends javax.swing.JPanel {
         txtYear.setText("");
         txtSeats.setText("");
         txtCity.setText("");
-        txtCertificate.setText("");
-        txtDate.setText("");
+        dateExpiry.setDate(null);
+        dateDateSaved.setDate(null);
         RadioBtnYes.setSelected(false);
         RadioBtnNo.setSelected(false);
 
@@ -267,12 +296,122 @@ public class CreateJPanel extends javax.swing.JPanel {
             RadioBtnYes.setSelected(false);
     }//GEN-LAST:event_RadioBtnNoActionPerformed
 
+    public void ValidateFields(){
+        
+        Pattern pattern;
+        //serial number
+        String serialNumber = txtSerialNumber.getText();
+        String serialNumberValidate = "[A-Za-z0-9]{1,}";
+        pattern = Pattern.compile(serialNumberValidate);
+        
+        if(serialNumber.equals("") || serialNumber.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please enter the serial number.");
+        }
+        else{
+            if(!serialNumber.equals("") || !serialNumber.isEmpty()){
+                if(!pattern.matcher(serialNumber).matches()){
+                    JOptionPane.showMessageDialog(this, "Please enter the correct serial number.");
+                }
+            }
+        }
+        
+        
+        //Model
+        String modelCar = txtModel.getText();
+        String modelValidate = "[A-Za-z0-9]{1,}";
+        pattern = Pattern.compile(modelValidate);
+        
+        if(modelCar.equals("") || modelCar.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please enter Car Model.");
+        }
+        else{
+            if(!modelCar.equals("") || !modelCar.isEmpty()){
+                if(!pattern.matcher(modelCar).matches()){
+                    JOptionPane.showMessageDialog(this, "Please enter the correct Car Model.");
+                }
+            }
+        }
+        
+        
+        //Brand
+        String brand = txtBrand.getText();
+        String brandValidate = "[A-Z]{1,}[a-z]{1,}";
+        pattern = Pattern.compile(brandValidate);
+        
+        if(brand.equals("") || brand.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please enter the Car Brand.");
+        }
+        else{
+            if(!brand.equals("") || !brand.isEmpty()){
+                if(!pattern.matcher(brand).matches()){
+                    JOptionPane.showMessageDialog(this, "Please enter the correct Car Brand.");
+                }
+            }
+        }
+        
+        
+        //year of manufacture
+        String year = txtYear.getText();
+        String yearValidate = "[1-2]{1,4}[0-9]{1,3}";
+        pattern = Pattern.compile(yearValidate);
+        
+        if(year.equals("") || year.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please enter Year of Mannufacture.");
+            year = "2021";
+        }
+        else{
+            if(!year.equals("") || !year.isEmpty()){
+                if(!pattern.matcher(year).matches()){
+                    JOptionPane.showMessageDialog(this, "Please enter the four-digit year.");
+                }
+            }
+        }
+        
+        
+        //Seats
+        String seats = txtSeats.getText();
+        String seatsValidate = "[0-9]{1,2}";
+        pattern = Pattern.compile(seatsValidate);
+        
+        if(seats.equals("") || seats.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please enter the Car Brand.");
+            seats="0";
+        }
+        else{
+            if(!seats.equals("") || !seats.isEmpty()){
+                if(!pattern.matcher(seats).matches()){
+                    JOptionPane.showMessageDialog(this, "Please enter the correct Car Brand.");
+                }
+            }
+        }
+        
+        
+        //city
+        String city = txtCity.getText();
+        String cityValidate = "[A-Za-z]{2,}";
+        pattern = Pattern.compile(cityValidate);
+        
+        if(city.equals("") || city.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please enter the City.");
+        }
+        else{
+            if(!city.equals("") || !city.isEmpty()){
+                if(!pattern.matcher(city).matches()){
+                    JOptionPane.showMessageDialog(this, "Please enter the correct City Name.");
+                }
+            }
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton RadioBtnNo;
     private javax.swing.JRadioButton RadioBtnYes;
     private javax.swing.JButton btnSave;
+    private com.toedter.calendar.JDateChooser dateDateSaved;
+    private com.toedter.calendar.JDateChooser dateExpiry;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblAvailability;
     private javax.swing.JLabel lblBrand;
     private javax.swing.JLabel lblCertificate;
@@ -283,9 +422,7 @@ public class CreateJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblSerialNumber;
     private javax.swing.JLabel lblYear;
     private javax.swing.JTextField txtBrand;
-    private javax.swing.JTextField txtCertificate;
     private javax.swing.JTextField txtCity;
-    private javax.swing.JTextField txtDate;
     private javax.swing.JTextField txtModel;
     private javax.swing.JTextField txtSeats;
     private javax.swing.JTextField txtSerialNumber;
