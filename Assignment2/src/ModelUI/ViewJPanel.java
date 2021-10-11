@@ -48,6 +48,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         this.cars = cars;
         
         displayCars();
+        
     }
     
     
@@ -107,23 +108,23 @@ public class ViewJPanel extends javax.swing.JPanel {
 
         tablePopulate.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Brand", "Model", "Year of Manufacture", "Seats", "Availability", "City", "Maintenance Expiry"
+                "Serial Number", "Brand", "Model", "Year of Manufacture", "Seats", "Availability", "City", "Maintenance Expiry"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -139,11 +140,11 @@ public class ViewJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Brand", "Model", "Year of Manufacture", "Seats", "Availability", "City", "Maintenance Expiry"
+                "Serial Number", "Brand", "Model", "Year of Manufacture", "Seats", "Availability", "City", "Maintenance Expiry"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -154,9 +155,15 @@ public class ViewJPanel extends javax.swing.JPanel {
         tableSearch.setMinimumSize(new java.awt.Dimension(525, 0));
         jScrollPane2.setViewportView(tableSearch);
 
+        txtSearch.setMaximumSize(new java.awt.Dimension(11, 26));
         txtSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtSearchMouseClicked(evt);
+            }
+        });
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
             }
         });
         txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -298,10 +305,10 @@ public class ViewJPanel extends javax.swing.JPanel {
                                 .addGap(12, 12, 12)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(comboSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(comboSearch, 0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
+                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnSearch)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnView))))
@@ -365,7 +372,7 @@ public class ViewJPanel extends javax.swing.JPanel {
                     .addComponent(btnView)
                     .addComponent(jLabel2)
                     .addComponent(btnSearch)
-                    .addComponent(comboSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -501,16 +508,13 @@ public class ViewJPanel extends javax.swing.JPanel {
         int i = tablePopulate.getSelectedRow();
         if(i >= 0){
             modelTable.setValueAt(selectedCar, i, 0);
-            modelTable.setValueAt(model, i, 1);
-            modelTable.setValueAt(yearOfManufacture, i, 2);
-            modelTable.setValueAt(numberOfSeats, i, 3);
-            
-                          System.out.println(availability);
-
-                          
-            modelTable.setValueAt(availability, i, 4);
-            modelTable.setValueAt(city, i, 5);
-            modelTable.setValueAt(maintenanceExpiry, i, 6);
+            modelTable.setValueAt(brand, i, 1);
+            modelTable.setValueAt(model, i, 2);
+            modelTable.setValueAt(yearOfManufacture, i, 3);
+            modelTable.setValueAt(numberOfSeats, i, 4);              
+            modelTable.setValueAt(availability, i, 5);
+            modelTable.setValueAt(city, i, 6);
+            modelTable.setValueAt(maintenanceExpiry, i, 7);
         }
         else {
             System.out.println("Update error.");
@@ -561,35 +565,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         if(txtSearch.getText()==null || txtSearch.getText().length()==0){
             JOptionPane.showMessageDialog(null, "Enter data in search field");    
         }
-        /*else {
-            System.out.println("inside search else");
-            System.out.println(selectedItem);
-            System.out.println(selectedItem.toLowerCase());
-            if(selectedItem.toLowerCase().equals("serial number")){
-                System.out.println(selectedItem);
-                for(Car car : cars.getCars()){
-                    array.add(car.getSerialNumber());
-                    System.out.println("array added");
-                }
-                for(Car car : cars.getCars()){
-                    if(array.contains(txtSearch.getText())){
-                        System.out.println(txtSearch.getText());
-                        Object[] list = new Object[7];
-                        list[0] = car;
-                        list[1] = car.getModel();
-                        list[2] = car.getYearOfManufacture();
-                        list[3] = car.getNumberOfSeats();
-                        list[4] = car.getAvailability();
-                        list[5] = car.getCity();
-                        list[6] = car.getMaintenanceExpiry();
-
-                        search.addRow(list);
-
-                    }
-                }
-            }
-        }*/
-        System.out.println(selectedItem);
+        
         switch(selectedItem){
             case "Serial Number" : 
                 if(selectedItem.toLowerCase().equals("serial number")){
@@ -597,22 +573,24 @@ public class ViewJPanel extends javax.swing.JPanel {
                     for(Car car : cars.getCars()){
                         if(car.getSerialNumber().equals(txtSearch.getText())){
                             System.out.println(txtSearch.getText());
-                            Object[] list = new Object[7];
+                            Object[] list = new Object[8];
                             list[0] = car;
-                            list[1] = car.getModel();
-                            list[2] = car.getYearOfManufacture();
-                            list[3] = car.getNumberOfSeats();
-                            list[4] = car.getAvailability();
-                            list[5] = car.getCity();
-                            list[6] = car.getMaintenanceExpiry();
+                            list[1] = car.getBrand();
+                            list[2] = car.getModel();
+                            list[3] = car.getYearOfManufacture();
+                            list[4] = car.getNumberOfSeats();
+                            list[5] = car.getAvailability();
+                            list[6] = car.getCity();
+                            list[7] = car.getMaintenanceExpiry();
 
                             search.addRow(list);
                         }
+                        else{
+                            JOptionPane.showMessageDialog(null, "Not found");
+                        }
                     }
-                }else{
-                    JOptionPane.showMessageDialog(null, "Not found");
                 }
-            break;
+                break;
                 
             case "Brand": 
                 if(selectedItem.toLowerCase().equals("brand")){
@@ -620,22 +598,24 @@ public class ViewJPanel extends javax.swing.JPanel {
                     for(Car car : cars.getCars()){
                         if(car.getBrand().equals(txtSearch.getText())){
                             System.out.println(txtSearch.getText());
-                            Object[] list = new Object[7];
+                            Object[] list = new Object[8];
                             list[0] = car;
-                            list[1] = car.getModel();
-                            list[2] = car.getYearOfManufacture();
-                            list[3] = car.getNumberOfSeats();
-                            list[4] = car.getAvailability();
-                            list[5] = car.getCity();
-                            list[6] = car.getMaintenanceExpiry();
+                            list[1] = car.getBrand();
+                            list[2] = car.getModel();
+                            list[3] = car.getYearOfManufacture();
+                            list[4] = car.getNumberOfSeats();
+                            list[5] = car.getAvailability();
+                            list[6] = car.getCity();
+                            list[7] = car.getMaintenanceExpiry();
 
                             search.addRow(list);
                         }
+                        else{
+                            JOptionPane.showMessageDialog(null, "Not found");
+                        }
                     }
-                }else{
-                    JOptionPane.showMessageDialog(null, "Not found");
                 }
-            break;
+                break;
                 
             case "Model": 
                 if(selectedItem.toLowerCase().equals("model")){
@@ -643,66 +623,82 @@ public class ViewJPanel extends javax.swing.JPanel {
                     for(Car car : cars.getCars()){
                         if(car.getModel().equals(txtSearch.getText())){
                             System.out.println(txtSearch.getText());
-                            Object[] list = new Object[7];
+                            Object[] list = new Object[8];
                             list[0] = car;
-                            list[1] = car.getModel();
-                            list[2] = car.getYearOfManufacture();
-                            list[3] = car.getNumberOfSeats();
-                            list[4] = car.getAvailability();
-                            list[5] = car.getCity();
-                            list[6] = car.getMaintenanceExpiry();
+                            list[1] = car.getBrand();
+                            list[2] = car.getModel();
+                            list[3] = car.getYearOfManufacture();
+                            list[4] = car.getNumberOfSeats();
+                            list[5] = car.getAvailability();
+                            list[6] = car.getCity();
+                            list[7] = car.getMaintenanceExpiry();
 
                             search.addRow(list);
                         }
+                        else{
+                            JOptionPane.showMessageDialog(null, "Not found");
+                        }
                     }
-                }else{
-                    JOptionPane.showMessageDialog(null, "Not found");
                 }
-            break;
+                break;
             
-            case "Year Of Manufacture": 
+            case "Year of Manufacture": 
+                boolean yearFound = false;
                 if(selectedItem.toLowerCase().equals("year of manufacture")){
-                System.out.println(selectedItem);
+                System.out.println("Year of manufacture " + selectedItem);
                     for(Car car : cars.getCars()){
-                        if(car.getYearOfManufacture() == Integer.parseInt(txtSearch.getText())){
-                            System.out.println(txtSearch.getText());
-                            Object[] list = new Object[7];
+                        int yearM = Integer.parseInt(txtSearch.getText());
+                System.out.println("Year "+yearM);
+                        if(car.getYearOfManufacture() == yearM){
+                            System.out.println(car.getYearOfManufacture());
+                            Object[] list = new Object[8];
                             list[0] = car;
-                            list[1] = car.getModel();
-                            list[2] = car.getYearOfManufacture();
-                            list[3] = car.getNumberOfSeats();
-                            list[4] = car.getAvailability();
-                            list[5] = car.getCity();
-                            list[6] = car.getMaintenanceExpiry();
+                            list[1] = car.getBrand();
+                            list[2] = car.getModel();
+                            list[3] = car.getYearOfManufacture();
+                            list[4] = car.getNumberOfSeats();
+                            list[5] = car.getAvailability();
+                            list[6] = car.getCity();
+                            list[7] = car.getMaintenanceExpiry();
 
                             search.addRow(list);
+                            yearFound = true;
                         }
+                        
                     }
-                }else{
-                    JOptionPane.showMessageDialog(null, "Not found");
+                    
+                    if(!yearFound) {
+                      JOptionPane.showMessageDialog(null, "Not found");
+
+                    }
                 }
-            break;
+                    break;
             
-            case "Number Of Seats": 
+            case "Number of Seats": 
+                boolean seatFound = false;
                 if(selectedItem.toLowerCase().equals("number of seats")){
                 System.out.println(selectedItem);
                     for(Car car : cars.getCars()){
                         if(car.getNumberOfSeats() == Integer.parseInt(txtSearch.getText())){
                             System.out.println(txtSearch.getText());
-                            Object[] list = new Object[7];
+                            Object[] list = new Object[8];
                             list[0] = car;
-                            list[1] = car.getModel();
-                            list[2] = car.getYearOfManufacture();
-                            list[3] = car.getNumberOfSeats();
-                            list[4] = car.getAvailability();
-                            list[5] = car.getCity();
-                            list[6] = car.getMaintenanceExpiry();
+                            list[1] = car.getBrand();
+                            list[2] = car.getModel();
+                            list[3] = car.getYearOfManufacture();
+                            list[4] = car.getNumberOfSeats();
+                            list[5] = car.getAvailability();
+                            list[6] = car.getCity();
+                            list[7] = car.getMaintenanceExpiry();
 
                             search.addRow(list);
+                            seatFound = true;
                         }
                     }
-                }else{
-                    JOptionPane.showMessageDialog(null, "Not found");
+                    if(!seatFound) {
+                      JOptionPane.showMessageDialog(null, "Not found");
+
+                    }
                 }
             break;
             
@@ -712,20 +708,23 @@ public class ViewJPanel extends javax.swing.JPanel {
                     for(Car car : cars.getCars()){
                         if(car.getCity().equals(txtSearch.getText())){
                             System.out.println(txtSearch.getText());
-                            Object[] list = new Object[7];
+                            Object[] list = new Object[8];
                             list[0] = car;
-                            list[1] = car.getModel();
-                            list[2] = car.getYearOfManufacture();
-                            list[3] = car.getNumberOfSeats();
-                            list[4] = car.getAvailability();
-                            list[5] = car.getCity();
-                            list[6] = car.getMaintenanceExpiry();
+                            list[1] = car.getBrand();
+                            list[2] = car.getModel();
+                            list[3] = car.getYearOfManufacture();
+                            list[4] = car.getNumberOfSeats();
+                            list[5] = car.getAvailability();
+                            list[6] = car.getCity();
+                            list[7] = car.getMaintenanceExpiry();
 
                             search.addRow(list);
                         }
+                        else{
+                            JOptionPane.showMessageDialog(null, "Not found");
+                        }
+
                     }
-                }else{
-                    JOptionPane.showMessageDialog(null, "Not found");
                 }
             break;
 
@@ -733,30 +732,27 @@ public class ViewJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void txtSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSearchMouseClicked
-        // TODO add your handling code here:
-        
-        
-        
+        // TODO add your handling code here:    
     }//GEN-LAST:event_txtSearchMouseClicked
 
     private void btnFirstAvailableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstAvailableActionPerformed
         // TODO add your handling code here:
-        //cars.getCars();
-        //String firstAvailability = "yes";
+        
         search = (DefaultTableModel) tableSearch.getModel();
         search.setRowCount(0);
         
         for(Car car : cars.getCars()){
             if(car.getAvailability().equals("Yes")){
                 
-                Object[] list = new Object[7];
-                list[0] = car;
-                list[1] = car.getModel();
-                list[2] = car.getYearOfManufacture();
-                list[3] = car.getNumberOfSeats();
-                list[4] = car.getAvailability();
-                list[5] = car.getCity();
-                list[6] = car.getMaintenanceExpiry();
+                Object[] list = new Object[8];
+                    list[0] = car;
+                    list[1] = car.getBrand();
+                    list[2] = car.getModel();
+                    list[3] = car.getYearOfManufacture();
+                    list[4] = car.getNumberOfSeats();
+                    list[5] = car.getAvailability();
+                    list[6] = car.getCity();
+                    list[7] = car.getMaintenanceExpiry();
 
                 search.addRow(list);
                 break;
@@ -781,14 +777,15 @@ public class ViewJPanel extends javax.swing.JPanel {
         int min = array.get(0);
         for(Car car : cars.getCars()){
             if(car.getNumberOfSeats() == min){
-                    Object[] list = new Object[7];
+                    Object[] list = new Object[8];
                     list[0] = car;
-                    list[1] = car.getModel();
-                    list[2] = car.getYearOfManufacture();
-                    list[3] = car.getNumberOfSeats();
-                    list[4] = car.getAvailability();
-                    list[5] = car.getCity();
-                    list[6] = car.getMaintenanceExpiry();
+                    list[1] = car.getBrand();
+                    list[2] = car.getModel();
+                    list[3] = car.getYearOfManufacture();
+                    list[4] = car.getNumberOfSeats();
+                    list[5] = car.getAvailability();
+                    list[6] = car.getCity();
+                    list[7] = car.getMaintenanceExpiry();
 
                     search.addRow(list);
             }
@@ -809,7 +806,6 @@ public class ViewJPanel extends javax.swing.JPanel {
             else{
                 j++;
             }
-            //JOptionPane.showMessageDialog(null, "Available Cars: "+i+"\nNot Available Cars: "+j);
         }
         JOptionPane.showMessageDialog(null, "Available Cars: "+i+"\nNot Available Cars: "+j);
     }//GEN-LAST:event_btnAvailNotAvailActionPerformed
@@ -819,37 +815,26 @@ public class ViewJPanel extends javax.swing.JPanel {
         search = (DefaultTableModel) tableSearch.getModel();
         search.setRowCount(0);
         ArrayList<Date> array = new ArrayList<Date>();
-        //ArrayList<Date> sortArray = new ArrayList<Date>();
-        //ArrayList<Date> Reverse = new ArrayList<Date>();
         
         for(Car car : cars.getCars()){
             array.add(car.getDate());
             
         }
-        //for(int i=0; i<array.size(); i++){
-        //System.out.println(array.get(i));}
-            //System.out.println("Hello -1");
             Collections.sort(array);
-            //System.out.println("Hello 0");
             Collections.reverse(array);
-            //System.out.println("Hello 00");
             Date max = array.get(0);
-            //System.out.println("Hello 1" + max);
         
         for(Car car : cars.getCars()){
-            
-            //System.out.println("Hello 2" + max);
-
-
             if(car.getDate().compareTo(max) == 0){
-                Object[] list = new Object[7];
-                list[0] = car;
-                list[1] = car.getModel();
-                list[2] = car.getYearOfManufacture();
-                list[3] = car.getNumberOfSeats();
-                list[4] = car.getAvailability();
-                list[5] = car.getCity();
-                list[6] = car.getMaintenanceExpiry();
+                Object[] list = new Object[8];
+                    list[0] = car;
+                    list[1] = car.getBrand();
+                    list[2] = car.getModel();
+                    list[3] = car.getYearOfManufacture();
+                    list[4] = car.getNumberOfSeats();
+                    list[5] = car.getAvailability();
+                    list[6] = car.getCity();
+                    list[7] = car.getMaintenanceExpiry();
 
                 search.addRow(list);
                 break;
@@ -876,14 +861,15 @@ public class ViewJPanel extends javax.swing.JPanel {
             System.out.println("inside for");
             if(car.getMaintenanceExpiry().before(today)){
                 System.out.println("inside if");
-                Object[] list = new Object[7];
-                list[0] = car;
-                list[1] = car.getModel();
-                list[2] = car.getYearOfManufacture();
-                list[3] = car.getNumberOfSeats();
-                list[4] = car.getAvailability();
-                list[5] = car.getCity();
-                list[6] = car.getMaintenanceExpiry();
+                Object[] list = new Object[8];
+                    list[0] = car;
+                    list[1] = car.getBrand();
+                    list[2] = car.getModel();
+                    list[3] = car.getYearOfManufacture();
+                    list[4] = car.getNumberOfSeats();
+                    list[5] = car.getAvailability();
+                    list[6] = car.getCity();
+                    list[7] = car.getMaintenanceExpiry();
 
                 search.addRow(list);
             } 
@@ -903,19 +889,24 @@ public class ViewJPanel extends javax.swing.JPanel {
         
         for(Car car : cars.getCars()){
             if(car.getNumberOfSeats() >= 4 && car.getNumberOfSeats() < 8){
-                    Object[] list = new Object[7];
+                    Object[] list = new Object[8];
                     list[0] = car;
-                    list[1] = car.getModel();
-                    list[2] = car.getYearOfManufacture();
-                    list[3] = car.getNumberOfSeats();
-                    list[4] = car.getAvailability();
-                    list[5] = car.getCity();
-                    list[6] = car.getMaintenanceExpiry();
+                    list[1] = car.getBrand();
+                    list[2] = car.getModel();
+                    list[3] = car.getYearOfManufacture();
+                    list[4] = car.getNumberOfSeats();
+                    list[5] = car.getAvailability();
+                    list[6] = car.getCity();
+                    list[7] = car.getMaintenanceExpiry();
 
                     search.addRow(list);
             }
         }
     }//GEN-LAST:event_btnSeatsLessMoreActionPerformed
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -964,14 +955,15 @@ public class ViewJPanel extends javax.swing.JPanel {
         
         for(Car car : cars.getCars()){
             
-            Object[] list = new Object[7];
+            Object[] list = new Object[8];
             list[0] = car;
-            list[1] = car.getModel();
-            list[2] = car.getYearOfManufacture();
-            list[3] = car.getNumberOfSeats();
-            list[4] = car.getAvailability();
-            list[5] = car.getCity();
-            list[6] = car.getMaintenanceExpiry();
+            list[1] = car.getBrand();
+            list[2] = car.getModel();
+            list[3] = car.getYearOfManufacture();
+            list[4] = car.getNumberOfSeats();
+            list[5] = car.getAvailability();
+            list[6] = car.getCity();
+            list[7] = car.getMaintenanceExpiry();
             
             model.addRow(list);
             

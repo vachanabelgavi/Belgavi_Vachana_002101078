@@ -97,10 +97,6 @@ public class CreateJPanel extends javax.swing.JPanel {
             }
         });
 
-        txtYear.setText("0");
-
-        txtSeats.setText("0");
-
         RadioBtnYes.setText("Yes");
         RadioBtnYes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

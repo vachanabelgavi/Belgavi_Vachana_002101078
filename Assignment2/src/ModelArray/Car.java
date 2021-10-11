@@ -97,7 +97,7 @@ public class Car {
 
     @Override
     public String toString(){
-        return brand;
+        return serialNumber;
     }
     
 }

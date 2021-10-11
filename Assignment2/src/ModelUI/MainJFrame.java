@@ -23,6 +23,8 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         
         cars = new CarsList();
+        setSize(1100,800);
+        setResizable(false);
     }
 
     /**
