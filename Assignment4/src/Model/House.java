@@ -16,8 +16,8 @@ public class House {
     
     private String streetName;
     private String houseNumber;
-    private int zipCode;
-    private List<Person> personList = new ArrayList<Person>();
+    private String zipCode;
+    private List<Person> personList1 = new ArrayList<Person>();
 
     public String getStreetName() {
         return streetName;
@@ -35,20 +35,20 @@ public class House {
         this.houseNumber = houseNumber;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 
     public List<Person> getPersonList() {
-        return personList;
+        return personList1;
     }
 
-    public void setPersonList(List<Person> personList) {
-        this.personList = personList;
+    public void addPersonToHouse(Person person) {
+        this.personList1.add(person);
     }
     
 }

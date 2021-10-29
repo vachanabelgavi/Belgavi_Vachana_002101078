@@ -29,14 +29,8 @@ public class Community {
         return houseList;
     }
 
-    public void setHouseList(List<House> houseList) {
-        this.houseList = houseList;
-    }
-    
-    public House addHouse(){
-        House newHouse = new House();
-        houseList.add(newHouse);
-        return newHouse;
+    public void addHouseToCommunity(House house) {
+        this.houseList.add(house);
     }
     
 }

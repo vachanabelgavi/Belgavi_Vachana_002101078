@@ -13,8 +13,8 @@ public class Person {
     
     private String name;
     private int age;
-    private String houseNumber;
     private String street;
+    private String zipCode;
 
     public String getName() {
         return name;
@@ -32,20 +32,20 @@ public class Person {
         this.age = age;
     }
 
-    public String getHouseNumber() {
-        return houseNumber;
-    }
-
-    public void setHouseNumber(String houseNumber) {
-        this.houseNumber = houseNumber;
-    }
-
     public String getStreet() {
         return street;
     }
 
     public void setStreet(String street) {
         this.street = street;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
     
     @Override

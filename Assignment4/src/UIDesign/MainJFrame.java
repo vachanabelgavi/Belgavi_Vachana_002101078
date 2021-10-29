@@ -55,14 +55,27 @@ public class MainJFrame extends javax.swing.JFrame {
         controlPanel = new javax.swing.JPanel();
         btnEncounter = new javax.swing.JButton();
         btnEncounter1 = new javax.swing.JButton();
-        btnPerson = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
-        btnHouse = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnPerson = new javax.swing.JButton();
+        btnHouse1 = new javax.swing.JButton();
         workPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(850, 650));
+        setMinimumSize(new java.awt.Dimension(850, 650));
+        setPreferredSize(new java.awt.Dimension(800, 604));
+        setSize(new java.awt.Dimension(850, 650));
 
-        btnEncounter.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
+        controlPanel.setBackground(new java.awt.Color(54, 33, 89));
+        controlPanel.setMaximumSize(new java.awt.Dimension(150, 200));
+        controlPanel.setMinimumSize(new java.awt.Dimension(150, 200));
+        controlPanel.setPreferredSize(new java.awt.Dimension(150, 200));
+
+        btnEncounter.setBackground(new java.awt.Color(54, 33, 89));
+        btnEncounter.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        btnEncounter.setForeground(new java.awt.Color(255, 255, 255));
+        btnEncounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ImagesFolder/patient-20 2.png"))); // NOI18N
         btnEncounter.setText("Encounter");
         btnEncounter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,7 +83,10 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnEncounter1.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
+        btnEncounter1.setBackground(new java.awt.Color(54, 33, 89));
+        btnEncounter1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        btnEncounter1.setForeground(new java.awt.Color(255, 255, 255));
+        btnEncounter1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ImagesFolder/view-20 2.png"))); // NOI18N
         btnEncounter1.setText("View");
         btnEncounter1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,15 +94,10 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnPerson.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
-        btnPerson.setText("Person");
-        btnPerson.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPersonActionPerformed(evt);
-            }
-        });
-
-        btnExit.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
+        btnExit.setBackground(new java.awt.Color(54, 33, 89));
+        btnExit.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        btnExit.setForeground(new java.awt.Color(255, 255, 255));
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ImagesFolder/exit-20 2.png"))); // NOI18N
         btnExit.setText("Exit");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,10 +105,37 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnHouse.setText("Housing");
-        btnHouse.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setBackground(new java.awt.Color(54, 33, 89));
+        btnUpdate.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ImagesFolder/update-20 2.png"))); // NOI18N
+        btnUpdate.setText("Update Delete");
+        btnUpdate.setToolTipText("");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHouseActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        btnPerson.setBackground(new java.awt.Color(54, 33, 89));
+        btnPerson.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        btnPerson.setForeground(new java.awt.Color(255, 255, 255));
+        btnPerson.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ImagesFolder/man-20.png"))); // NOI18N
+        btnPerson.setText("Person");
+        btnPerson.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPersonActionPerformed(evt);
+            }
+        });
+
+        btnHouse1.setBackground(new java.awt.Color(54, 33, 89));
+        btnHouse1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        btnHouse1.setForeground(new java.awt.Color(255, 255, 255));
+        btnHouse1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ImagesFolder/house-20 2.png"))); // NOI18N
+        btnHouse1.setText("Housing");
+        btnHouse1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHouse1ActionPerformed(evt);
             }
         });
 
@@ -106,46 +144,54 @@ public class MainJFrame extends javax.swing.JFrame {
         controlPanelLayout.setHorizontalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
-                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnHouse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPerson, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(controlPanelLayout.createSequentialGroup()
-                        .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnExit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEncounter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEncounter1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnPerson, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                    .addComponent(btnHouse1, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                    .addComponent(btnEncounter, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                    .addComponent(btnEncounter1, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
+
+        controlPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnEncounter, btnEncounter1, btnExit, btnHouse1, btnPerson, btnUpdate});
+
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(btnPerson)
+                .addGap(58, 58, 58)
+                .addComponent(btnHouse1)
                 .addGap(18, 18, 18)
-                .addComponent(btnHouse)
+                .addComponent(btnPerson, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnEncounter)
                 .addGap(18, 18, 18)
                 .addComponent(btnEncounter1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 306, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnUpdate)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 287, Short.MAX_VALUE)
                 .addComponent(btnExit)
                 .addGap(37, 37, 37))
         );
 
-        controlPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnEncounter, btnEncounter1, btnHouse, btnPerson});
+        controlPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnEncounter, btnEncounter1, btnExit, btnHouse1, btnPerson, btnUpdate});
 
         splitPane.setLeftComponent(controlPanel);
+
+        workPanel.setBackground(new java.awt.Color(255, 255, 255));
+        workPanel.setMaximumSize(new java.awt.Dimension(400, 600));
+        workPanel.setMinimumSize(new java.awt.Dimension(400, 600));
+        workPanel.setPreferredSize(new java.awt.Dimension(400, 600));
 
         javax.swing.GroupLayout workPanelLayout = new javax.swing.GroupLayout(workPanel);
         workPanel.setLayout(workPanelLayout);
         workPanelLayout.setHorizontalGroup(
             workPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 468, Short.MAX_VALUE)
+            .addGap(0, 737, Short.MAX_VALUE)
         );
         workPanelLayout.setVerticalGroup(
             workPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 584, Short.MAX_VALUE)
+            .addGap(0, 646, Short.MAX_VALUE)
         );
 
         splitPane.setRightComponent(workPanel);
@@ -154,17 +200,11 @@ public class MainJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(splitPane)
-                .addContainerGap())
+            .addComponent(splitPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(splitPane)
-                .addContainerGap())
+            .addComponent(splitPane, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -178,13 +218,13 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnEncounter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncounter1ActionPerformed
         // TODO add your handling code here:
-        ViewJPanel viewPanel = new ViewJPanel(patient, person);
+        ViewJPanel viewPanel = new ViewJPanel(patient, person, house, community);
         splitPane.setRightComponent(viewPanel);
     }//GEN-LAST:event_btnEncounter1ActionPerformed
 
     private void btnPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPersonActionPerformed
         // TODO add your handling code here:
-        PersonJPanel personPanel = new PersonJPanel(person);
+        PersonJPanel personPanel = new PersonJPanel(person, house, community, city);
         splitPane.setRightComponent(personPanel);
     }//GEN-LAST:event_btnPersonActionPerformed
 
@@ -193,11 +233,17 @@ public class MainJFrame extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
 
-    private void btnHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHouseActionPerformed
+    private void btnHouse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHouse1ActionPerformed
         // TODO add your handling code here:
-        HousingJPanel housePanel = new HousingJPanel(house, community, city, system);
+        HousingJPanel housePanel = new HousingJPanel(person, house, community, city, system);
         splitPane.setRightComponent(housePanel);
-    }//GEN-LAST:event_btnHouseActionPerformed
+    }//GEN-LAST:event_btnHouse1ActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        UpdateJPanel updatePanel = new UpdateJPanel(person, patient, house, community, city, system);
+        splitPane.setRightComponent(updatePanel);
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,8 +284,9 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnEncounter;
     private javax.swing.JButton btnEncounter1;
     private javax.swing.JButton btnExit;
-    private javax.swing.JButton btnHouse;
+    private javax.swing.JButton btnHouse1;
     private javax.swing.JButton btnPerson;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JPanel controlPanel;
     private javax.swing.JSplitPane splitPane;
     private javax.swing.JPanel workPanel;

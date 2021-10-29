@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package UIDesign;
+import Model.City;
+import Model.Community;
+import Model.House;
 import Model.Person;
 import Model.PersonDirectory;
 import javax.swing.JOptionPane;
@@ -18,11 +21,17 @@ public class PersonJPanel extends javax.swing.JPanel {
      * Creates new form PersonJPanel
      */
     PersonDirectory person;
+    House house;
+    Community community;
+    City city;
     
-    public PersonJPanel(PersonDirectory person) {
+    public PersonJPanel(PersonDirectory person,House house, Community community, City city) {
         initComponents();
         
         this.person = person;
+        this.house = house;
+        this.community = community;
+        this.city = city;
     }
 
     /**
@@ -34,7 +43,6 @@ public class PersonJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
         lblAge = new javax.swing.JLabel();
         txtAge = new javax.swing.JTextField();
@@ -42,12 +50,12 @@ public class PersonJPanel extends javax.swing.JPanel {
         btnSave = new javax.swing.JButton();
         lblHouse = new javax.swing.JLabel();
         lblStreet = new javax.swing.JLabel();
-        txtNum = new javax.swing.JTextField();
         txtStreet = new javax.swing.JTextField();
+        txtZip = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Person Details");
+        setBackground(new java.awt.Color(255, 255, 255));
 
         lblName.setText("Name");
 
@@ -59,6 +67,9 @@ public class PersonJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnSave.setBackground(new java.awt.Color(54, 33, 89));
+        btnSave.setForeground(new java.awt.Color(255, 255, 255));
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ImagesFolder/save-20.png"))); // NOI18N
         btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,47 +77,62 @@ public class PersonJPanel extends javax.swing.JPanel {
             }
         });
 
-        lblHouse.setText("House Number");
+        lblHouse.setText("Zip Code");
 
         lblStreet.setText("Street");
+
+        jPanel1.setBackground(new java.awt.Color(54, 33, 89));
+
+        jLabel1.setBackground(new java.awt.Color(54, 33, 89));
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Person Details");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addGap(169, 169, 169)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblName)
                             .addComponent(lblAge))
                         .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSave)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtName)
-                                .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtName)
+                            .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblStreet)
                             .addComponent(lblHouse))
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNum, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(178, Short.MAX_VALUE))
+                            .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtStreet)
+                                .addComponent(txtZip, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(296, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(jLabel1)
-                .addGap(42, 42, 42)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblName)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -116,15 +142,15 @@ public class PersonJPanel extends javax.swing.JPanel {
                     .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHouse)
-                    .addComponent(txtNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblStreet))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblStreet)
-                    .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                    .addComponent(txtZip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHouse))
+                .addGap(45, 45, 45)
                 .addComponent(btnSave)
-                .addGap(52, 52, 52))
+                .addContainerGap(210, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -136,36 +162,77 @@ public class PersonJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String name = txtName.getText();
         int age = Integer.parseInt(txtAge.getText());
-        String houseNumber = txtNum.getText();
         String street = txtStreet.getText();
+        String zip = txtZip.getText();
 
-        Person per = person.addPerson();
-        per.setName(name);
-        per.setAge(age);
-        per.setHouseNumber(houseNumber);
-        per.setStreet(street);
+        
+        boolean inHouse = false;
+        boolean inPersonList = false;
+        
+        
+        System.out.println(city.getCommunityList().size());
+        System.out.println(community.getHouseList().size());
 
-        JOptionPane.showMessageDialog(this, "New Person added.");
+        
+        for(Community c : city.getCommunityList()){
+            
+            for(int i = 0; i < community.getHouseList().size(); i++){
+                System.out.println(c.getHouseList().get(i).getStreetName());
+                System.out.println(c.getHouseList().get(i).getZipCode());
 
+                if(c.getHouseList().get(i).getStreetName().equalsIgnoreCase(street) && c.getHouseList().get(i).getZipCode().equalsIgnoreCase(zip)){
+                    inHouse = true;
+                    for(int j=0; j < c.getHouseList().get(i).getPersonList().size(); j++){
+                        
+                        if (c.getHouseList().get(i).getPersonList().get(j).getName().equals(name) &&
+                                c.getHouseList().get(i).getPersonList().get(j).getAge() == age) {
+                                                    inPersonList = true;
+
+                        }
+                    }                    
+                }
+                
+                if (!inPersonList && inHouse) {
+                    Person per = person.addPerson();
+
+                    per.setName(name);
+                    per.setAge(age);
+                    per.setStreet(street);
+                    per.setZipCode(zip);
+                    
+                    c.getHouseList().get(i).addPersonToHouse(per);
+                }
+            }
+        }
+        
+        if (inPersonList) {
+            JOptionPane.showMessageDialog(null, "Duplicate Person");
+
+        }
+        
+        if (!inHouse) {
+            JOptionPane.showMessageDialog(null, "No Housing Found!");
+
+        }
+        
         txtName.setText("");
         txtAge.setText("");
-        txtNum.setText("");
         txtStreet.setText("");
-
-        System.out.println(per.getName()+" "+per.getAge());
+        txtZip.setText("");
     }//GEN-LAST:event_btnSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAge;
     private javax.swing.JLabel lblHouse;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblStreet;
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtNum;
     private javax.swing.JTextField txtStreet;
+    private javax.swing.JTextField txtZip;
     // End of variables declaration//GEN-END:variables
 }

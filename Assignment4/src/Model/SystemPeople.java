@@ -20,13 +20,7 @@ public class SystemPeople {
         return cityList;
     }
 
-    public void setCityList(List<City> cityList) {
-        this.cityList = cityList;
-    }
-    
-    public City addCity(){
-        City newCity = new City();
-        cityList.add(newCity);
-        return newCity;
+    public void addCityToSystemPeople(City city) {
+        this.cityList.add(city);
     }
 }

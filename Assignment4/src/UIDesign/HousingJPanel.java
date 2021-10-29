@@ -9,6 +9,7 @@ import Model.City;
 import Model.Community;
 import Model.House;
 import Model.Person;
+import Model.PersonDirectory;
 import Model.SystemPeople;
 import javax.swing.JOptionPane;
 
@@ -25,14 +26,16 @@ public class HousingJPanel extends javax.swing.JPanel {
     Community community;
     City city;
     SystemPeople system;
+    PersonDirectory person;
     
-    public HousingJPanel(House house, Community community, City city, SystemPeople system) {
+    public HousingJPanel(PersonDirectory person, House house, Community community, City city, SystemPeople system) {
         initComponents();
         
         this.house = house;
         this.community = community;
         this.city = city;
         this.system = system;
+        this. person = person;
     }
 
     /**
@@ -44,7 +47,6 @@ public class HousingJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         lblHouse = new javax.swing.JLabel();
         lblStreet = new javax.swing.JLabel();
         lblZip = new javax.swing.JLabel();
@@ -56,10 +58,10 @@ public class HousingJPanel extends javax.swing.JPanel {
         txtCity = new javax.swing.JTextField();
         txtCommunity = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("  Housing Details");
+        setBackground(new java.awt.Color(255, 255, 255));
 
         lblHouse.setText("House Number");
 
@@ -71,6 +73,10 @@ public class HousingJPanel extends javax.swing.JPanel {
 
         lblCity.setText("City");
 
+        btnSave.setBackground(new java.awt.Color(54, 33, 89));
+        btnSave.setFont(new java.awt.Font("Lucida Grande", 0, 13)); // NOI18N
+        btnSave.setForeground(new java.awt.Color(255, 255, 255));
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ImagesFolder/save-20.png"))); // NOI18N
         btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,41 +84,55 @@ public class HousingJPanel extends javax.swing.JPanel {
             }
         });
 
+        jPanel4.setBackground(new java.awt.Color(54, 33, 89));
+
+        jLabel5.setBackground(new java.awt.Color(54, 33, 89));
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Housing Details");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblComm)
-                            .addComponent(lblStreet)
-                            .addComponent(lblHouse)
-                            .addComponent(lblZip)
-                            .addComponent(lblCity))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNum, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtZip, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(btnSave)))
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addGap(130, 130, 130)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblComm)
+                    .addComponent(lblStreet)
+                    .addComponent(lblHouse)
+                    .addComponent(lblZip)
+                    .addComponent(lblCity))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtNum)
+                    .addComponent(txtCity)
+                    .addComponent(txtCommunity)
+                    .addComponent(txtZip)
+                    .addComponent(txtStreet)
+                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(298, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jLabel1)
-                .addGap(38, 38, 38)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHouse)
                     .addComponent(txtNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -132,9 +152,9 @@ public class HousingJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCity)
                     .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(37, 37, 37)
                 .addComponent(btnSave)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(179, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -142,22 +162,23 @@ public class HousingJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String houseNumber = txtNum.getText();
         String street = txtStreet.getText();
-        int zip = Integer.parseInt(txtZip.getText());
+        String zip = txtZip.getText();
         String comm = txtCommunity.getText();
         String c = txtCity.getText();
         
-        House h = community.addHouse();
-        Community co = city.addCommunity();
-        City ci = system.addCity();
+        house.setHouseNumber(houseNumber);
+        house.setStreetName(street);
+        house.setZipCode(zip);
         
+        community.setName(comm);
+        city.setCity(c);
         
-        h.setHouseNumber(houseNumber);
-        h.setStreetName(street);
-        h.setZipCode(zip);
-        co.setName(comm);
-        ci.setCity(c);
-
-        JOptionPane.showMessageDialog(this, "New Housing Details added.");
+        community.addHouseToCommunity(house);
+        city.addCommunityToCity(community);
+        system.addCityToSystemPeople(city);
+        
+        System.out.println(city.getCommunityList().size());
+        System.out.println(community.getHouseList().size());
 
         txtNum.setText("");
         txtStreet.setText("");
@@ -165,15 +186,22 @@ public class HousingJPanel extends javax.swing.JPanel {
         txtCommunity.setText("");
         txtCity.setText("");
 
-        System.out.println(h.getHouseNumber()+" "+h.getStreetName()+" "+h.getZipCode()+" "+h.getPersonList());
-        System.out.println(co.getName());
-        System.out.println(ci.getCity());
+        System.out.println(house.getHouseNumber()+" "+house.getStreetName()+" "+house.getZipCode());
+        System.out.println(community.getName());
+        System.out.println(city.getCity());
     }//GEN-LAST:event_btnSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblCity;
     private javax.swing.JLabel lblComm;
     private javax.swing.JLabel lblHouse;
