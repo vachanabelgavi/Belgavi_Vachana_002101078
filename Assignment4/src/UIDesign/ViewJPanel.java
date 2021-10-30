@@ -85,6 +85,7 @@ public class ViewJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tableView.setSelectionBackground(new java.awt.Color(54, 33, 89));
         jScrollPane1.setViewportView(tableView);
 
         lblSearch.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
@@ -117,6 +118,7 @@ public class ViewJPanel extends javax.swing.JPanel {
             }
         });
         tableSearch.setPreferredSize(new java.awt.Dimension(255, 0));
+        tableSearch.setSelectionBackground(new java.awt.Color(54, 33, 89));
         jScrollPane2.setViewportView(tableSearch);
 
         jLabel1.setText("Name");
@@ -254,8 +256,8 @@ public class ViewJPanel extends javax.swing.JPanel {
             for(int i=0; i < h.getPersonList().size(); i++){
                 list[0] = h.getPersonList().get(i).getName();
                 list[1] = h.getPersonList().get(i).getAge();
+                model.addRow(list);
             }
-            model.addRow(list);
             
         }
     }

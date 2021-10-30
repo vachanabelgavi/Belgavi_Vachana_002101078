@@ -18,6 +18,7 @@ public class House {
     private String houseNumber;
     private String zipCode;
     private List<Person> personList1 = new ArrayList<Person>();
+    private List<Patient>patientList = new ArrayList<Patient>();
 
     public String getStreetName() {
         return streetName;
@@ -49,6 +50,18 @@ public class House {
 
     public void addPersonToHouse(Person person) {
         this.personList1.add(person);
+    }
+
+    public List<Patient> getPatientList() {
+        return patientList;
+    }
+
+    public void addPatientToHouse(Patient patient) {
+        this.patientList.add(patient);
+    }
+    
+    public void deleteData(Person person){
+        personList1.remove(person);
     }
     
 }

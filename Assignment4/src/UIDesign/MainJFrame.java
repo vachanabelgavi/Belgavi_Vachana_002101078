@@ -54,11 +54,12 @@ public class MainJFrame extends javax.swing.JFrame {
         splitPane = new javax.swing.JSplitPane();
         controlPanel = new javax.swing.JPanel();
         btnEncounter = new javax.swing.JButton();
-        btnEncounter1 = new javax.swing.JButton();
+        btnView = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnPerson = new javax.swing.JButton();
         btnHouse1 = new javax.swing.JButton();
+        btnCommunity = new javax.swing.JButton();
         workPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -83,14 +84,14 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnEncounter1.setBackground(new java.awt.Color(54, 33, 89));
-        btnEncounter1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        btnEncounter1.setForeground(new java.awt.Color(255, 255, 255));
-        btnEncounter1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ImagesFolder/view-20 2.png"))); // NOI18N
-        btnEncounter1.setText("View");
-        btnEncounter1.addActionListener(new java.awt.event.ActionListener() {
+        btnView.setBackground(new java.awt.Color(54, 33, 89));
+        btnView.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        btnView.setForeground(new java.awt.Color(255, 255, 255));
+        btnView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ImagesFolder/view-20 2.png"))); // NOI18N
+        btnView.setText("View");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEncounter1ActionPerformed(evt);
+                btnViewActionPerformed(evt);
             }
         });
 
@@ -139,6 +140,18 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        btnCommunity.setBackground(new java.awt.Color(54, 33, 89));
+        btnCommunity.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        btnCommunity.setForeground(new java.awt.Color(255, 255, 255));
+        btnCommunity.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ImagesFolder/community-20.png"))); // NOI18N
+        btnCommunity.setText("Community");
+        btnCommunity.setToolTipText("");
+        btnCommunity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCommunityActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
         controlPanel.setLayout(controlPanelLayout);
         controlPanelLayout.setHorizontalGroup(
@@ -148,13 +161,14 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addComponent(btnPerson, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
                     .addComponent(btnHouse1, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
                     .addComponent(btnEncounter, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                    .addComponent(btnEncounter1, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                    .addComponent(btnView, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCommunity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        controlPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnEncounter, btnEncounter1, btnExit, btnHouse1, btnPerson, btnUpdate});
+        controlPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnEncounter, btnExit, btnHouse1, btnPerson, btnUpdate, btnView});
 
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,15 +180,17 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnEncounter)
                 .addGap(18, 18, 18)
-                .addComponent(btnEncounter1)
+                .addComponent(btnView)
                 .addGap(18, 18, 18)
                 .addComponent(btnUpdate)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 287, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnCommunity)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
                 .addComponent(btnExit)
                 .addGap(37, 37, 37))
         );
 
-        controlPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnEncounter, btnEncounter1, btnExit, btnHouse1, btnPerson, btnUpdate});
+        controlPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnEncounter, btnExit, btnHouse1, btnPerson, btnUpdate, btnView});
 
         splitPane.setLeftComponent(controlPanel);
 
@@ -216,11 +232,11 @@ public class MainJFrame extends javax.swing.JFrame {
         splitPane.setRightComponent(encounterPanel);
     }//GEN-LAST:event_btnEncounterActionPerformed
 
-    private void btnEncounter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncounter1ActionPerformed
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
         ViewJPanel viewPanel = new ViewJPanel(patient, person, house, community);
         splitPane.setRightComponent(viewPanel);
-    }//GEN-LAST:event_btnEncounter1ActionPerformed
+    }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPersonActionPerformed
         // TODO add your handling code here:
@@ -244,6 +260,12 @@ public class MainJFrame extends javax.swing.JFrame {
         UpdateJPanel updatePanel = new UpdateJPanel(person, patient, house, community, city, system);
         splitPane.setRightComponent(updatePanel);
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnCommunityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCommunityActionPerformed
+        // TODO add your handling code here:
+        CommunityJPanel commPanel = new CommunityJPanel(person, patient, house, community, city, system);
+        splitPane.setRightComponent(commPanel);
+    }//GEN-LAST:event_btnCommunityActionPerformed
 
     /**
      * @param args the command line arguments
@@ -281,12 +303,13 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCommunity;
     private javax.swing.JButton btnEncounter;
-    private javax.swing.JButton btnEncounter1;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnHouse1;
     private javax.swing.JButton btnPerson;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnView;
     private javax.swing.JPanel controlPanel;
     private javax.swing.JSplitPane splitPane;
     private javax.swing.JPanel workPanel;

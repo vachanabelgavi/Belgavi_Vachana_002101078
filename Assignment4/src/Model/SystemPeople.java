@@ -23,4 +23,8 @@ public class SystemPeople {
     public void addCityToSystemPeople(City city) {
         this.cityList.add(city);
     }
+    
+    public void deleteData(City city){
+        cityList.remove(city);
+    }
 }

@@ -32,7 +32,7 @@ public class UpdateJPanel extends javax.swing.JPanel {
     SystemPeople system;
     
     DefaultTableModel modelTable;
-    Person selectedPerson;
+    City selectedCity;
     
     public UpdateJPanel(PersonDirectory person, PatientDirectory patient, House house, Community community, City city, SystemPeople system) {
         initComponents();
@@ -117,6 +117,7 @@ public class UpdateJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tableUpdate.setSelectionBackground(new java.awt.Color(54, 33, 89));
         jScrollPane1.setViewportView(tableUpdate);
 
         txtName.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +127,6 @@ public class UpdateJPanel extends javax.swing.JPanel {
         });
 
         btnSave.setBackground(new java.awt.Color(54, 33, 89));
-        btnSave.setFont(new java.awt.Font("Lucida Grande", 0, 13)); // NOI18N
         btnSave.setForeground(new java.awt.Color(255, 255, 255));
         btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ImagesFolder/save-20.png"))); // NOI18N
         btnSave.setText("Save");
@@ -154,6 +154,16 @@ public class UpdateJPanel extends javax.swing.JPanel {
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ImagesFolder/delete-bin-20.png"))); // NOI18N
         btnDelete.setText("Delete");
+        btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDeleteMouseClicked(evt);
+            }
+        });
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         lblStreet.setText("Street");
 
@@ -264,6 +274,50 @@ public class UpdateJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here: 
+        
+        String name = txtName.getText();
+        int age = Integer.parseInt(txtAge.getText());
+        String houseNumber = txtNum.getText();
+        String street = txtStreet.getText();
+        String zip = txtZip.getText();
+        String commun = txtCommunity.getText();
+        String ci = txtCity.getText();
+
+        house.setHouseNumber(houseNumber);
+        house.setStreetName(street);
+        house.setZipCode(zip);
+        
+        community.setName(commun);
+        city.setCity(ci);
+        
+        community.addHouseToCommunity(house);
+        city.addCommunityToCity(community);
+        system.addCityToSystemPeople(city);
+
+        int i = tableUpdate.getSelectedRow();
+        if(i >= 0){
+            modelTable.setValueAt(name, i, 0);
+            modelTable.setValueAt(age, i, 1);
+            modelTable.setValueAt(houseNumber, i, 2);
+            modelTable.setValueAt(street, i, 3);
+            modelTable.setValueAt(zip, i, 4);              
+            modelTable.setValueAt(commun, i, 5);
+            modelTable.setValueAt(ci, i, 6);
+        }
+        else {
+            System.out.println("Update error.");
+        }
+        
+        JOptionPane.showMessageDialog(this, "Person Data Updated.");
+        
+        txtName.setText("");
+        txtAge.setText("");
+        txtNum.setText("");
+        txtStreet.setText("");
+        txtZip.setText("");
+        txtCommunity.setText("");
+        txtCity.setText("");
+        
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumActionPerformed
@@ -272,6 +326,7 @@ public class UpdateJPanel extends javax.swing.JPanel {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        
         int selectedRowIndex = tableUpdate.getSelectedRow();
         
         if(selectedRowIndex<0){
@@ -280,11 +335,61 @@ public class UpdateJPanel extends javax.swing.JPanel {
         }
         
         modelTable = (DefaultTableModel) tableUpdate.getModel();
-        selectedPerson = (Person) modelTable.getValueAt(selectedRowIndex, 0);
+        /*
+        selectedCity = (City) modelTable.getValueAt(selectedRowIndex, 0);
         
+        for(City c : system.getCityList()){
+            txtCity.setText(selectedCity.getCity());
+            
+            for(int i=0; i < c.getCommunityList().size(); i++){
+                txtCommunity.setText(selectedCity.getCommunityList().get(i).getName());
+                
+                for(int j=0; j < c.getCommunityList().get(i).getHouseList().size(); j++){
+                    txtNum.setText(selectedCity.getCommunityList().get(i).getHouseList().get(j).getHouseNumber());
+                    txtStreet.setText(selectedCity.getCommunityList().get(i).getHouseList().get(j).getStreetName());
+                    txtZip.setText(selectedCity.getCommunityList().get(i).getHouseList().get(j).getZipCode());
+                    
+                    for(int k=0; k < c.getCommunityList().get(i).getHouseList().size(); k++){
+                        txtName.setText(selectedCity.getCommunityList().get(i).getHouseList().get(j).getPersonList().get(k).getName());
+                        txtAge.setText(String.valueOf(selectedCity.getCommunityList().get(i).getHouseList().get(j).getPersonList().get(k).getAge()));
+                    }
+                }
+            }
+        }*/
         
-
+        txtName.setText(modelTable.getValueAt(selectedRowIndex, 0).toString());
+        txtAge.setText(modelTable.getValueAt(selectedRowIndex, 1).toString());
+        txtNum.setText(modelTable.getValueAt(selectedRowIndex, 2).toString());
+        txtStreet.setText(modelTable.getValueAt(selectedRowIndex, 3).toString());
+        txtZip.setText(modelTable.getValueAt(selectedRowIndex, 4).toString());
+        txtCommunity.setText(modelTable.getValueAt(selectedRowIndex, 5).toString());
+        txtCity.setText(modelTable.getValueAt(selectedRowIndex, 6).toString());
+        
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = tableUpdate.getSelectedRow();
+        
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select a row to delete.");
+            return;
+        }
+        
+        DefaultTableModel modelDelete = (DefaultTableModel)tableUpdate.getModel();
+        
+        Person per = (Person) modelDelete.getValueAt(selectedRowIndex, 0);
+        
+        house.deleteData(per);
+        JOptionPane.showMessageDialog(this, "Person data deleted");
+        
+        DisplayPeople();
+        
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -333,11 +438,11 @@ public class UpdateJPanel extends javax.swing.JPanel {
                     for(int k=0; k < c.getCommunityList().get(i).getHouseList().get(j).getPersonList().size(); k++){
                         list[0] = c.getCommunityList().get(i).getHouseList().get(j).getPersonList().get(i).getName();
                         list[1] = c.getCommunityList().get(i).getHouseList().get(j).getPersonList().get(i).getAge();
+                        
+                        model.addRow(list);
                     }
                 }
             }
-            
-            model.addRow(list);
         }
     }
 }
