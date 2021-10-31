@@ -11,6 +11,7 @@ import Model.House;
 import Model.PatientDirectory;
 import Model.PersonDirectory;
 import Model.SystemPeople;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -29,7 +30,7 @@ public class CommunityJPanel extends javax.swing.JPanel {
     City city;
     SystemPeople system;
     
-    DefaultTableModel modelTable;
+    DefaultTableModel modelTable, searchTable, model;
     String selectedItem;
     
     
@@ -64,8 +65,11 @@ public class CommunityJPanel extends javax.swing.JPanel {
         txtSearch = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableCommunity = new javax.swing.JTable();
-        btnSearch = new javax.swing.JButton();
-        btnSearch1 = new javax.swing.JButton();
+        btnLessthan = new javax.swing.JButton();
+        btnMorethan = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        txtCommunity = new javax.swing.JTextField();
+        btnVitals = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(54, 33, 89));
 
@@ -88,10 +92,7 @@ public class CommunityJPanel extends javax.swing.JPanel {
 
         tableSearch.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Name", "Age", "Community", "Vital Sign", "Value", "Date"
@@ -118,6 +119,12 @@ public class CommunityJPanel extends javax.swing.JPanel {
             }
         });
 
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
+
         tableCommunity.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -137,25 +144,34 @@ public class CommunityJPanel extends javax.swing.JPanel {
         tableCommunity.setSelectionBackground(new java.awt.Color(54, 33, 89));
         jScrollPane2.setViewportView(tableCommunity);
 
-        btnSearch.setBackground(new java.awt.Color(54, 33, 89));
-        btnSearch.setFont(new java.awt.Font("Lucida Grande", 0, 13)); // NOI18N
-        btnSearch.setForeground(new java.awt.Color(255, 255, 255));
-        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ImagesFolder/search-20.png"))); // NOI18N
-        btnSearch.setText("Less than");
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+        btnLessthan.setBackground(new java.awt.Color(54, 33, 89));
+        btnLessthan.setFont(new java.awt.Font("Lucida Grande", 0, 13)); // NOI18N
+        btnLessthan.setForeground(new java.awt.Color(255, 255, 255));
+        btnLessthan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ImagesFolder/search-20.png"))); // NOI18N
+        btnLessthan.setText("Less than");
+        btnLessthan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
+                btnLessthanActionPerformed(evt);
             }
         });
 
-        btnSearch1.setBackground(new java.awt.Color(54, 33, 89));
-        btnSearch1.setFont(new java.awt.Font("Lucida Grande", 0, 13)); // NOI18N
-        btnSearch1.setForeground(new java.awt.Color(255, 255, 255));
-        btnSearch1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ImagesFolder/search-20.png"))); // NOI18N
-        btnSearch1.setText("Greater than");
-        btnSearch1.addActionListener(new java.awt.event.ActionListener() {
+        btnMorethan.setBackground(new java.awt.Color(54, 33, 89));
+        btnMorethan.setFont(new java.awt.Font("Lucida Grande", 0, 13)); // NOI18N
+        btnMorethan.setForeground(new java.awt.Color(255, 255, 255));
+        btnMorethan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ImagesFolder/search-20.png"))); // NOI18N
+        btnMorethan.setText("Greater than");
+        btnMorethan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearch1ActionPerformed(evt);
+                btnMorethanActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Community");
+
+        btnVitals.setText("Community-wise Vitals");
+        btnVitals.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVitalsActionPerformed(evt);
             }
         });
 
@@ -167,6 +183,8 @@ public class CommunityJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblSearch)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -174,11 +192,15 @@ public class CommunityJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtSearch)
                         .addGap(18, 18, 18)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnLessthan, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnSearch1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addComponent(btnMorethan, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnVitals, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -188,16 +210,21 @@ public class CommunityJPanel extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSearch)
+                    .addComponent(jLabel2)
+                    .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVitals))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch)
-                    .addComponent(btnSearch1))
+                    .addComponent(btnLessthan)
+                    .addComponent(btnMorethan)
+                    .addComponent(lblSearch))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -206,57 +233,366 @@ public class CommunityJPanel extends javax.swing.JPanel {
         selectedItem = (String) comboSearch.getSelectedItem();
     }//GEN-LAST:event_comboSearchActionPerformed
 
-    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+    private void btnLessthanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLessthanActionPerformed
         // TODO add your handling code here:
         
+        modelTable = (DefaultTableModel) tableSearch.getModel();
+        modelTable.setRowCount(0);
         
+        double value = Double.parseDouble(txtSearch.getText());
+        String commSearch = txtCommunity.getText();
         
-    }//GEN-LAST:event_btnSearchActionPerformed
+        boolean foundbp = false;
+        boolean foundtemp = false;
+        boolean foundpulse = false;
+        
+        if(commSearch.equals("") || commSearch.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Enter data in Search field.");
+        }
+        else{
+            switch(selectedItem){
+                case "Blood Pressure":
+                    for(Community c : city.getCommunityList()){
+                        System.out.println(c.getHouseList().size());
+                        if(c.getName().equalsIgnoreCase(commSearch)){
+                            for(int i=0; i < c.getHouseList().size(); i++){
+                                
+                                System.out.println(c.getHouseList().get(i).getPatientList().size());
+                                for(int j=0; j < c.getHouseList().get(i).getPatientList().size(); j++){
+                                    
+                                    for(int k=0; k < c.getHouseList().get(i).getPatientList().get(j).getEncounters().size(); k++){
+                                        
+                                        System.out.println(c.getHouseList().get(i).getPatientList().get(j).getEncounters().size());
+                                        if(c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()<=value){
+                                            
+                                            foundbp = true;
+                                            Object[] list = new Object[6];
+                                            
+                                            list[0] = c.getHouseList().get(i).getPatientList().get(j).getName();
+                                            list[1] = c.getHouseList().get(i).getPatientList().get(j).getAge();
+                                            list[2] = c.getName();
+                                            list[3] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName();
+                                            list[4] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue();
+                                            list[5] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getDate();
+                                            
+                                            modelTable.addRow(list);
+                                            System.out.println(list[0]+" "+list[1]);
+                                            System.out.println(list[3]+" "+list[4]);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null, "Community not found!");
+                        }
+                    }
+                    if(!foundbp){
+                        JOptionPane.showMessageDialog(null, "Not Found!");
+                    }
+                    break;
+                    
+                case "Temperature":
+                    for(Community c : city.getCommunityList()){
+                        if(c.getName().equalsIgnoreCase(commSearch)){
+                            for(int i=0; i < c.getHouseList().size(); i++){
+                                
+                                for(int j=0; j < c.getHouseList().get(i).getPatientList().size(); j++){
+                                    
+                                    for(int k=0; k < c.getHouseList().get(i).getPatientList().get(j).getEncounters().size(); k++){
+                                        if(c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()<=value){
+                                            
+                                            foundtemp = true;
+                                            Object[] list = new Object[6];
+                                            
+                                            list[0] = c.getHouseList().get(i).getPatientList().get(j).getName();
+                                            list[1] = c.getHouseList().get(i).getPatientList().get(j).getAge();
+                                            list[2] = c.getName();
+                                            list[3] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName();
+                                            list[4] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue();
+                                            list[5] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getDate();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null, "Community not found!");
+                        }
+                    }
+                    if(!foundtemp){
+                        JOptionPane.showMessageDialog(null, "Not Found!");
+                    }
+                    break;
+                
+                case "Pulse":
+                    for(Community c : city.getCommunityList()){
+                        if(c.getName().equalsIgnoreCase(commSearch)){
+                            for(int i=0; i < c.getHouseList().size(); i++){
+                                
+                                for(int j=0; j < c.getHouseList().get(i).getPatientList().size(); j++){
+                                    
+                                    for(int k=0; k < c.getHouseList().get(i).getPatientList().get(j).getEncounters().size(); k++){
+                                        if(c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()<=value){
+                                            
+                                            foundpulse = true;
+                                            Object[] list = new Object[6];
+                                            
+                                            list[0] = c.getHouseList().get(i).getPatientList().get(j).getName();
+                                            list[1] = c.getHouseList().get(i).getPatientList().get(j).getAge();
+                                            list[2] = c.getName();
+                                            list[3] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName();
+                                            list[4] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue();
+                                            list[5] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getDate();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null, "Not Found!");
+                        }
+                    }
+                    if(!foundpulse){
+                        JOptionPane.showMessageDialog(null, "Not Found!");
+                    }
+                    break;
+            }
+        }
+    }//GEN-LAST:event_btnLessthanActionPerformed
 
-    private void btnSearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearch1ActionPerformed
+    private void btnMorethanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMorethanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSearch1ActionPerformed
+        
+        modelTable = (DefaultTableModel) tableSearch.getModel();
+        modelTable.setRowCount(0);
+        
+        double value = Double.parseDouble(txtSearch.getText());
+        String commSearch = txtCommunity.getText();
+        
+        boolean foundbp = false;
+        boolean foundtemp = false;
+        boolean foundpulse = false;
+        
+        if(commSearch.equals("") || commSearch.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Enter data in Search field.");
+        }
+        else{
+            switch(selectedItem){
+                case "Blood Pressure":
+                    for(Community c : city.getCommunityList()){
+                        System.out.println(c.getHouseList().size());
+                        if(c.getName().equalsIgnoreCase(commSearch)){
+                            for(int i=0; i < c.getHouseList().size(); i++){
+                                
+                                System.out.println(c.getHouseList().get(i).getPatientList().size());
+                                for(int j=0; j < c.getHouseList().get(i).getPatientList().size(); j++){
+                                    
+                                    for(int k=0; k < c.getHouseList().get(i).getPatientList().get(j).getEncounters().size(); k++){
+                                        
+                                        System.out.println(c.getHouseList().get(i).getPatientList().get(j).getEncounters().size());
+                                        if(c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()>=value){
+                                            
+                                            foundbp = true;
+                                            Object[] list = new Object[6];
+                                            
+                                            list[0] = c.getHouseList().get(i).getPatientList().get(j).getName();
+                                            list[1] = c.getHouseList().get(i).getPatientList().get(j).getAge();
+                                            list[2] = c.getName();
+                                            list[3] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName();
+                                            list[4] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue();
+                                            list[5] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getDate();
+                                            
+                                            modelTable.addRow(list);
+                                            System.out.println(list[0]+" "+list[1]);
+                                            System.out.println(list[3]+" "+list[4]);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null, "Community not found!");
+                        }
+                    }
+                    if(!foundbp){
+                        JOptionPane.showMessageDialog(null, "Not Found!");
+                    }
+                    break;
+                    
+                case "Temperature":
+                    for(Community c : city.getCommunityList()){
+                        if(c.getName().equalsIgnoreCase(commSearch)){
+                            for(int i=0; i < c.getHouseList().size(); i++){
+                                
+                                for(int j=0; j < c.getHouseList().get(i).getPatientList().size(); j++){
+                                    
+                                    for(int k=0; k < c.getHouseList().get(i).getPatientList().get(j).getEncounters().size(); k++){
+                                        if(c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()>=value){
+                                            
+                                            foundtemp = true;
+                                            Object[] list = new Object[6];
+                                            
+                                            list[0] = c.getHouseList().get(i).getPatientList().get(j).getName();
+                                            list[1] = c.getHouseList().get(i).getPatientList().get(j).getAge();
+                                            list[2] = c.getName();
+                                            list[3] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName();
+                                            list[4] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue();
+                                            list[5] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getDate();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null, "Community not found!");
+                        }
+                    }
+                    if(!foundtemp){
+                        JOptionPane.showMessageDialog(null, "Not Found!");
+                    }
+                    break;
+                
+                case "Pulse":
+                    for(Community c : city.getCommunityList()){
+                        if(c.getName().equalsIgnoreCase(commSearch)){
+                            for(int i=0; i < c.getHouseList().size(); i++){
+                                
+                                for(int j=0; j < c.getHouseList().get(i).getPatientList().size(); j++){
+                                    
+                                    for(int k=0; k < c.getHouseList().get(i).getPatientList().get(j).getEncounters().size(); k++){
+                                        if(c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()>=value){
+                                            
+                                            foundpulse = true;
+                                            Object[] list = new Object[6];
+                                            
+                                            list[0] = c.getHouseList().get(i).getPatientList().get(j).getName();
+                                            list[1] = c.getHouseList().get(i).getPatientList().get(j).getAge();
+                                            list[2] = c.getName();
+                                            list[3] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName();
+                                            list[4] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue();
+                                            list[5] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getDate();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null, "Community not found!");
+                        }
+                    }
+                    if(!foundpulse){
+                        JOptionPane.showMessageDialog(null, "Not Found!");
+                    }
+                    break;
+            }
+        }
+        
+    }//GEN-LAST:event_btnMorethanActionPerformed
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchActionPerformed
+
+    private void btnVitalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVitalsActionPerformed
+        // TODO add your handling code here:
+        
+        searchTable = (DefaultTableModel) tableSearch.getModel();
+        searchTable.setRowCount(0);
+        
+        int normal=0;
+        int abnormal=0;
+        
+        String comm = txtCommunity.getText();
+        
+        for(Community c : city.getCommunityList()){
+            for(int i=0; i < c.getHouseList().size(); i++){
+                if(c.getName().equalsIgnoreCase(comm)){
+                
+                    for(int j=0; j < c.getHouseList().get(i).getPatientList().size(); j++){
+
+                        System.out.println(c.getHouseList().get(i).getPatientList().size());
+                        for(int k=0; k < c.getHouseList().get(i).getPatientList().get(j).getEncounters().size(); k++){
+
+                            System.out.println(c.getHouseList().get(i).getPatientList().get(j).getEncounters().size());
+                            System.out.println("j " + c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName());
+                            System.out.println("j "+c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue());
+                            if(c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName().equalsIgnoreCase("Blood Pressure") && 
+                                    c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()<=80 || 
+                                    c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()>=120){
+
+                                System.out.println("Abnormal: "+abnormal+" "+"Normal: "+normal);
+                                Object[] list = new Object[6];
+
+                                list[0] = c.getHouseList().get(i).getPatientList().get(j).getName(); 
+                                list[1] = c.getHouseList().get(i).getPatientList().get(j).getAge();
+                                list[2] = c.getName();
+                                list[3] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName();
+                                list[4] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue();
+                                list[5] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getDate();
+
+                                searchTable.addRow(list);
+                                normal = model.getRowCount() - searchTable.getRowCount();
+                                abnormal = searchTable.getRowCount();
+                                System.out.println("Abnormal count : "+abnormal+" "+"Normal count: "+normal);
+                                JOptionPane.showMessageDialog(null, "Abnormal: "+abnormal+"\n"+"Normal: "+normal);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+    }//GEN-LAST:event_btnVitalsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSearch;
-    private javax.swing.JButton btnSearch1;
+    private javax.swing.JButton btnLessthan;
+    private javax.swing.JButton btnMorethan;
+    private javax.swing.JButton btnVitals;
     private javax.swing.JComboBox<String> comboSearch;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblSearch;
     private javax.swing.JTable tableCommunity;
     private javax.swing.JTable tableSearch;
+    private javax.swing.JTextField txtCommunity;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 
 
     public void displayTable(){
         
-        DefaultTableModel model = (DefaultTableModel) tableCommunity.getModel();
+        model = (DefaultTableModel) tableCommunity.getModel();
         model.setRowCount(0);
         
-        Object[] list = new Object[7];
+        Object[] list = new Object[6];
         
         for(City c : system.getCityList()){
-            System.out.println(c.getCity());
-            list[6] = c.getCity();
-            System.out.println(list[6]);
+            System.out.println("Comm"+c.getCity());
+            
             for(int i=0; i < c.getCommunityList().size(); i++){
-                list[5] = c.getCommunityList().get(i).getName();
-                System.out.println(list[5]);
+                list[2] = c.getCommunityList().get(i).getName();
+                System.out.println("Comm"+c.getCommunityList().get(i).getName());
+                
                 for(int j=0; j < c.getCommunityList().get(i).getHouseList().size(); j++){
-                    list[2] = c.getCommunityList().get(i).getHouseList().get(j).getHouseNumber();
-                    list[3] = c.getCommunityList().get(i).getHouseList().get(j).getStreetName();
-                    list[4] = c.getCommunityList().get(i).getHouseList().get(j).getZipCode();
                     
-                    for(int k=0; k < c.getCommunityList().get(i).getHouseList().get(j).getPersonList().size(); k++){
-                        list[0] = c.getCommunityList().get(i).getHouseList().get(j).getPersonList().get(i).getName();
-                        list[1] = c.getCommunityList().get(i).getHouseList().get(j).getPersonList().get(i).getAge();
+                    for(int k=0; k < c.getCommunityList().get(i).getHouseList().get(j).getPatientList().size(); k++){
+                        list[0] = c.getCommunityList().get(i).getHouseList().get(j).getPatientList().get(j).getName();
+                        list[1] = c.getCommunityList().get(i).getHouseList().get(j).getPatientList().get(j).getAge();
+                        System.out.println("Comm"+c.getCommunityList().get(i).getHouseList().get(j).getStreetName());
                         
-                        model.addRow(list);
+                        for(int l=0; l < c.getCommunityList().get(i).getHouseList().get(j).getPatientList().get(k).getEncounters().size(); l++){
+                            list[3] = c.getCommunityList().get(i).getHouseList().get(j).getPatientList().get(j).getEncounters().get(l).getVitalSign().getName();
+                            list[4] = c.getCommunityList().get(i).getHouseList().get(j).getPatientList().get(j).getEncounters().get(l).getVitalSign().getValue();
+                            list[5] = c.getCommunityList().get(i).getHouseList().get(j).getPatientList().get(j).getEncounters().get(l).getDate();
+                            System.out.println("Comm"+c.getCommunityList().get(i).getHouseList().get(j).getPatientList().get(j).getEncounters().get(l).getVitalSign().getName());
+                            
+                            model.addRow(list);
+                        }
                     }
                 }
             }

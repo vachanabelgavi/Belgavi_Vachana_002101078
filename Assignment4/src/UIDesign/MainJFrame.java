@@ -228,7 +228,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnEncounterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncounterActionPerformed
         // TODO add your handling code here:
-        EncounterJPanel encounterPanel = new EncounterJPanel(patient, person);
+        EncounterJPanel encounterPanel = new EncounterJPanel(patient, person, house, community, city);
         splitPane.setRightComponent(encounterPanel);
     }//GEN-LAST:event_btnEncounterActionPerformed
 

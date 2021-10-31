@@ -5,8 +5,11 @@
  */
 package UIDesign;
 
+import Model.City;
+import Model.Community;
 import Model.Encounter;
 import Model.EncounterHistory;
+import Model.House;
 import Model.Patient;
 import Model.PatientDirectory;
 import Model.Person;
@@ -27,15 +30,21 @@ public class EncounterJPanel extends javax.swing.JPanel {
     EncounterHistory history;
     PatientDirectory directory;
     PersonDirectory person;
+    House house;
+    Community community;
+    City city;
     
     String selectedItem;
     
-    public EncounterJPanel(PatientDirectory directory, PersonDirectory person) {
+    public EncounterJPanel(PatientDirectory directory, PersonDirectory person, House house, Community community, City city) {
         initComponents();
         
         history = new EncounterHistory();
         this.directory = directory;
         this.person = person;
+        this.house = house;
+        this.community = community;
+        this.city = city;
     }
 
     /**
@@ -60,6 +69,7 @@ public class EncounterJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        labelEncounter = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -67,9 +77,20 @@ public class EncounterJPanel extends javax.swing.JPanel {
 
         dateDate.setBackground(new java.awt.Color(255, 255, 255));
 
+        txtVitalSign.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtVitalSignKeyReleased(evt);
+            }
+        });
+
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameActionPerformed(evt);
+            }
+        });
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNameKeyReleased(evt);
             }
         });
 
@@ -118,6 +139,9 @@ public class EncounterJPanel extends javax.swing.JPanel {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
         );
 
+        labelEncounter.setFont(new java.awt.Font("Lucida Grande", 2, 11)); // NOI18N
+        labelEncounter.setForeground(new java.awt.Color(255, 51, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,14 +169,19 @@ public class EncounterJPanel extends javax.swing.JPanel {
                             .addComponent(txtVitalSign, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(dateDate, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(2, 2, 2)))
+                        .addGap(2, 2, 2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelEncounter, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelEncounter, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblName))
@@ -174,7 +203,7 @@ public class EncounterJPanel extends javax.swing.JPanel {
                     .addComponent(dateDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addComponent(btnSave)
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addContainerGap(194, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -231,6 +260,23 @@ public class EncounterJPanel extends javax.swing.JPanel {
             }
         }
         
+        boolean inPatientList = false;
+        
+        for(Community c : city.getCommunityList()){
+            
+            for(int i = 0; i < c.getHouseList().size(); i++){
+
+                for(int j=0; j < c.getHouseList().get(i).getPersonList().size(); j++){
+                        
+                        if (c.getHouseList().get(i).getPersonList().get(j).getName().equals(name) &&
+                                c.getHouseList().get(i).getPersonList().get(j).getAge() == age) {
+                                                    inPatientList = true;
+
+                        }
+                    }                    
+                }
+            }
+        
         if (found) {
             patient = directory.addPatient();
             patient.setName(name);
@@ -247,7 +293,10 @@ public class EncounterJPanel extends javax.swing.JPanel {
             patient.setAge(age);
             patient.addEncounterToPatient(encounter); 
         }
-        
+
+        if(inPatientList){
+            house.addPatientToHouse(patient);
+        }
         
         System.out.println(patient.getName()+" "+patient.getAge());
         System.out.println(encounter.getVitalSign().getName()+" "+encounter.getVitalSign().getValue()+" "+encounter.getDate());
@@ -266,6 +315,24 @@ public class EncounterJPanel extends javax.swing.JPanel {
         selectedItem = (String) comboVitals.getSelectedItem();
     }//GEN-LAST:event_comboVitalsActionPerformed
 
+    private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
+        // TODO add your handling code here:
+        String name = txtName.getText();
+        
+        if(name.trim().equals("") || name.trim().isEmpty()){
+            labelEncounter.setText("Fields cannot be left blank");
+        }
+    }//GEN-LAST:event_txtNameKeyReleased
+
+    private void txtVitalSignKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtVitalSignKeyReleased
+        // TODO add your handling code here:
+        String vital = txtAge.getText();
+        
+        if(vital.trim().equals("") || vital.trim().isEmpty()){
+            labelEncounter.setText("Fields cannot be left blank");
+        }
+    }//GEN-LAST:event_txtVitalSignKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
@@ -274,6 +341,7 @@ public class EncounterJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel labelEncounter;
     private javax.swing.JLabel lblAge;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblName;

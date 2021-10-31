@@ -88,7 +88,6 @@ public class ViewJPanel extends javax.swing.JPanel {
         tableView.setSelectionBackground(new java.awt.Color(54, 33, 89));
         jScrollPane1.setViewportView(tableView);
 
-        lblSearch.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         lblSearch.setText("Search By Patient");
 
         btnSearch.setBackground(new java.awt.Color(54, 33, 89));
@@ -200,7 +199,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         String searchPatient = txtSearch.getText();
         int ageSearch = Integer.parseInt(txtSearchAge.getText());
         
-        if(searchPatient=="" || searchPatient.isEmpty()){
+        if(searchPatient.equals("") || searchPatient.isEmpty() || ageSearch==0){
             JOptionPane.showMessageDialog(null, "Enter data in Search field.");
         }
         else{
