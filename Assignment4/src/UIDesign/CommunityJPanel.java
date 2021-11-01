@@ -411,9 +411,6 @@ public class CommunityJPanel extends javax.swing.JPanel {
                                 }
                             }
                         }
-                        else{
-                            JOptionPane.showMessageDialog(null, "Community not found!");
-                        }
                     }
                     if(!foundbp){
                         JOptionPane.showMessageDialog(null, "Not Found!");
@@ -443,9 +440,6 @@ public class CommunityJPanel extends javax.swing.JPanel {
                                     }
                                 }
                             }
-                        }
-                        else{
-                            JOptionPane.showMessageDialog(null, "Community not found!");
                         }
                     }
                     if(!foundtemp){
@@ -477,9 +471,6 @@ public class CommunityJPanel extends javax.swing.JPanel {
                                 }
                             }
                         }
-                        else{
-                            JOptionPane.showMessageDialog(null, "Community not found!");
-                        }
                     }
                     if(!foundpulse){
                         JOptionPane.showMessageDialog(null, "Not Found!");
@@ -500,8 +491,8 @@ public class CommunityJPanel extends javax.swing.JPanel {
         searchTable = (DefaultTableModel) tableSearch.getModel();
         searchTable.setRowCount(0);
         
-        int normal=0;
-        int abnormal=0;
+        int normalbp=0, normtemp = 0, normpulse=0;
+        int abnormalbp=0, abnormtemp=0, abnormpulse=0;
         
         String comm = txtCommunity.getText();
         
@@ -521,7 +512,7 @@ public class CommunityJPanel extends javax.swing.JPanel {
                                     c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()<=80 || 
                                     c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()>=120){
 
-                                System.out.println("Abnormal: "+abnormal+" "+"Normal: "+normal);
+                                System.out.println("Abnormal: "+abnormalbp+" "+"Normal: "+normalbp);
                                 Object[] list = new Object[6];
 
                                 list[0] = c.getHouseList().get(i).getPatientList().get(j).getName(); 
@@ -532,16 +523,58 @@ public class CommunityJPanel extends javax.swing.JPanel {
                                 list[5] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getDate();
 
                                 searchTable.addRow(list);
-                                normal = model.getRowCount() - searchTable.getRowCount();
-                                abnormal = searchTable.getRowCount();
-                                System.out.println("Abnormal count : "+abnormal+" "+"Normal count: "+normal);
-                                JOptionPane.showMessageDialog(null, "Abnormal: "+abnormal+"\n"+"Normal: "+normal);
+                                
+                                normalbp = model.getRowCount() - searchTable.getRowCount();
+                                abnormalbp = searchTable.getRowCount();
+                                System.out.println("Abnormal count : "+abnormalbp+" "+"Normal count: "+normalbp);
+                                //JOptionPane.showMessageDialog(null, "Blood Pressure\n"+"Abnormal: "+abnormalbp+"\n"+"Normal: "+normalbp);
+                            }
+                            
+                            if(c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName().equalsIgnoreCase("Temperature") && 
+                                    c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()<=95 || 
+                                    c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()>=100){
+                                
+                                Object[] list = new Object[6];
+
+                                list[0] = c.getHouseList().get(i).getPatientList().get(j).getName(); 
+                                list[1] = c.getHouseList().get(i).getPatientList().get(j).getAge();
+                                list[2] = c.getName();
+                                list[3] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName();
+                                list[4] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue();
+                                list[5] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getDate();
+
+                                searchTable.addRow(list);
+                                normtemp = model.getRowCount() - searchTable.getRowCount();
+                                abnormtemp = searchTable.getRowCount();
+                                System.out.println("Abnormal count : "+abnormtemp+" "+"Normal count: "+normtemp);
+                            }
+                            
+                            if(c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName().equalsIgnoreCase("Pulse") && 
+                                    c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()<=60 || 
+                                    c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()>=100){
+                                
+                                Object[] list = new Object[6];
+
+                                list[0] = c.getHouseList().get(i).getPatientList().get(j).getName(); 
+                                list[1] = c.getHouseList().get(i).getPatientList().get(j).getAge();
+                                list[2] = c.getName();
+                                list[3] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName();
+                                list[4] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue();
+                                list[5] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getDate();
+
+                                searchTable.addRow(list);
+                                normpulse = model.getRowCount() - searchTable.getRowCount();
+                                abnormpulse = searchTable.getRowCount();
+                                System.out.println("Abnormal count : "+abnormpulse+" "+"Normal count: "+normpulse);
                             }
                         }
                     }
                 }
             }
         }
+        JOptionPane.showMessageDialog(null, "Blood Pressure\n"+"Abnormal: "+abnormalbp+"\n"+"Normal: "+normalbp
+                            +"\n\n"+"Temperature"+"\n"+"Abnormal: "+abnormtemp+"\n"+"Normal: "+normtemp
+                            +"\n\n"+"Pulse"+"\n"+"Abnormal: "+abnormpulse+"\n"+"Normal: "+normpulse);
         
     }//GEN-LAST:event_btnVitalsActionPerformed
 
@@ -571,28 +604,34 @@ public class CommunityJPanel extends javax.swing.JPanel {
         
         Object[] list = new Object[6];
         
-        for(City c : system.getCityList()){
-            System.out.println("Comm"+c.getCity());
+        System.out.println();
+        for(Community c : city.getCommunityList()){
+                    System.out.println("\n\nU com name: "+ c.getName());
+
             
-            for(int i=0; i < c.getCommunityList().size(); i++){
-                list[2] = c.getCommunityList().get(i).getName();
-                System.out.println("Comm"+c.getCommunityList().get(i).getName());
+            list[2] = c.getName();
+            
+                                System.out.println("U com house list size: "+ c.getHouseList().size());
+
+            for(int i=0; i < c.getHouseList().size(); i++){
                 
-                for(int j=0; j < c.getCommunityList().get(i).getHouseList().size(); j++){
+                                                System.out.println("U com house list patient list size: "+ c.getHouseList().get(i).getPatientList().size());
+
+                for(int j=0; j < c.getHouseList().get(i).getPatientList().size(); j++){
                     
-                    for(int k=0; k < c.getCommunityList().get(i).getHouseList().get(j).getPatientList().size(); k++){
-                        list[0] = c.getCommunityList().get(i).getHouseList().get(j).getPatientList().get(j).getName();
-                        list[1] = c.getCommunityList().get(i).getHouseList().get(j).getPatientList().get(j).getAge();
-                        System.out.println("Comm"+c.getCommunityList().get(i).getHouseList().get(j).getStreetName());
+                    list[0] = c.getHouseList().get(i).getPatientList().get(j).getName();
+                    list[1] = c.getHouseList().get(i).getPatientList().get(j).getAge();
+                    
+                    
+                                                                    System.out.println("U com house list patient list encounter list size: "+  c.getHouseList().get(i).getPatientList().get(j).getEncounters().size());
+
+                    for(int k=0; k < c.getHouseList().get(i).getPatientList().get(j).getEncounters().size(); k++){
                         
-                        for(int l=0; l < c.getCommunityList().get(i).getHouseList().get(j).getPatientList().get(k).getEncounters().size(); l++){
-                            list[3] = c.getCommunityList().get(i).getHouseList().get(j).getPatientList().get(j).getEncounters().get(l).getVitalSign().getName();
-                            list[4] = c.getCommunityList().get(i).getHouseList().get(j).getPatientList().get(j).getEncounters().get(l).getVitalSign().getValue();
-                            list[5] = c.getCommunityList().get(i).getHouseList().get(j).getPatientList().get(j).getEncounters().get(l).getDate();
-                            System.out.println("Comm"+c.getCommunityList().get(i).getHouseList().get(j).getPatientList().get(j).getEncounters().get(l).getVitalSign().getName());
-                            
-                            model.addRow(list);
-                        }
+                        list[3] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName();
+                        list[4] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue();
+                        list[5] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getDate();
+                        
+                        model.addRow(list);
                     }
                 }
             }

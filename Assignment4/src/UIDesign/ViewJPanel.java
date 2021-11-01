@@ -5,12 +5,14 @@
  */
 package UIDesign;
 
+import Model.City;
 import Model.Community;
 import Model.Encounter;
 import Model.House;
 import Model.Patient;
 import Model.PatientDirectory;
 import Model.PersonDirectory;
+import Model.SystemPeople;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,17 +29,21 @@ public class ViewJPanel extends javax.swing.JPanel {
     PatientDirectory patient;
     House house;
     Community community;
+    City city;
+    SystemPeople system;
     
-    DefaultTableModel model;
+    DefaultTableModel model, search;
 
     
-    public ViewJPanel(PatientDirectory patient, PersonDirectory person, House house, Community community) {
+    public ViewJPanel(PatientDirectory patient, PersonDirectory person, House house, Community community, City city, SystemPeople system) {
         initComponents();
         
         this.person = person;
         this.patient = patient;
         this.house = house;
         this.community = community;
+        this.city = city;
+        this.system = system;
         
         tableView();
     }
@@ -56,13 +62,13 @@ public class ViewJPanel extends javax.swing.JPanel {
         lblSearch = new javax.swing.JLabel();
         txtSearch = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tableSearch = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtSearchAge = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(700, 600));
@@ -100,26 +106,6 @@ public class ViewJPanel extends javax.swing.JPanel {
             }
         });
 
-        tableSearch.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Vital", "Value", "Date"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tableSearch.setPreferredSize(new java.awt.Dimension(255, 0));
-        tableSearch.setSelectionBackground(new java.awt.Color(54, 33, 89));
-        jScrollPane2.setViewportView(tableSearch);
-
         jLabel1.setText("Name");
 
         jLabel2.setText("Age");
@@ -143,20 +129,38 @@ public class ViewJPanel extends javax.swing.JPanel {
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
         );
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Vital Sign", "Value", "Date"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTable1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jScrollPane2)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(lblSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 558, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -172,7 +176,7 @@ public class ViewJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -183,15 +187,15 @@ public class ViewJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(txtSearchAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel search = (DefaultTableModel) tableSearch.getModel();
+        search = (DefaultTableModel) jTable1.getModel();
         search.setRowCount(0);
         
         boolean found = false;
@@ -203,24 +207,56 @@ public class ViewJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Enter data in Search field.");
         }
         else{
-            for(Patient p : patient.getDirectory()){
-                if(p.getName().equalsIgnoreCase(searchPatient) && p.getAge()==ageSearch){
-                    for(Encounter e : p.getEncounters()){
-                        Object[] list = new Object[3];
-                        list[0] = e.getVitalSign().getName();
-                        list[1] = e.getVitalSign().getValue();
-                        list[2] = e.getDate();
+            System.out.println("\n\nCity-community size " + city.getCommunityList().size());
+            System.out.println("community name " + community.getName());
+            for(Community c : city.getCommunityList()){
+                System.out.println("community name " + c.getName());
+                
+                System.out.println("Community-House size " + c.getHouseList().size());
+                for(int i=0; i < c.getHouseList().size(); i++){
+                    
+                    System.out.println("Community-House-patient size " + c.getHouseList().get(i).getPatientList().size());
+                    for(int j=0; j < c.getHouseList().get(i).getPatientList().size(); j++){
+                        
+                        System.out.println("Community-House-patient-encounter size " + c.getHouseList().get(i).getPatientList().get(j).getEncounters().size());
+                        
+                        System.out.println("search from box " + searchPatient);
+                        System.out.println("search from list " + c.getHouseList().get(i).getPatientList().get(j).getName());
+                        
+                        System.out.println("age from search " + ageSearch);
+                        System.out.println("age from list " + c.getHouseList().get(i).getPatientList().get(j).getAge());
+                        
+                        if(c.getHouseList().get(i).getPatientList().get(j).getName().equalsIgnoreCase(searchPatient) && 
+                                c.getHouseList().get(i).getPatientList().get(j).getAge()==ageSearch){
+                            
+                            System.out.println("Community-House-patient-encounter size " + c.getHouseList().get(i).getPatientList().get(j).getEncounters().size());
+                        
+                            for(int k=0; k < c.getHouseList().get(i).getPatientList().get(j).getEncounters().size(); k++){
+                                
+                                Object[] list1 = new Object[3];
+                                
+                                System.out.println("Vital sign name "+c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName());
+                                
+                                list1[0] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName();
+                                list1[1] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue();
+                                list1[2] = c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getDate();
+                                
+                                System.out.println(list1[0]);
+                                System.out.println(list1[1]);
+                                System.out.println(list1[2]);
+                                
+                                search.addRow(list1);
+                                found = true;
 
-                        search.addRow(list);
-                        found = true;
+                            }
+                        }
                     }
                 }
             }
-            if(!found){
+        }
+        if(!found){
                 JOptionPane.showMessageDialog(null, "Not Found!");
             }
-
-        }
         
     }//GEN-LAST:event_btnSearchActionPerformed
 
@@ -232,9 +268,9 @@ public class ViewJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblSearch;
-    private javax.swing.JTable tableSearch;
     private javax.swing.JTable tableView;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtSearchAge;
@@ -247,17 +283,30 @@ public class ViewJPanel extends javax.swing.JPanel {
         
         Object[] list = new Object[5];
         
-        for(House h : community.getHouseList()){
-            list[2] = h.getHouseNumber();
-            list[3] = h.getStreetName();
-            list[4] = h.getZipCode();
+        System.out.println("comm list "+city.getCommunityList().size());
+
+
+        for(Community c : city.getCommunityList()){
+                    System.out.println("view name "+c.getName());
+
+        System.out.println("hosuing list size "+c.getHouseList().size());
             
-            for(int i=0; i < h.getPersonList().size(); i++){
-                list[0] = h.getPersonList().get(i).getName();
-                list[1] = h.getPersonList().get(i).getAge();
-                model.addRow(list);
-            }
-            
+            for(int i=0; i < c.getHouseList().size(); i++){
+                
+                list[2] = c.getHouseList().get(i).getHouseNumber();
+                list[3] = c.getHouseList().get(i).getStreetName();
+                list[4] = c.getHouseList().get(i).getZipCode();
+                
+                System.out.println("person list size "+c.getHouseList().get(i).getPersonList().size());
+
+                
+                for(int j=0; j < c.getHouseList().get(i).getPersonList().size(); j++){
+                    list[0] = c.getHouseList().get(i).getPersonList().get(j).getName();
+                    list[1] = c.getHouseList().get(i).getPersonList().get(j).getAge();
+                    
+                    model.addRow(list);
+                }
+            } 
         }
     }
 }

@@ -14,6 +14,7 @@ import Model.Patient;
 import Model.PatientDirectory;
 import Model.Person;
 import Model.PersonDirectory;
+import Model.SystemPeople;
 import Model.VitalSigns;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -33,10 +34,11 @@ public class EncounterJPanel extends javax.swing.JPanel {
     House house;
     Community community;
     City city;
+    SystemPeople system;
     
     String selectedItem;
     
-    public EncounterJPanel(PatientDirectory directory, PersonDirectory person, House house, Community community, City city) {
+    public EncounterJPanel(PatientDirectory directory, PersonDirectory person, House house, Community community, City city,SystemPeople system) {
         initComponents();
         
         history = new EncounterHistory();
@@ -45,6 +47,7 @@ public class EncounterJPanel extends javax.swing.JPanel {
         this.house = house;
         this.community = community;
         this.city = city;
+        this.system = system;
     }
 
     /**
@@ -252,6 +255,7 @@ public class EncounterJPanel extends javax.swing.JPanel {
         encounter.setVitalSign(vital);
         encounter.setDate(date);
                 
+        int jj =0;
         boolean found = false;
         
         for(Person p : person.getPersonDirectory()){
@@ -260,9 +264,11 @@ public class EncounterJPanel extends javax.swing.JPanel {
             }
         }
         
-        boolean inPatientList = false;
         
         for(Community c : city.getCommunityList()){
+            
+                    boolean inPatientList = false;
+
             
             for(int i = 0; i < c.getHouseList().size(); i++){
 
@@ -270,34 +276,26 @@ public class EncounterJPanel extends javax.swing.JPanel {
                         
                         if (c.getHouseList().get(i).getPersonList().get(j).getName().equals(name) &&
                                 c.getHouseList().get(i).getPersonList().get(j).getAge() == age) {
+                            
+                            System.out.println("ENC " + c.getHouseList().get(i) + " " + c.getHouseList().get(i).getPersonList().get(j).getName() );
+                                    
                                                     inPatientList = true;
+                                                    jj = j;
+                                                    break;
 
                         }
-                    }                    
-                }
-            }
-        
-        if (found) {
-            patient = directory.addPatient();
-            patient.setName(name);
-            patient.setAge(age);
-            patient.addEncounterToPatient(encounter);
-        }
-        else {
-            person1 = person.addPerson();
-            person1.setName(name);
-            person1.setAge(age);
+                    }  
+                
 
-            patient = directory.addPatient();
-            patient.setName(name);
-            patient.setAge(age);
-            patient.addEncounterToPatient(encounter); 
-        }
 
         if(inPatientList){
-            house.addPatientToHouse(patient);
+            c.getHouseList().get(i).getPatientList().get(jj).addEncounterToPatient(encounter);
+            //c.getHouseList().get(i).addPersonToHouse(person1);
         }
         
+                }
+            }
+
         System.out.println(patient.getName()+" "+patient.getAge());
         System.out.println(encounter.getVitalSign().getName()+" "+encounter.getVitalSign().getValue()+" "+encounter.getDate());
 

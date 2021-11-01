@@ -70,11 +70,9 @@ public class UpdateJPanel extends javax.swing.JPanel {
         lblStreet = new javax.swing.JLabel();
         lblZip = new javax.swing.JLabel();
         lblComm = new javax.swing.JLabel();
-        lblCity = new javax.swing.JLabel();
         txtNum = new javax.swing.JTextField();
         txtStreet = new javax.swing.JTextField();
         txtZip = new javax.swing.JTextField();
-        txtCity = new javax.swing.JTextField();
         txtCommunity = new javax.swing.JTextField();
         lblHouse = new javax.swing.JLabel();
 
@@ -106,11 +104,11 @@ public class UpdateJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Person Name", "Age", "House Number", "Street", "Zipcode", "Community", "City"
+                "Person Name", "Age", "House Number", "Street", "Zipcode", "Community"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -128,8 +126,8 @@ public class UpdateJPanel extends javax.swing.JPanel {
 
         btnSave.setBackground(new java.awt.Color(54, 33, 89));
         btnSave.setForeground(new java.awt.Color(255, 255, 255));
-        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ImagesFolder/save-20.png"))); // NOI18N
-        btnSave.setText("Save");
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ImagesFolder/update-file-20.png"))); // NOI18N
+        btnSave.setText("Update");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveActionPerformed(evt);
@@ -142,8 +140,8 @@ public class UpdateJPanel extends javax.swing.JPanel {
 
         btnUpdate.setBackground(new java.awt.Color(54, 33, 89));
         btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
-        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ImagesFolder/update-file-20.png"))); // NOI18N
-        btnUpdate.setText("Update");
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ImagesFolder/view-20 2.png"))); // NOI18N
+        btnUpdate.setText("View");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
@@ -171,8 +169,6 @@ public class UpdateJPanel extends javax.swing.JPanel {
 
         lblComm.setText("Community");
 
-        lblCity.setText("City");
-
         txtNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNumActionPerformed(evt);
@@ -198,15 +194,13 @@ public class UpdateJPanel extends javax.swing.JPanel {
                             .addComponent(lblStreet)
                             .addComponent(lblHouse)
                             .addComponent(lblZip)
-                            .addComponent(lblComm)
-                            .addComponent(lblCity))
+                            .addComponent(lblComm))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtNum)
                             .addComponent(txtStreet)
                             .addComponent(txtZip)
                             .addComponent(txtCommunity)
-                            .addComponent(txtCity)
                             .addComponent(btnSave, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -228,7 +222,7 @@ public class UpdateJPanel extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblName)
@@ -258,13 +252,9 @@ public class UpdateJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblComm)
                             .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblCity)
-                            .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(50, 50, 50)
                         .addComponent(btnSave)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -281,7 +271,9 @@ public class UpdateJPanel extends javax.swing.JPanel {
         String street = txtStreet.getText();
         String zip = txtZip.getText();
         String commun = txtCommunity.getText();
-        String ci = txtCity.getText();
+        //String ci = txtCity.getText();
+        
+/*
 
         house.setHouseNumber(houseNumber);
         house.setStreetName(street);
@@ -293,16 +285,55 @@ public class UpdateJPanel extends javax.swing.JPanel {
         community.addHouseToCommunity(house);
         city.addCommunityToCity(community);
         system.addCityToSystemPeople(city);
+        */
 
         int i = tableUpdate.getSelectedRow();
         if(i >= 0){
+        String initName = modelTable.getValueAt(i, 0).toString();
+        int initAge = Integer.parseInt(modelTable.getValueAt(i, 1).toString());
+            
+                    boolean found = false;
+        
+        for(Person p : person.getPersonDirectory()){
+            if(p.getName().equalsIgnoreCase(initName) && p.getAge()==initAge){
+                found = true;
+            }
+        }
+        
+        System.out.println("Found "+found);
+        
+        boolean inPatientList = false;
+        
+            
+        for(Community c : city.getCommunityList()){
+            
+            for(int m = 0; m < c.getHouseList().size(); m++){
+
+                for(int j=0; j < c.getHouseList().get(m).getPersonList().size(); j++){
+                    
+                        if (c.getHouseList().get(m).getPersonList().get(j).getName().equals(initName) &&
+                                c.getHouseList().get(m).getPersonList().get(j).getAge() == initAge) {
+                            System.out.println("inPatient List " + inPatientList);
+                                                    inPatientList = true;
+                                                    
+                                   c.getHouseList().get(m).getPersonList().get(j).setName(name);
+                                   c.getHouseList().get(m).getPersonList().get(j).setAge(age);
+                                   
+                                   c.getHouseList().get(m).getPatientList().get(j).setName(name);
+                                   c.getHouseList().get(m).getPatientList().get(j).setAge(age);
+                        }
+                    }
+                }
+            }
+            
+            
             modelTable.setValueAt(name, i, 0);
             modelTable.setValueAt(age, i, 1);
             modelTable.setValueAt(houseNumber, i, 2);
             modelTable.setValueAt(street, i, 3);
             modelTable.setValueAt(zip, i, 4);              
             modelTable.setValueAt(commun, i, 5);
-            modelTable.setValueAt(ci, i, 6);
+            //modelTable.setValueAt(ci, i, 6);
         }
         else {
             System.out.println("Update error.");
@@ -316,7 +347,7 @@ public class UpdateJPanel extends javax.swing.JPanel {
         txtStreet.setText("");
         txtZip.setText("");
         txtCommunity.setText("");
-        txtCity.setText("");
+        //txtCity.setText("");
         
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -339,7 +370,7 @@ public class UpdateJPanel extends javax.swing.JPanel {
         selectedCity = (City) modelTable.getValueAt(selectedRowIndex, 0);
         
         for(City c : system.getCityList()){
-            txtCity.setText(selectedCity.getCity());
+            //txtCity.setText(selectedCity.getCity());
             
             for(int i=0; i < c.getCommunityList().size(); i++){
                 txtCommunity.setText(selectedCity.getCommunityList().get(i).getName());
@@ -355,7 +386,8 @@ public class UpdateJPanel extends javax.swing.JPanel {
                     }
                 }
             }
-        }*/
+        }
+        */
         
         txtName.setText(modelTable.getValueAt(selectedRowIndex, 0).toString());
         txtAge.setText(modelTable.getValueAt(selectedRowIndex, 1).toString());
@@ -363,7 +395,7 @@ public class UpdateJPanel extends javax.swing.JPanel {
         txtStreet.setText(modelTable.getValueAt(selectedRowIndex, 3).toString());
         txtZip.setText(modelTable.getValueAt(selectedRowIndex, 4).toString());
         txtCommunity.setText(modelTable.getValueAt(selectedRowIndex, 5).toString());
-        txtCity.setText(modelTable.getValueAt(selectedRowIndex, 6).toString());
+        //txtCity.setText(modelTable.getValueAt(selectedRowIndex, 6).toString());
         
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -400,7 +432,6 @@ public class UpdateJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAge;
-    private javax.swing.JLabel lblCity;
     private javax.swing.JLabel lblComm;
     private javax.swing.JLabel lblHouse;
     private javax.swing.JLabel lblName;
@@ -408,7 +439,6 @@ public class UpdateJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblZip;
     private javax.swing.JTable tableUpdate;
     private javax.swing.JTextField txtAge;
-    private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtCommunity;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtNum;
@@ -421,28 +451,25 @@ public class UpdateJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tableUpdate.getModel();
         model.setRowCount(0);
         System.out.println("labcd");
-        Object[] list = new Object[7];
+        Object[] list = new Object[6];
         
-        for(City c : system.getCityList()){
-            System.out.println(c.getCity());
-            list[6] = c.getCity();
-            System.out.println(list[6]);
-            for(int i=0; i < c.getCommunityList().size(); i++){
-                list[5] = c.getCommunityList().get(i).getName();
+            for(Community c : city.getCommunityList()){
+                list[5] = c.getName();
                 System.out.println(list[5]);
-                for(int j=0; j < c.getCommunityList().get(i).getHouseList().size(); j++){
-                    list[2] = c.getCommunityList().get(i).getHouseList().get(j).getHouseNumber();
-                    list[3] = c.getCommunityList().get(i).getHouseList().get(j).getStreetName();
-                    list[4] = c.getCommunityList().get(i).getHouseList().get(j).getZipCode();
+                for(int j=0; j < c.getHouseList().size(); j++){
+                    list[2] = c.getHouseList().get(j).getHouseNumber();
+                    list[3] = c.getHouseList().get(j).getStreetName();
+                    list[4] = c.getHouseList().get(j).getZipCode();
                     
-                    for(int k=0; k < c.getCommunityList().get(i).getHouseList().get(j).getPersonList().size(); k++){
-                        list[0] = c.getCommunityList().get(i).getHouseList().get(j).getPersonList().get(i).getName();
-                        list[1] = c.getCommunityList().get(i).getHouseList().get(j).getPersonList().get(i).getAge();
+                    for(int k=0; k < c.getHouseList().get(j).getPersonList().size(); k++){
+                        list[0] = c.getHouseList().get(j).getPersonList().get(k).getName();
+                        list[1] = c.getHouseList().get(j).getPersonList().get(k).getAge();
                         
                         model.addRow(list);
                     }
                 }
             }
         }
-    }
+        
+              
 }

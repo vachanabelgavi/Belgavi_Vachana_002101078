@@ -36,7 +36,6 @@
                           <Component id="lblHouse" min="-2" max="-2" attributes="0"/>
                           <Component id="lblZip" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="lblComm" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblCity" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -44,7 +43,6 @@
                           <Component id="txtStreet" max="32767" attributes="0"/>
                           <Component id="txtZip" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtCommunity" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtCity" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnSave" alignment="1" pref="150" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -75,7 +73,7 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="166" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtName" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblName" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -112,16 +110,11 @@
                           <Component id="lblComm" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtCommunity" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblCity" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtCity" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="btnSave" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="37" max="32767" attributes="0"/>
+              <EmptySpace pref="27" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -177,23 +170,17 @@
         <Component class="javax.swing.JTable" name="tableUpdate">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="7" rowCount="0">
+              <Table columnCount="6" rowCount="0">
                 <Column editable="false" title="Person Name" type="java.lang.Object"/>
                 <Column editable="false" title="Age" type="java.lang.Object"/>
                 <Column editable="false" title="House Number" type="java.lang.Object"/>
                 <Column editable="false" title="Street" type="java.lang.Object"/>
                 <Column editable="false" title="Zipcode" type="java.lang.Object"/>
                 <Column editable="false" title="Community" type="java.lang.Object"/>
-                <Column editable="false" title="City" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -252,9 +239,9 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/images/ImagesFolder/save-20.png"/>
+          <Image iconType="3" name="/images/ImagesFolder/update-file-20.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Save"/>
+        <Property name="text" type="java.lang.String" value="Update"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
@@ -279,9 +266,9 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/images/ImagesFolder/update-file-20.png"/>
+          <Image iconType="3" name="/images/ImagesFolder/view-20 2.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Update"/>
+        <Property name="text" type="java.lang.String" value="View"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateActionPerformed"/>
@@ -320,11 +307,6 @@
         <Property name="text" type="java.lang.String" value="Community"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblCity">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="City"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="txtNum">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNumActionPerformed"/>
@@ -333,8 +315,6 @@
     <Component class="javax.swing.JTextField" name="txtStreet">
     </Component>
     <Component class="javax.swing.JTextField" name="txtZip">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtCity">
     </Component>
     <Component class="javax.swing.JTextField" name="txtCommunity">
     </Component>

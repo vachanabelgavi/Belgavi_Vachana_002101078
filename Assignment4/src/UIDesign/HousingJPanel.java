@@ -212,19 +212,25 @@ public class HousingJPanel extends javax.swing.JPanel {
         String comm = txtCommunity.getText();
         String c = txtCity.getText();
         
-        house.setHouseNumber(houseNumber);
-        house.setStreetName(street);
-        house.setZipCode(zip);
+        House h1 = new House();
         
-        community.setName(comm);
-        city.setCity(c);
+        h1.setHouseNumber(houseNumber);
+        h1.setStreetName(street);
+        h1.setZipCode(zip);
         
-        community.addHouseToCommunity(house);
-        city.addCommunityToCity(community);
+        
+        Community c1 = new Community();
+        
+        
+        c1.setName(comm);
+        //city.setCity(c);
+        
+        c1.addHouseToCommunity(h1);
+       
+        city.addCommunityToCity(c1);
         system.addCityToSystemPeople(city);
         
         System.out.println(city.getCommunityList().size());
-        System.out.println(community.getHouseList().size());
 
         txtNum.setText("");
         txtStreet.setText("");
@@ -232,9 +238,8 @@ public class HousingJPanel extends javax.swing.JPanel {
         txtCommunity.setText("");
         txtCity.setText("");
 
-        System.out.println(house.getHouseNumber()+" "+house.getStreetName()+" "+house.getZipCode());
-        System.out.println(community.getName());
-        System.out.println(city.getCity());
+
+        System.out.println(city.getCommunityList().get(0).getHouseList().get(0));
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtNumKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumKeyReleased

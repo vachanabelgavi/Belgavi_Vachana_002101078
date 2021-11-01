@@ -228,19 +228,19 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnEncounterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncounterActionPerformed
         // TODO add your handling code here:
-        EncounterJPanel encounterPanel = new EncounterJPanel(patient, person, house, community, city);
+        EncounterJPanel encounterPanel = new EncounterJPanel(patient, person, house, community, city, system);
         splitPane.setRightComponent(encounterPanel);
     }//GEN-LAST:event_btnEncounterActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
-        ViewJPanel viewPanel = new ViewJPanel(patient, person, house, community);
+        ViewJPanel viewPanel = new ViewJPanel(patient, person, house, community, city, system);
         splitPane.setRightComponent(viewPanel);
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPersonActionPerformed
         // TODO add your handling code here:
-        PersonJPanel personPanel = new PersonJPanel(person, house, community, city);
+        PersonJPanel personPanel = new PersonJPanel(person, house, community, city, system);
         splitPane.setRightComponent(personPanel);
     }//GEN-LAST:event_btnPersonActionPerformed
 

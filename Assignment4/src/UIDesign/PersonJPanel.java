@@ -7,8 +7,11 @@ package UIDesign;
 import Model.City;
 import Model.Community;
 import Model.House;
+import Model.Patient;
+import Model.PatientDirectory;
 import Model.Person;
 import Model.PersonDirectory;
+import Model.SystemPeople;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,17 +24,20 @@ public class PersonJPanel extends javax.swing.JPanel {
      * Creates new form PersonJPanel
      */
     PersonDirectory person;
+    PatientDirectory patient;
     House house;
     Community community;
     City city;
+    SystemPeople system;
     
-    public PersonJPanel(PersonDirectory person,House house, Community community, City city) {
+    public PersonJPanel(PersonDirectory person,House house, Community community, City city, SystemPeople system) {
         initComponents();
         
         this.person = person;
         this.house = house;
         this.community = community;
         this.city = city;
+        this.system = system;
     }
 
     /**
@@ -212,22 +218,35 @@ public class PersonJPanel extends javax.swing.JPanel {
         boolean inPersonList = false;
         
         
-        System.out.println(city.getCommunityList().size());
-        System.out.println(community.getHouseList().size());
+        System.out.println("CCCcomm size in person "+city.getCommunityList().size());
 
         
         for(Community c : city.getCommunityList()){
             
-            for(int i = 0; i < community.getHouseList().size(); i++){
-                System.out.println(c.getHouseList().get(i).getStreetName());
-                System.out.println(c.getHouseList().get(i).getZipCode());
+            inHouse = false;
+            inPersonList = false;
+            
+                    System.out.println("HHHHhousing list size "+c.getHouseList().size());
+
+            
+            for(int i = 0; i < c.getHouseList().size(); i++){
+                System.out.println("i " + i + " street "+c.getHouseList().get(i).getStreetName());
+                System.out.println("i " + i + " zip "+c.getHouseList().get(i).getZipCode());
 
                 if(c.getHouseList().get(i).getStreetName().equalsIgnoreCase(street) && c.getHouseList().get(i).getZipCode().equalsIgnoreCase(zip)){
                     inHouse = true;
+                    System.out.println("inhouse: "+ inHouse);
+                    
+                                        System.out.println("person list size "+c.getHouseList().get(i).getPersonList().size());
+
+
                     for(int j=0; j < c.getHouseList().get(i).getPersonList().size(); j++){
                         
                         if (c.getHouseList().get(i).getPersonList().get(j).getName().equals(name) &&
                                 c.getHouseList().get(i).getPersonList().get(j).getAge() == age) {
+                            
+                                                System.out.println("inpersonlist: "+ inPersonList);
+
                                                     inPersonList = true;
 
                         }
@@ -235,14 +254,24 @@ public class PersonJPanel extends javax.swing.JPanel {
                 }
                 
                 if (!inPersonList && inHouse) {
-                    Person per = person.addPerson();
+                    Person per = new Person();
 
                     per.setName(name);
                     per.setAge(age);
                     per.setStreet(street);
                     per.setZipCode(zip);
                     
+                    Patient pat = new Patient();
+                    
+                                        pat.setName(name);
+                    pat.setAge(age);
+                    pat.setStreet(street);
+                    pat.setZipCode(zip);
+                    
                     c.getHouseList().get(i).addPersonToHouse(per);
+                    c.getHouseList().get(i).addPatientToHouse(pat);
+                    
+                    System.out.print("Patient dire");
                 }
             }
         }
@@ -252,10 +281,7 @@ public class PersonJPanel extends javax.swing.JPanel {
 
         }
         
-        if (!inHouse) {
-            JOptionPane.showMessageDialog(null, "No Housing Found!");
-
-        }
+        
         
         txtName.setText("");
         txtAge.setText("");
