@@ -8,6 +8,7 @@ package UIDesign;
 import Model.City;
 import Model.Community;
 import Model.House;
+import Model.Patient;
 import Model.PatientDirectory;
 import Model.Person;
 import Model.PersonDirectory;
@@ -31,7 +32,7 @@ public class UpdateJPanel extends javax.swing.JPanel {
     City city;
     SystemPeople system;
     
-    DefaultTableModel modelTable;
+    DefaultTableModel modelTable, model;
     City selectedCity;
     
     public UpdateJPanel(PersonDirectory person, PatientDirectory patient, House house, Community community, City city, SystemPeople system) {
@@ -402,25 +403,46 @@ public class UpdateJPanel extends javax.swing.JPanel {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         int selectedRowIndex = tableUpdate.getSelectedRow();
-        
+                modelTable = (DefaultTableModel) tableUpdate.getModel();
+
         if(selectedRowIndex<0){
             JOptionPane.showMessageDialog(this, "Please select a row to delete.");
             return;
         }
+                
+        String name = modelTable.getValueAt(selectedRowIndex, 0).toString();
         
-        DefaultTableModel modelDelete = (DefaultTableModel)tableUpdate.getModel();
+        System.out.println(name);
+                System.out.println(modelTable.getValueAt(selectedRowIndex, 0).toString());
+
         
-        Person per = (Person) modelDelete.getValueAt(selectedRowIndex, 0);
+        //house.deleteData(per);
+        //JOptionPane.showMessageDialog(this, "Person data deleted");
         
-        house.deleteData(per);
-        JOptionPane.showMessageDialog(this, "Person data deleted");
+        for(Community c : city.getCommunityList()){
+            
+            for(int i=0; i < c.getHouseList().size(); i++){
+                
+                for(int j=0; j < c.getHouseList().get(i).getPersonList().size(); j++){
+                    
+                    
+                    if(c.getHouseList().get(i).getPersonList().get(j).getName().equals(name)){
+                        c.getHouseList().get(i).deletePerson(c.getHouseList().get(i).getPersonList().get(j));
+                        c.getHouseList().get(i).deletePatient(c.getHouseList().get(i).getPatientList().get(j));
+
+                    }
+                   
+                }
+            }
         
+        }
+        //modelDelete.removeRow(selectedRowIndex);
         DisplayPeople();
         
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnDeleteMouseClicked
 
 

@@ -60,8 +60,12 @@ public class House {
         this.patientList.add(patient);
     }
     
-    public void deleteData(Person person){
+    public void deletePerson(Person person){
         personList1.remove(person);
+    }
+    
+    public void deletePatient(Patient patient){
+        patientList.remove(patient);
     }
     
 }

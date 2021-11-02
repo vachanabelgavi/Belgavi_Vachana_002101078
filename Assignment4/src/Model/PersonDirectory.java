@@ -38,4 +38,8 @@ public class PersonDirectory {
         personDirectory.remove(p);
     }
     
+    public void deletePerson(Person person){
+        personDirectory.remove(person);
+    }
+    
 }

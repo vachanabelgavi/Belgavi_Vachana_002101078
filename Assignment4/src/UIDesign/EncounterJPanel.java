@@ -284,7 +284,7 @@ public class EncounterJPanel extends javax.swing.JPanel {
                                                     break;
 
                         }
-                    }  
+                }
                 
 
 
