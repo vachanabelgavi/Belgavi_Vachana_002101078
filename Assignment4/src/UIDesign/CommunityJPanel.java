@@ -278,7 +278,7 @@ public class CommunityJPanel extends javax.swing.JPanel {
                                     for(int k=0; k < c.getHouseList().get(i).getPatientList().get(j).getEncounters().size(); k++){
                                         
                                         System.out.println(c.getHouseList().get(i).getPatientList().get(j).getEncounters().size());
-                                        if(c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName().equals("Blood Pressure")
+                                        if(c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName().equalsIgnoreCase("Blood Pressure")
                                                 && c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()<=value){
                                             
                                             System.out.println("Inside if "+c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName());
@@ -314,7 +314,7 @@ public class CommunityJPanel extends javax.swing.JPanel {
                                 for(int j=0; j < c.getHouseList().get(i).getPatientList().size(); j++){
                                     
                                     for(int k=0; k < c.getHouseList().get(i).getPatientList().get(j).getEncounters().size(); k++){
-                                        if(c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName().equals("Temperature")
+                                        if(c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName().equalsIgnoreCase("Temperature")
                                                && c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()<=value){
                                             
                                             foundtemp = true;
@@ -347,7 +347,7 @@ public class CommunityJPanel extends javax.swing.JPanel {
                                 for(int j=0; j < c.getHouseList().get(i).getPatientList().size(); j++){
                                     
                                     for(int k=0; k < c.getHouseList().get(i).getPatientList().get(j).getEncounters().size(); k++){
-                                        if(c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName().equals("Pulse")
+                                        if(c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName().equalsIgnoreCase("Pulse")
                                                && c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()<=value){
                                             
                                             foundpulse = true;
@@ -405,7 +405,7 @@ public class CommunityJPanel extends javax.swing.JPanel {
                                     for(int k=0; k < c.getHouseList().get(i).getPatientList().get(j).getEncounters().size(); k++){
                                         
                                         System.out.println(c.getHouseList().get(i).getPatientList().get(j).getEncounters().size());
-                                        if(c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName().equals("Blood Pressure")
+                                        if(c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName().equalsIgnoreCase("Blood Pressure")
                                                && c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()>value){
                                             
                                             foundbp = true;
@@ -473,7 +473,7 @@ public class CommunityJPanel extends javax.swing.JPanel {
                                 for(int j=0; j < c.getHouseList().get(i).getPatientList().size(); j++){
                                     
                                     for(int k=0; k < c.getHouseList().get(i).getPatientList().get(j).getEncounters().size(); k++){
-                                        if(c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName().equals("Pulse")
+                                        if(c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName().equalsIgnoreCase("Pulse")
                                                && c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()>value){
                                             
                                             foundpulse = true;
@@ -531,7 +531,7 @@ public class CommunityJPanel extends javax.swing.JPanel {
                             System.out.println("j "+c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue());
                             if(c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName().equalsIgnoreCase("Blood Pressure") && 
                                     c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()<=80 || 
-                                    c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()>=120){
+                                    c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()>120){
 
                                 //System.out.println("Abnormal: "+abnormalbp+" "+"Normal: "+normalbp);
                                 Object[] list7 = new Object[6];
@@ -554,7 +554,7 @@ public class CommunityJPanel extends javax.swing.JPanel {
                             
                             if(c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName().equalsIgnoreCase("Temperature") && 
                                     c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()<=95 || 
-                                    c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()>=100){
+                                    c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()>100){
                                 
                                 Object[] list8 = new Object[6];
 
@@ -574,7 +574,7 @@ public class CommunityJPanel extends javax.swing.JPanel {
                             
                             if(c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getName().equalsIgnoreCase("Pulse") && 
                                     c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()<=60 || 
-                                    c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()>=100){
+                                    c.getHouseList().get(i).getPatientList().get(j).getEncounters().get(k).getVitalSign().getValue()>100){
                                 
                                 Object[] list9 = new Object[6];
 

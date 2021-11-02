@@ -13,6 +13,8 @@ import Model.PatientDirectory;
 import Model.Person;
 import Model.PersonDirectory;
 import Model.SystemPeople;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -40,8 +42,18 @@ public class MainJFrame extends javax.swing.JFrame {
         community = new Community();
         city = new City();
         system = new SystemPeople();
+        
+        scaleImage();
     }
 
+    
+    public void scaleImage(){
+        ImageIcon icon = new ImageIcon("/Users/vachanabelgavi/Documents/Java Netbeans/Assignment4/src/images/ImagesFolder/hos.jpeg");
+        Image img = icon.getImage();
+        Image scale = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon scaledImg = new ImageIcon(scale);
+        jLabel1.setIcon(scaledImg);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -61,6 +73,7 @@ public class MainJFrame extends javax.swing.JFrame {
         btnHouse1 = new javax.swing.JButton();
         btnCommunity = new javax.swing.JButton();
         workPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(850, 650));
@@ -203,11 +216,11 @@ public class MainJFrame extends javax.swing.JFrame {
         workPanel.setLayout(workPanelLayout);
         workPanelLayout.setHorizontalGroup(
             workPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 737, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         workPanelLayout.setVerticalGroup(
             workPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 646, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
 
         splitPane.setRightComponent(workPanel);
@@ -311,6 +324,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnView;
     private javax.swing.JPanel controlPanel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JSplitPane splitPane;
     private javax.swing.JPanel workPanel;
     // End of variables declaration//GEN-END:variables
