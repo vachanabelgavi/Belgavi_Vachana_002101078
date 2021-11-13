@@ -41,6 +41,11 @@ public class OrganizationDirectory {
 //            organization.setName(name);
             organizationList.add(organization);
         }
+        else if(type.getValue().equals(Type.Admin.getValue())){
+            organization = new AdminOrganization();
+//            organization.setName(name);
+            organizationList.add(organization);
+        }
         return organization;
     }
     

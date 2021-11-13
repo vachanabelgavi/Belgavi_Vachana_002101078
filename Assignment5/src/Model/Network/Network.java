@@ -40,6 +40,10 @@ public class Network {
     public void setDeliverymanOrganization(Organization deliverymanOrganization) {
         this.deliverymanOrganization = deliverymanOrganization;
     }
+    
+    public void setAdminOrganization(Organization adminOrganization) {
+        this.adminOrganization = adminOrganization;
+    }
 
     @Override
     public String toString(){

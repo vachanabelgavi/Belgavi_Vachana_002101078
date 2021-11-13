@@ -24,8 +24,12 @@ public class ManageNetworksJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private Ecosystem business;
     
-    public ManageNetworksJPanel() {
+    public ManageNetworksJPanel(JPanel userProcessContainer, Ecosystem business) {
         initComponents();
+        
+        this.userProcessContainer = userProcessContainer;
+        this.business = business;
+        PopulateTable();
     }
 
     /**

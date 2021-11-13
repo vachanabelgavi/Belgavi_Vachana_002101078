@@ -30,7 +30,7 @@ public class RestaurantJPanel extends javax.swing.JPanel {
         this.organization = organization;
         this.userProcessContainer = userProcessContainer;
         this.business = business;
-        roleComboBox.removeAllItems();
+        //roleComboBox.removeAllItems();
     }
 
     /**

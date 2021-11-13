@@ -5,10 +5,9 @@
  */
 package Model.Organization;
 
-import Model.Admins.AdminDirectory;
+import Model.Admin.AdminDirectory;
 import Model.People.PeopleDirectory;
 import Model.Role.Role;
-
 import Model.UserAccount.UserAccountDirectory;
 import java.util.ArrayList;
 
@@ -17,7 +16,7 @@ import java.util.ArrayList;
  * @author vachanabelgavi
  */
 public abstract class Organization {
-    
+
     private String name;
     private AdminDirectory adminDirectory;
     private PeopleDirectory peopleDirectory;
@@ -83,5 +82,6 @@ public abstract class Organization {
     public String toString() {
         return name;
     }
+    
     
 }

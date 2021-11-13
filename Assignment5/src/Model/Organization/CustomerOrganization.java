@@ -5,10 +5,33 @@
  */
 package Model.Organization;
 
+import Model.Role.AdminRoles.CustomerAdminRole;
+import Model.Role.Role;
+
+import java.util.ArrayList;
+
 /**
  *
  * @author vachanabelgavi
  */
-public class CustomerOrganization {
+public class CustomerOrganization extends Organization{
+    
+    public CustomerOrganization() {
+        super(Organization.Type.Customer.getValue());
+    }
+    
+    @Override
+    public ArrayList<Role> getAdminRole() {
+        ArrayList<Role> roles = new ArrayList<>();
+        roles.add(new CustomerAdminRole());
+        return roles;
+    }
+    
+    @Override
+    public ArrayList<Role> getPeopleRole() {
+        ArrayList<Role> roles = new ArrayList<>();
+        roles.add(new CustomerAdminRole());
+        return roles;
+    }
     
 }

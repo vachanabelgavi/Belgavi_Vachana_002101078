@@ -5,7 +5,7 @@
  */
 package Model.UserAccount;
 
-import Model.Admins.Admin;
+import Model.Admin.Admin;
 import Model.People.People;
 import Model.Role.Role;
 

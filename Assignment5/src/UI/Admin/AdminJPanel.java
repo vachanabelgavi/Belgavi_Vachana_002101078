@@ -6,6 +6,7 @@
 package UI.Admin;
 
 import Model.Ecosystem;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -136,16 +137,29 @@ public class AdminJPanel extends javax.swing.JPanel {
 
     private void btnNetworksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNetworksActionPerformed
         // TODO add your handling code here:
-        
-        
+        ManageNetworksJPanel manageNetworksJPanel = new ManageNetworksJPanel(userProcessContainer, business);
+        userProcessContainer.add("manageNetworksJPanel", manageNetworksJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);  
     }//GEN-LAST:event_btnNetworksActionPerformed
 
     private void btnOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrganizationActionPerformed
         // TODO add your handling code here:
+        
+        ManageOrganizationsJPanel manageOrganizationJPanel = new ManageOrganizationsJPanel(userProcessContainer, business, business.getOrganizationDirectory());
+        userProcessContainer.add("manageOrganizationJPanel", manageOrganizationJPanel);
+        
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnOrganizationActionPerformed
 
     private void btnAdminsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminsActionPerformed
         // TODO add your handling code here:
+        ManageAdminsJPanel manageAdminsJPanel = new ManageAdminsJPanel(userProcessContainer, business.getOrganizationDirectory());
+        userProcessContainer.add("manageAdminJPanel", manageAdminsJPanel);
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnAdminsActionPerformed
 
     private void btnCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomersActionPerformed

@@ -5,12 +5,32 @@
  */
 package Model.Organization;
 
+import Model.Role.AdminRoles.RestaurantAdminRole;
+import Model.Role.Role;
+import java.util.ArrayList;
+
 /**
  *
  * @author vachanabelgavi
  */
-public class RestaurantOrganization {
+public class RestaurantOrganization extends Organization{
     
+    public RestaurantOrganization() {
+        super(Organization.Type.Deliveryman.getValue());
+    }
     
+    @Override
+    public ArrayList<Role> getAdminRole() {
+        ArrayList<Role> roles = new ArrayList<>();
+        roles.add(new RestaurantAdminRole());
+        return roles;
+    }
+    
+    @Override
+    public ArrayList<Role> getPeopleRole() {
+        ArrayList<Role> roles = new ArrayList<>();
+        roles.add(new RestaurantAdminRole());
+        return roles;
+    }
     
 }
