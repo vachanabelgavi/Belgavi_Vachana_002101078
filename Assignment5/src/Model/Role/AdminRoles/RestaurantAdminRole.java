@@ -20,7 +20,7 @@ public class RestaurantAdminRole extends Role{
     
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Ecosystem business) {
-        return new RestaurantJPanel(userProcessContainer, organization, Ecosystem.getInstance());
+        return new RestaurantJPanel();
     }
     
 }

@@ -22,8 +22,10 @@ public class AdminJPanel extends javax.swing.JPanel {
     Ecosystem business;
     
     public AdminJPanel(JPanel userProcessContainer, Ecosystem business) {
-        initComponents();
         
+        setVisible(true);
+        initComponents();
+        System.out.println("admin panel constructor");
         this.userProcessContainer = userProcessContainer;
         this.business = business;
     }
@@ -41,9 +43,7 @@ public class AdminJPanel extends javax.swing.JPanel {
         btnNetworks = new javax.swing.JButton();
         btnOrganization = new javax.swing.JButton();
         btnAdmins = new javax.swing.JButton();
-        btnRestaurants = new javax.swing.JButton();
-        btnCustomers = new javax.swing.JButton();
-        btnDelivery = new javax.swing.JButton();
+        btnUsers = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -70,24 +70,10 @@ public class AdminJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnRestaurants.setText("Manage Restaurants");
-        btnRestaurants.addActionListener(new java.awt.event.ActionListener() {
+        btnUsers.setText("Manage Users");
+        btnUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRestaurantsActionPerformed(evt);
-            }
-        });
-
-        btnCustomers.setText("Manage Customers");
-        btnCustomers.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCustomersActionPerformed(evt);
-            }
-        });
-
-        btnDelivery.setText("Manage Delivery");
-        btnDelivery.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeliveryActionPerformed(evt);
+                btnUsersActionPerformed(evt);
             }
         });
 
@@ -95,63 +81,32 @@ public class AdminJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(306, 306, 306)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnNetworks, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnOrganization, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAdmins, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRestaurants, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCustomers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDelivery, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(310, Short.MAX_VALUE))
+                    .addComponent(btnUsers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(306, 306, 306))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(49, 49, 49)
                 .addComponent(jLabel1)
-                .addGap(54, 54, 54)
+                .addGap(48, 48, 48)
                 .addComponent(btnNetworks)
                 .addGap(46, 46, 46)
                 .addComponent(btnOrganization)
                 .addGap(45, 45, 45)
                 .addComponent(btnAdmins)
-                .addGap(47, 47, 47)
-                .addComponent(btnRestaurants)
-                .addGap(45, 45, 45)
-                .addComponent(btnCustomers)
-                .addGap(45, 45, 45)
-                .addComponent(btnDelivery)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGap(48, 48, 48)
+                .addComponent(btnUsers)
+                .addContainerGap(226, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnRestaurantsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurantsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRestaurantsActionPerformed
-
-    private void btnNetworksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNetworksActionPerformed
-        // TODO add your handling code here:
-        ManageNetworksJPanel manageNetworksJPanel = new ManageNetworksJPanel(userProcessContainer, business);
-        userProcessContainer.add("manageNetworksJPanel", manageNetworksJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);  
-    }//GEN-LAST:event_btnNetworksActionPerformed
-
-    private void btnOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrganizationActionPerformed
-        // TODO add your handling code here:
-        
-        ManageOrganizationsJPanel manageOrganizationJPanel = new ManageOrganizationsJPanel(userProcessContainer, business, business.getOrganizationDirectory());
-        userProcessContainer.add("manageOrganizationJPanel", manageOrganizationJPanel);
-        
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnOrganizationActionPerformed
 
     private void btnAdminsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminsActionPerformed
         // TODO add your handling code here:
@@ -162,22 +117,40 @@ public class AdminJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnAdminsActionPerformed
 
-    private void btnCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomersActionPerformed
+    private void btnOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrganizationActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCustomersActionPerformed
 
-    private void btnDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliveryActionPerformed
+        ManageOrganizationsJPanel manageOrganizationJPanel = new ManageOrganizationsJPanel(userProcessContainer, business, business.getOrganizationDirectory());
+        userProcessContainer.add("manageOrganizationJPanel", manageOrganizationJPanel);
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnOrganizationActionPerformed
+
+    private void btnNetworksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNetworksActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeliveryActionPerformed
+        System.out.println("admin panel buttons");
+        ManageNetworksJPanel manageNetworksJPanel = new ManageNetworksJPanel(userProcessContainer, business);
+        userProcessContainer.add("manageNetworksJPanel", manageNetworksJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnNetworksActionPerformed
+
+    private void btnUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsersActionPerformed
+        // TODO add your handling code here:
+        ManageUsersJPanel manageUserAccounts = new ManageUsersJPanel(userProcessContainer, business);
+        userProcessContainer.add("ManageUserAccountJPanel", manageUserAccounts);
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer); 
+    }//GEN-LAST:event_btnUsersActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdmins;
-    private javax.swing.JButton btnCustomers;
-    private javax.swing.JButton btnDelivery;
     private javax.swing.JButton btnNetworks;
     private javax.swing.JButton btnOrganization;
-    private javax.swing.JButton btnRestaurants;
+    private javax.swing.JButton btnUsers;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

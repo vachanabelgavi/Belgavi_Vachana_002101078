@@ -20,7 +20,7 @@ public class DeliverymanAdminRole extends Role{
     
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Ecosystem business) {
-        return new DeliverymanJPanel(userProcessContainer, account, organization, Ecosystem.getInstance());
+        return new DeliverymanJPanel();
     }
     
 }

@@ -10,6 +10,7 @@ import Model.Ecosystem;
 import Model.Organization.Organization;
 import Model.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import javax.swing.GroupLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -27,6 +28,9 @@ public class MainJFrame extends javax.swing.JFrame {
     
     public MainJFrame() {
         initComponents();
+        
+        business = dB4OUtil.retrieveSystem();
+        btnLogout.setEnabled(false);
     }
 
     /**
@@ -50,18 +54,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1000, 1000));
 
-        javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
-        rightPanel.setLayout(rightPanelLayout);
-        rightPanelLayout.setHorizontalGroup(
-            rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 675, Short.MAX_VALUE)
-        );
-        rightPanelLayout.setVerticalGroup(
-            rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 584, Short.MAX_VALUE)
-        );
-
+        rightPanel.setLayout(new java.awt.CardLayout());
         splitPane.setRightComponent(rightPanel);
 
         leftPanel.setMinimumSize(new java.awt.Dimension(200, 100));
@@ -86,7 +81,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jLabel2.setText("Username");
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Login");
 
@@ -130,7 +125,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(btnLogin)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogout)
-                .addContainerGap(290, Short.MAX_VALUE))
+                .addContainerGap(282, Short.MAX_VALUE))
         );
 
         splitPane.setLeftComponent(leftPanel);
@@ -191,8 +186,8 @@ public class MainJFrame extends javax.swing.JFrame {
             if (userAccount != null)
             {
                 CardLayout layout = (CardLayout) rightPanel.getLayout();
-                rightPanel.add("WorkArea", userAccount.getRole().createWorkArea(rightPanel, userAccount, organization, business));
-                layout.next(rightPanel);
+                rightPanel.add("workArea", userAccount.getRole().createWorkArea(rightPanel, userAccount, organization, business));
+                layout.layoutContainer(rightPanel);
                 flag = true;
                 break;
             }

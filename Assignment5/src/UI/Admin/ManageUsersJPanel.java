@@ -60,7 +60,7 @@ public class ManageUsersJPanel extends javax.swing.JPanel {
 
     public void popData() {
 
-        DefaultTableModel model = (DefaultTableModel) userJTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) tableUsers.getModel();
 
         model.setRowCount(0);
 
@@ -69,7 +69,7 @@ public class ManageUsersJPanel extends javax.swing.JPanel {
                 Object row[] = new Object[2];
                 row[0] = ua;
                 row[1] = ua.getRole();
-                ((DefaultTableModel) userJTable.getModel()).addRow(row);
+                ((DefaultTableModel) tableUsers.getModel()).addRow(row);
             }
         }
     }
@@ -87,7 +87,7 @@ public class ManageUsersJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        userJTable = new javax.swing.JTable();
+        tableUsers = new javax.swing.JTable();
         backBtn = new javax.swing.JButton();
         createBtn = new javax.swing.JButton();
         adminComboBox = new javax.swing.JComboBox();
@@ -105,7 +105,7 @@ public class ManageUsersJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("User Name:");
 
-        userJTable.setModel(new javax.swing.table.DefaultTableModel(
+        tableUsers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -128,7 +128,7 @@ public class ManageUsersJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(userJTable);
+        jScrollPane1.setViewportView(tableUsers);
 
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -310,7 +310,7 @@ public class ManageUsersJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox organizationComboBox;
     private javax.swing.JTextField passwordTxt;
     private javax.swing.JComboBox roleComboBox;
-    private javax.swing.JTable userJTable;
+    private javax.swing.JTable tableUsers;
     private javax.swing.JTextField userNameTxt;
     // End of variables declaration//GEN-END:variables
 }

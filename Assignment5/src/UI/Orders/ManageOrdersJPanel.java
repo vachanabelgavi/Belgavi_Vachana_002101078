@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI.Admin;
+package UI.Orders;
 
 /**
  *
  * @author vachanabelgavi
  */
-public class ManageCustomersJPanel extends javax.swing.JPanel {
+public class ManageOrdersJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ManageCustomersJPanel
+     * Creates new form ManageOrdersJPanel
      */
-    public ManageCustomersJPanel() {
+    public ManageOrdersJPanel() {
         initComponents();
     }
 

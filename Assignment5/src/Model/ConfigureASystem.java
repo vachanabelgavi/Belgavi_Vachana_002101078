@@ -5,7 +5,7 @@
  */
 package Model;
 
-import Model.Admins.Admin;
+import Model.Admin.Admin;
 import Model.Organization.AdminOrganization;
 import Model.Role.AdminRoles.SystemAdminRole;
 import Model.UserAccount.UserAccount;
@@ -19,6 +19,7 @@ public class ConfigureASystem {
     public static Ecosystem configure(){
         
         Ecosystem business = Ecosystem.getInstance();
+        System.out.println("Ecosystem.getInstance()");
         
         AdminOrganization adminOrganization = new AdminOrganization();
         business.getOrganizationDirectory().getOrganizationList().add(adminOrganization);
