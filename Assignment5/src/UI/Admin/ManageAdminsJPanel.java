@@ -46,24 +46,10 @@ public class ManageAdminsJPanel extends javax.swing.JPanel {
     }
     
     public void populateOrganizationEmpComboBox(){
-        comboOrgname.removeAllItems();
+        OrganizationNamecombo.removeAllItems();
         
         for (Organization organization : organizationDir.getOrganizationList()){
-            comboOrgname.addItem(organization);
-        }
-    }
-
-    private void populateTable(Organization organization){
-        DefaultTableModel model = (DefaultTableModel) tableAdmin.getModel();
-        
-        model.setRowCount(0);
-        
-        for (Admin admin : organization.getAdminDirectory().getAdminList()){
-            Object[] row = new Object[3];
-            row[0] = admin.getId();
-            row[1] = admin.getName();
-            row[2] = date;
-            model.addRow(row);
+            OrganizationNamecombo.addItem(organization);
         }
     }
     
@@ -73,7 +59,7 @@ public class ManageAdminsJPanel extends javax.swing.JPanel {
 
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        comboOrgname = new javax.swing.JComboBox();
+        OrganizationNamecombo = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableAdmin = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
@@ -142,13 +128,13 @@ public class ManageAdminsJPanel extends javax.swing.JPanel {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel3)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(comboOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(comboOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jLabel6))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(comboOrgname, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(OrganizationNamecombo, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(183, 183, 183)))
@@ -179,7 +165,7 @@ public class ManageAdminsJPanel extends javax.swing.JPanel {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(comboOrgname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(OrganizationNamecombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -191,7 +177,7 @@ public class ManageAdminsJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
-        Organization organization = (Organization) comboOrgname.getSelectedItem();
+        Organization organization = (Organization) OrganizationNamecombo.getSelectedItem();
         String name = txtAdmin.getText();
         if(name.isEmpty())
         {
@@ -202,7 +188,10 @@ public class ManageAdminsJPanel extends javax.swing.JPanel {
             txtAdmin.setText("");
             JOptionPane.showMessageDialog(btnAdmin, "Admin added successfully.");
             organization.getAdminDirectory().createAdmin(name);
+            System.out.println("Admin added ");
+            System.out.println("Admin added " + organization.getAdminDirectory().getAdminList());
         }
+        //populateTable(organization);
     }//GEN-LAST:event_btnAdminActionPerformed
 
     private void comboOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOrganizationActionPerformed
@@ -220,10 +209,10 @@ public class ManageAdminsJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox OrganizationNamecombo;
     private javax.swing.JButton btnAdmin;
     private javax.swing.JButton btnBack;
     private javax.swing.JComboBox comboOrganization;
-    private javax.swing.JComboBox comboOrgname;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -233,4 +222,20 @@ public class ManageAdminsJPanel extends javax.swing.JPanel {
     private javax.swing.JTable tableAdmin;
     private javax.swing.JTextField txtAdmin;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable(Organization organization){
+        DefaultTableModel model = (DefaultTableModel) tableAdmin.getModel();
+        
+        model.setRowCount(0);
+        System.out.println("populate table " + organization.getAdminDirectory().getAdminList());
+        
+        for (Admin admin : organization.getAdminDirectory().getAdminList()){
+            Object[] row = new Object[3];
+            row[0] = admin.getId();
+            row[1] = admin.getName();
+            row[2] = date;
+            model.addRow(row);
+        }
+    }
+
 }

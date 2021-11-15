@@ -29,15 +29,20 @@ public class ManageUsersJPanel extends javax.swing.JPanel {
     
     public ManageUsersJPanel(JPanel container, Ecosystem business) {
         initComponents();
-        
+        System.out.println("combo box "+"users");
         popOrganizationComboBox();
+        System.out.println("combo box "+"users1");
         adminComboBox.removeAllItems();
+        System.out.println("combo box "+"users2");
         popData();
+        System.out.println("combo box "+"users3");
     }
     
     public void popOrganizationComboBox() {
+        System.out.println("combo box "+ business.getOrganizationDirectory().getOrganizationList());
         organizationComboBox.removeAllItems();
 
+        System.out.println("combo box "+ business.getOrganizationDirectory().getOrganizationList());
         for (Organization organization : business.getOrganizationDirectory().getOrganizationList()) {
             organizationComboBox.addItem(organization);
         }
@@ -71,6 +76,7 @@ public class ManageUsersJPanel extends javax.swing.JPanel {
                 row[1] = ua.getRole();
                 ((DefaultTableModel) tableUsers.getModel()).addRow(row);
             }
+            //System.out.println("combo box "+ business.getOrganizationDirectory().getOrganizationList());
         }
     }
 

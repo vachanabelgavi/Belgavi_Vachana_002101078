@@ -28,7 +28,7 @@ public abstract class Organization {
         Customer("Customer Organization"), 
         Restaurant("Restaurant Organization"), 
         Deliveryman("Deliveryman Organization"),
-        Admin("Admin Organization"),;
+        Admin("Admin Organization");
         
         private String value;
         

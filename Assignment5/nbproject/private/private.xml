@@ -4,8 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Users/vachanabelgavi/Documents/Java%20Netbeans/Assignment5/src/UI/MainJFrame.java</file>
-            <file>file:/Users/vachanabelgavi/Documents/Java%20Netbeans/Assignment5/src/Model/DB4OUtil/DB4OUtil.java</file>
+            <file>file:/Users/vachanabelgavi/Documents/Java%20Netbeans/Assignment5/src/UI/Admin/ManageUsersJPanel.java</file>
             <file>file:/Users/vachanabelgavi/Documents/Java%20Netbeans/Assignment5/src/Model/ConfigureASystem.java</file>
+            <file>file:/Users/vachanabelgavi/Documents/Java%20Netbeans/Assignment5/src/Model/Ecosystem.java</file>
+            <file>file:/Users/vachanabelgavi/Documents/Java%20Netbeans/Assignment5/src/UI/Admin/AdminJPanel.java</file>
         </group>
     </open-files>
 </project-private>
