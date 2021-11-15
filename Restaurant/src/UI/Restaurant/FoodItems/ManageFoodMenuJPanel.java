@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI.Restaurant.Orders;
+package UI.Restaurant.FoodItems;
 
 import Model.Food;
 import Model.Restaurant;
@@ -205,9 +205,6 @@ public class ManageFoodMenuJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnAdd1;
-    private javax.swing.JButton btnAdd2;
     private javax.swing.JButton btnAdd3;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;

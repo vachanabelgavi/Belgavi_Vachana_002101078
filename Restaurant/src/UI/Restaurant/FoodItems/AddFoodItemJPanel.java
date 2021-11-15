@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI.Restaurant.Orders;
+package UI.Restaurant.FoodItems;
 
 import Model.Food;
 import Model.Restaurant;

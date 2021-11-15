@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI.Restaurant.Orders;
+package UI.Customer.Orders;
 
-import Model.Restaurant;
-import Model.RestaurantDirectory;
+import Model.Customer;
+import UI.Restaurant.FoodItems.ManageRestaurantFoodJPanel;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -14,24 +14,16 @@ import javax.swing.JPanel;
  *
  * @author vachanabelgavi
  */
-public class RestaurantLoginJPanel extends javax.swing.JPanel {
+public class CustomersLoginJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form RestaurantLoginJPanel
+     * Creates new form CustomersLoginJPanel
      */
-    private JPanel userProcessContainer;
-    private RestaurantDirectory restaurantDir;
+    JPanel userProcessContainer;
     
-    public RestaurantLoginJPanel(JPanel userProcessContainer, RestaurantDirectory restaurantDir) {
+    
+    public CustomersLoginJPanel() {
         initComponents();
-        
-        this.userProcessContainer = userProcessContainer;
-        this.restaurantDir = restaurantDir;
-        
-        comboRestaurants.removeAllItems();;
-        for (Restaurant rest : restaurantDir.getRestaurantList()) {
-            comboRestaurants.addItem(rest.toString());
-        }
     }
 
     /**
@@ -43,18 +35,12 @@ public class RestaurantLoginJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        comboRestaurants = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
-
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Restaurants Login");
-
-        comboRestaurants.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel1 = new javax.swing.JLabel();
+        comboRestaurants = new javax.swing.JComboBox<>();
 
         jLabel2.setText("Username");
 
@@ -72,6 +58,12 @@ public class RestaurantLoginJPanel extends javax.swing.JPanel {
                 btnLoginActionPerformed(evt);
             }
         });
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Customers Login");
+
+        comboRestaurants.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -123,11 +115,11 @@ public class RestaurantLoginJPanel extends javax.swing.JPanel {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        
-        Restaurant rest = (Restaurant) comboRestaurants.getSelectedItem();
-        
+
+        Customer rest = (Customer) comboRestaurants.getSelectedItem();
+
         ManageRestaurantFoodJPanel manageFood = new ManageRestaurantFoodJPanel(userProcessContainer, rest);
-        userProcessContainer.add("Manage Food Orders", manageFood);
+        userProcessContainer.add("Customer Management", manageFood);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnLoginActionPerformed
