@@ -5,6 +5,7 @@
  */
 package UI.Restaurant.FoodItems;
 
+import Model.Customer;
 import Model.Food;
 import Model.Restaurant;
 import java.awt.CardLayout;
@@ -29,6 +30,7 @@ public class ManageFoodMenuJPanel extends javax.swing.JPanel {
         
         this.userProcessContainer = userProcessContainer;
         this.restaurant = restaurant;
+        
         
         lblRestaurant.setText("Restaurant : " + restaurant.getName());
         refreshTable();
@@ -166,7 +168,10 @@ public class ManageFoodMenuJPanel extends javax.swing.JPanel {
     private void btnAdd3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd3ActionPerformed
         // TODO add your handling code here:
 
-        
+        AddFoodItemJPanel newRestaurant = new AddFoodItemJPanel(userProcessContainer, restaurant);
+        userProcessContainer.add("Add Food Items", newRestaurant);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnAdd3ActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
@@ -194,7 +199,14 @@ public class ManageFoodMenuJPanel extends javax.swing.JPanel {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
 
-        
+        int row = tableFoods.getSelectedRow();
+        if(row<0){
+            JOptionPane.showMessageDialog(null, "Please select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Food rest = (Food) tableFoods.getValueAt(row, 0);
+        restaurant.getFoodDirectory().removeFoodItem(rest);
+        refreshTable();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -221,6 +233,7 @@ public class ManageFoodMenuJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tableFoods.getModel();
         model.setRowCount(0);
 
+        //if(restaurant.getFoodDirectory()!= null){
         for (Food item : restaurant.getFoodDirectory().getFoodDirectory()) {
             Object row[] = new Object[2];
             row[0] = item;
@@ -229,4 +242,5 @@ public class ManageFoodMenuJPanel extends javax.swing.JPanel {
             model.addRow(row);
         }
     }
+    //}
 }

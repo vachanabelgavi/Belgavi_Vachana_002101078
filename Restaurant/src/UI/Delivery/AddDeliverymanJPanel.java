@@ -5,6 +5,14 @@
  */
 package UI.Delivery;
 
+import Model.Deliveryman;
+import Model.DeliverymanDirectory;
+import UI.Admin.ManageDeliveryJPanel;
+import UI.Admin.ManageResturantsJPanel;
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JPanel;
+
 /**
  *
  * @author vachanabelgavi
@@ -14,8 +22,15 @@ public class AddDeliverymanJPanel extends javax.swing.JPanel {
     /**
      * Creates new form AddDeliverymanJPanel
      */
-    public AddDeliverymanJPanel() {
+    private JPanel userProcessContainer;
+    private DeliverymanDirectory deliverymanDir;
+    //private Deliveryman delivery;
+
+    public AddDeliverymanJPanel(JPanel userProcessContainer, DeliverymanDirectory deliverymanDir) {
         initComponents();
+        
+        this.userProcessContainer = userProcessContainer;
+        this.deliverymanDir = deliverymanDir;
     }
 
     /**
@@ -35,6 +50,7 @@ public class AddDeliverymanJPanel extends javax.swing.JPanel {
         txtPhone = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
         txtVehicleNum = new javax.swing.JTextField();
+        btnBack = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -47,34 +63,54 @@ public class AddDeliverymanJPanel extends javax.swing.JPanel {
         jLabel4.setText("Vehicle Number");
 
         btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
+        btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtPhone)
+                                .addComponent(txtName)
+                                .addComponent(txtVehicleNum, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(155, 155, 155)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtPhone)
-                        .addComponent(txtName)
-                        .addComponent(txtVehicleNum, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addComponent(btnBack)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(96, 96, 96)
+                .addGap(49, 49, 49)
+                .addComponent(btnBack)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -94,9 +130,46 @@ public class AddDeliverymanJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        
+        String name = txtName.getText();
+        int phone = Integer.parseInt(txtPhone.getText());
+        String vehicle = txtVehicleNum.getText();
+        
+        Deliveryman rest = deliverymanDir.addDeliveryPerson();
+        rest.setName(name);
+        rest.setPhone(phone);
+        rest.setVehicleNumber(vehicle);
+        
+        System.out.println(deliverymanDir.getDeliveryList().size());
+        
+        //JOptionPane.showMessageDialog(null, "Supplier added successfully!!", "Info", JOptionPane.INFORMATION_MESSAGE);
+        
+        txtName.setText("");
+        txtPhone.setText("");
+        txtVehicleNum.setText("");
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        
+        backAction();
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    public void backAction(){
+        userProcessContainer.remove(this);
+        Component [] componentArray = userProcessContainer.getComponents();
+        Component c = componentArray[componentArray.length-1];
+        ManageDeliveryJPanel mr = (ManageDeliveryJPanel) c;
+        mr.refreshTable();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

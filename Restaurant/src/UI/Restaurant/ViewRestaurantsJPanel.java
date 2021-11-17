@@ -35,6 +35,11 @@ public class ViewRestaurantsJPanel extends javax.swing.JPanel {
         txtName.setText(restaurant.getName());
         txtDesc.setText(restaurant.getDescription());
         txtLocation.setText(restaurant.getLocation());
+        
+        txtName.setEditable(false);
+        txtDesc.setEditable(false);
+        txtLocation.setEditable(false);
+        btnSave.setEnabled(false);
     }
 
     /**

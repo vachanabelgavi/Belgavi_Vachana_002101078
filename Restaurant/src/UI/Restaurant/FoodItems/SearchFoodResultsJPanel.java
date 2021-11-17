@@ -23,12 +23,17 @@ public class SearchFoodResultsJPanel extends javax.swing.JPanel {
      */
     private JPanel userProcessContainer;
     private RestaurantDirectory restaurantDir;
+    private Restaurant restaurant;
     
-    public SearchFoodResultsJPanel(JPanel userProcessContainer, RestaurantDirectory restaurantDir) {
+    public SearchFoodResultsJPanel(JPanel userProcessContainer, Restaurant restaurant) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
-        this.restaurantDir = restaurantDir;
+        this.restaurant = restaurant;
+        
+        txtName.setText(restaurant.getName());
+        txtDesc.setText(restaurant.getDescription());
+        txtLocation.setText(restaurant.getLocation());
     }
 
     /**
@@ -160,6 +165,8 @@ public class SearchFoodResultsJPanel extends javax.swing.JPanel {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
 
+        btnUpdate.setEnabled(false);
+        
         txtName.setEditable(true);
         txtDesc.setEditable(true);
         txtLocation.setEditable(true);

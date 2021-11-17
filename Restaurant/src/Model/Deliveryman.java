@@ -39,4 +39,9 @@ public class Deliveryman {
         this.phone = phone;
     }
     
+    @Override
+    public String toString() {
+        return name; 
+    }
+    
 }

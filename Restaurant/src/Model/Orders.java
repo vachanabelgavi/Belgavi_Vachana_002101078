@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author vachanabelgavi
@@ -12,10 +14,40 @@ package Model;
 public class Orders {
     
     private int orderNumber;
-    private FoodDirectory foodDir;
+    private ArrayList<Food> foodDir;
     private Restaurant restaurant;
     private DeliverymanDirectory deliveryDir;
     private Customer customer;
+    private String orderStatus;
+    private double totalPrice;
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
     
     private static int count = 0;
     
@@ -26,20 +58,24 @@ public class Orders {
         
     }
     
-    public void addItem(Food food){
-        foodDir.addFoodItem(food);
+    public void addItem(ArrayList<Food> food){
+        foodDir = food;
     }
 
     public int getOrderNumber() {
         return orderNumber;
     }
 
-    public FoodDirectory getFoodDir() {
+    public ArrayList<Food> getFoodDir() {
         return foodDir;
     }
 
     public DeliverymanDirectory getDeliveryDir() {
         return deliveryDir;
+    }
+
+    public void setDeliveryDir(DeliverymanDirectory deliveryDir) {
+        this.deliveryDir = deliveryDir;
     }
     
 }

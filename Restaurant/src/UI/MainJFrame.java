@@ -7,11 +7,13 @@ package UI;
 
 import Model.CustomerDirectory;
 import Model.DeliverymanDirectory;
+import Model.FoodDirectory;
+import Model.OrdersList;
 import Model.RestaurantDirectory;
 import UI.Admin.AdminMainJPanel;
+import UI.Customer.Orders.CustomersLoginJPanel;
 import UI.Restaurant.FoodItems.RestaurantLoginJPanel;
 import java.awt.CardLayout;
-import javax.swing.JPanel;
 
 /**
  *
@@ -25,6 +27,8 @@ public class MainJFrame extends javax.swing.JFrame {
     RestaurantDirectory restaurantDir;
     CustomerDirectory customerDir;
     DeliverymanDirectory deliverymanDir;
+    FoodDirectory foodDir;
+    OrdersList ordersList;
     
     public MainJFrame() {
         initComponents();
@@ -32,7 +36,7 @@ public class MainJFrame extends javax.swing.JFrame {
         restaurantDir = new RestaurantDirectory();
         customerDir = new CustomerDirectory();
         deliverymanDir = new DeliverymanDirectory();
-        
+        ordersList = new OrdersList();
     }
 
     /**
@@ -154,7 +158,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
         // TODO add your handling code here:
         
-        AdminMainJPanel adminMain = new AdminMainJPanel(userProcessContainer, restaurantDir);
+        AdminMainJPanel adminMain = new AdminMainJPanel(userProcessContainer, restaurantDir, customerDir, deliverymanDir);
         userProcessContainer.add("AdminWorkAreaJPanel",adminMain);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -163,7 +167,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnRestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurantActionPerformed
         // TODO add your handling code here:
         
-        RestaurantLoginJPanel restLogin = new RestaurantLoginJPanel(userProcessContainer, restaurantDir);
+        RestaurantLoginJPanel restLogin = new RestaurantLoginJPanel(userProcessContainer, restaurantDir, ordersList);
         userProcessContainer.add("Restaurant Login",restLogin);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -171,6 +175,12 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
         // TODO add your handling code here:
+        
+        CustomersLoginJPanel custLogin = new CustomersLoginJPanel(userProcessContainer, customerDir, restaurantDir, ordersList);
+        userProcessContainer.add("Customer Login",custLogin);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+
     }//GEN-LAST:event_btnCustomerActionPerformed
 
     private void btnDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliveryActionPerformed

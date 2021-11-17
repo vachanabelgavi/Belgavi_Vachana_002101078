@@ -5,7 +5,11 @@
  */
 package UI.Admin;
 
+import Model.CustomerDirectory;
+import Model.DeliverymanDirectory;
 import Model.RestaurantDirectory;
+import UI.Customer.AddCustomerJPanel;
+import UI.Delivery.AddDeliverymanJPanel;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -20,12 +24,16 @@ public class AdminMainJPanel extends javax.swing.JPanel {
      */
     private JPanel userProcessContainer;
     private RestaurantDirectory restaurantDir;
+    private CustomerDirectory customerDir;
+    private DeliverymanDirectory deliverymanDir;
     
-    public AdminMainJPanel(JPanel userProcessContainer, RestaurantDirectory restaurantDir) {
+    public AdminMainJPanel(JPanel userProcessContainer, RestaurantDirectory restaurantDir, CustomerDirectory customerDir, DeliverymanDirectory deliverymanDir) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
         this.restaurantDir = restaurantDir;
+        this.customerDir = customerDir;
+        this.deliverymanDir = deliverymanDir;
     }
 
     /**
@@ -106,10 +114,21 @@ public class AdminMainJPanel extends javax.swing.JPanel {
 
     private void btnCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomersActionPerformed
         // TODO add your handling code here:
+        
+        ManageCustomersJPanel manageCustomers = new ManageCustomersJPanel(userProcessContainer, customerDir);
+        userProcessContainer.add("Manage Customers", manageCustomers);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+
     }//GEN-LAST:event_btnCustomersActionPerformed
 
     private void btnDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliveryActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:        
+        ManageDeliveryJPanel manage = new ManageDeliveryJPanel(userProcessContainer, deliverymanDir);
+        userProcessContainer.add("Manage Delivery Persons", manage);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+
     }//GEN-LAST:event_btnDeliveryActionPerformed
 
 

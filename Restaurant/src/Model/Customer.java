@@ -49,4 +49,8 @@ public class Customer {
         this.deliveryDirectory = deliveryDirectory;
     }  
     
+    @Override
+    public String toString() {
+        return name; 
+    }
 }

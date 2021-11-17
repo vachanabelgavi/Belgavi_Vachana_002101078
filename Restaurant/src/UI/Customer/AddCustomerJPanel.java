@@ -5,6 +5,10 @@
  */
 package UI.Customer;
 
+import Model.Customer;
+import Model.CustomerDirectory;
+import javax.swing.JPanel;
+
 /**
  *
  * @author vachanabelgavi
@@ -14,8 +18,14 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
     /**
      * Creates new form AddCustomerJPanel
      */
-    public AddCustomerJPanel() {
+    private JPanel userProcessContainer;
+    private CustomerDirectory customerDir;
+    
+    public AddCustomerJPanel(JPanel userProcessContainer, CustomerDirectory customerDir) {
         initComponents();
+        
+        this.userProcessContainer = userProcessContainer;
+        this.customerDir = customerDir;
     }
 
     /**
@@ -30,11 +40,9 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         txtPhone = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
-        txtLocation = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -44,9 +52,12 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Phone");
 
-        jLabel4.setText("Location");
-
         btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -57,17 +68,15 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(200, 200, 200)
+                .addGap(216, 216, 216)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2))
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtPhone)
-                        .addComponent(txtName)
-                        .addComponent(txtLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                        .addComponent(txtName))
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -84,15 +93,29 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
+                .addGap(37, 37, 37)
                 .addComponent(btnAdd)
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addContainerGap(274, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        
+        String name = txtName.getText();
+        int phone = Integer.parseInt(txtPhone.getText());
+        
+        Customer cust = customerDir.addCustomer();
+        cust.setName(name);
+        cust.setPhone(phone);
+        
+        //System.out.println(restaurantDir.getRestaurantList().size());
+        
+        //JOptionPane.showMessageDialog(null, "Supplier added successfully!!", "Info", JOptionPane.INFORMATION_MESSAGE);
+        
+        txtName.setText("");
+        txtPhone.setText("");
+    }//GEN-LAST:event_btnAddActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -100,8 +123,6 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField txtLocation;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPhone;
     // End of variables declaration//GEN-END:variables

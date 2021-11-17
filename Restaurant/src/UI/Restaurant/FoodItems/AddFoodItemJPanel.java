@@ -30,6 +30,7 @@ public class AddFoodItemJPanel extends javax.swing.JPanel {
         
         this.userProcessContainer = userProcessContainer;
         this.restaurant = restaurant;
+        
     }
 
     /**

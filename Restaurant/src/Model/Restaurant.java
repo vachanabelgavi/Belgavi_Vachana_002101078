@@ -22,6 +22,7 @@ public class Restaurant {
 
     public void setName(String name) {
         this.name = name;
+        this.foodDirectory = new FoodDirectory();
     }
 
     public String getDescription() {
@@ -41,6 +42,7 @@ public class Restaurant {
     }
 
     public FoodDirectory getFoodDirectory() {
+        System.out.println(foodDirectory.getFoodDirectory().size());
         return foodDirectory;
     }
 

@@ -5,6 +5,17 @@
  */
 package UI.Admin;
 
+import Model.Customer;
+import Model.CustomerDirectory;
+import Model.Food;
+import Model.Restaurant;
+import UI.Customer.AddCustomerJPanel;
+import UI.Customer.ViewCustomerJPanel;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author vachanabelgavi
@@ -14,8 +25,16 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageCustomersJPanel
      */
-    public ManageCustomersJPanel() {
+    private JPanel userProcessContainer;
+    private CustomerDirectory customerDir;
+    
+    public ManageCustomersJPanel(JPanel userProcessContainer, CustomerDirectory customerDir) {
         initComponents();
+        
+        this.userProcessContainer = userProcessContainer;
+        this.customerDir = customerDir;
+        
+        refreshTable();
     }
 
     /**
@@ -36,7 +55,12 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
 
-        btnView.setText("View Restaurant");
+        btnView.setText("View Customer");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
 
         tableCustomers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -57,16 +81,36 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tableCustomers);
 
         btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Manage Customers");
 
         btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
-        btnAdd.setText("Add Restaurant");
+        btnAdd.setText("Add Customer");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -115,6 +159,54 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        
+        AddCustomerJPanel addCustomer = new AddCustomerJPanel(userProcessContainer, customerDir);
+        userProcessContainer.add("Add Customers", addCustomer);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = tableCustomers.getSelectedRow();
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        Customer cust = (Customer) tableCustomers.getValueAt(selectedRowIndex, 0);
+        ViewCustomerJPanel viewPanel = new ViewCustomerJPanel(userProcessContainer, cust);
+        userProcessContainer.add("View Customers", viewPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnViewActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        
+        int row = tableCustomers.getSelectedRow();
+        if(row<0){
+            JOptionPane.showMessageDialog(null, "Please select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Customer rest = (Customer) tableCustomers.getValueAt(row, 0);
+        customerDir.removeCustomer(rest);
+        refreshTable();
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -126,4 +218,19 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableCustomers;
     // End of variables declaration//GEN-END:variables
+
+    public void refreshTable() {
+
+        DefaultTableModel model = (DefaultTableModel) tableCustomers.getModel();
+        model.setRowCount(0);
+
+        //if(restaurant.getFoodDirectory()!= null){
+        for (Customer cust : customerDir.getCustomerList()) {
+            Object row[] = new Object[2];
+            row[0] = cust;
+            row[1] = cust.getPhone();
+                    
+            model.addRow(row);
+        }
+    }
 }

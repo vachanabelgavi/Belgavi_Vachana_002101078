@@ -5,12 +5,33 @@
  */
 package Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author vachanabelgavi
  */
 public class OrdersList {
     
+    private List<Orders> ordersList;
     
+    public OrdersList(){
+        ordersList = new ArrayList<Orders>();
+    }
+
+    public List<Orders> getOrdersList() {
+        return ordersList;
+    }
+
+    public void setOrdersList(List<Orders> ordersList) {
+        this.ordersList = ordersList;
+    }
+    
+    public Orders addOrder(){
+        Orders ord = new Orders();
+        ordersList.add(ord);
+        return ord;
+    }
     
 }

@@ -6,7 +6,9 @@
 package UI.Customer.Orders;
 
 import Model.Customer;
-import UI.Restaurant.FoodItems.ManageRestaurantFoodJPanel;
+import Model.CustomerDirectory;
+import Model.OrdersList;
+import Model.RestaurantDirectory;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -19,11 +21,23 @@ public class CustomersLoginJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CustomersLoginJPanel
      */
-    JPanel userProcessContainer;
+    private JPanel userProcessContainer;
+    private CustomerDirectory customerDir;
+    private RestaurantDirectory restaurantDir;
+    private OrdersList ordersList;
     
-    
-    public CustomersLoginJPanel() {
+    public CustomersLoginJPanel(JPanel userProcessContainer, CustomerDirectory customerDir, RestaurantDirectory restaurantDir, OrdersList ordersList) {
         initComponents();
+        
+        this.userProcessContainer = userProcessContainer;
+        this.customerDir = customerDir;
+        this.restaurantDir = restaurantDir;
+        this.ordersList = ordersList;
+        
+        cmbSupplier.removeAllItems();
+        for (Customer cust : customerDir.getCustomerList()) {
+            cmbSupplier.addItem(cust);
+        }
     }
 
     /**
@@ -40,7 +54,7 @@ public class CustomersLoginJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        comboRestaurants = new javax.swing.JComboBox<>();
+        cmbSupplier = new javax.swing.JComboBox();
 
         jLabel2.setText("Username");
 
@@ -63,7 +77,12 @@ public class CustomersLoginJPanel extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Customers Login");
 
-        comboRestaurants.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbSupplier.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbSupplier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbSupplierActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -82,8 +101,8 @@ public class CustomersLoginJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtPassword)
-                            .addComponent(comboRestaurants, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                            .addComponent(cmbSupplier, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(202, 202, 202))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(310, 310, 310)
@@ -95,11 +114,11 @@ public class CustomersLoginJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(96, 96, 96)
                 .addComponent(jLabel1)
-                .addGap(57, 57, 57)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboRestaurants, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(27, 27, 27)
+                    .addComponent(jLabel2)
+                    .addComponent(cmbSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
@@ -116,18 +135,22 @@ public class CustomersLoginJPanel extends javax.swing.JPanel {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
 
-        Customer rest = (Customer) comboRestaurants.getSelectedItem();
+        Customer cust = (Customer) cmbSupplier.getSelectedItem();
 
-        ManageRestaurantFoodJPanel manageFood = new ManageRestaurantFoodJPanel(userProcessContainer, rest);
-        userProcessContainer.add("Customer Management", manageFood);
+        ChooseRestaurantJPanel choose = new ChooseRestaurantJPanel(userProcessContainer, cust, restaurantDir);
+        userProcessContainer.add("Customer Restaurant Choose", choose);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnLoginActionPerformed
 
+    private void cmbSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSupplierActionPerformed
+
+    }//GEN-LAST:event_cmbSupplierActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
-    private javax.swing.JComboBox<String> comboRestaurants;
+    private javax.swing.JComboBox cmbSupplier;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
