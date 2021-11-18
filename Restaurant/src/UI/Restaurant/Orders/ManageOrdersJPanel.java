@@ -189,8 +189,8 @@ public class ManageOrdersJPanel extends javax.swing.JPanel {
         for(Orders o : orderList.getOrdersList()){
             
             if(o.getOrderNumber() == or.getOrderNumber()){
-                o.setOrderStatus("Order Ready");
                 String status = "Order Ready";
+                o.setOrderStatus(status);
                 model.setValueAt(status, selectedRowIndex, 1);
             }
         }
