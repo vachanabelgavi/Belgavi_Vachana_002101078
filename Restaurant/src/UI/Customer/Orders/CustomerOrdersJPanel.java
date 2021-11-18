@@ -37,6 +37,7 @@ public class CustomerOrdersJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.customer = customer;
         this.restaurant = restaurant;
+        this.ordersList = ordersList;
         
         cartList = new ArrayList<Food>();
         
@@ -214,7 +215,7 @@ public class CustomerOrdersJPanel extends javax.swing.JPanel {
         
         Orders order = ordersList.addOrder();
         
-        order.setOrderStatus("Order ready");
+        order.setOrderStatus("Order placed");
         order.setCustomer(customer);
         order.setRestaurant(restaurant);
         order.addItem(cartList);

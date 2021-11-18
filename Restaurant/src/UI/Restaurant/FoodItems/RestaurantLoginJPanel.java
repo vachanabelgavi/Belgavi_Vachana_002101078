@@ -137,7 +137,7 @@ public class RestaurantLoginJPanel extends javax.swing.JPanel {
         
         Restaurant rest = (Restaurant) cmbSupplier.getSelectedItem();
         
-        ManageRestaurantFoodJPanel manageFood = new ManageRestaurantFoodJPanel(userProcessContainer, rest);
+        ManageRestaurantFoodJPanel manageFood = new ManageRestaurantFoodJPanel(userProcessContainer, rest, ordersList);
         userProcessContainer.add("Manage Food Orders", manageFood);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

@@ -6,11 +6,14 @@
 package UI.Delivery.Orders;
 
 import Model.Customer;
+import Model.CustomerDirectory;
 import Model.Deliveryman;
 import Model.Food;
 import Model.Orders;
 import Model.OrdersList;
 import Model.Restaurant;
+import Model.RestaurantDirectory;
+import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -27,17 +30,17 @@ public class AssignDeliverymanJPanel extends javax.swing.JPanel {
      */
     private JPanel userProcessContainer;
     private Deliveryman delivery;
-    private Restaurant restaurant;
-    private Customer customer;
+    private RestaurantDirectory restaurantDir;
+    private CustomerDirectory customerDir;
     private OrdersList ordersList;
     private ArrayList<Orders> cartList;
     
-    public AssignDeliverymanJPanel(JPanel userProcessContainer, Restaurant restaurant, Customer customer, Deliveryman delivery, OrdersList ordersList) {
+    public AssignDeliverymanJPanel(JPanel userProcessContainer, RestaurantDirectory restaurantDir, CustomerDirectory customerDir, Deliveryman delivery, OrdersList ordersList) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
-        this.customer = customer;
-        this.restaurant = restaurant;
+        this.customerDir = customerDir;
+        this.restaurantDir = restaurantDir;
         this.delivery = delivery;
         this.ordersList = ordersList;
         
@@ -110,6 +113,11 @@ public class AssignDeliverymanJPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(tableDelivery);
 
         btnStatus.setText("Delivery Status");
+        btnStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStatusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -162,6 +170,16 @@ public class AssignDeliverymanJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row to add the Dishes to the Cart.");
         }
     }//GEN-LAST:event_btnAddOrdersActionPerformed
+
+    private void btnStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatusActionPerformed
+        // TODO add your handling code here:
+        
+        DeliveryStatusJPanel status = new DeliveryStatusJPanel(userProcessContainer, restaurantDir, customerDir, delivery, ordersList);
+        userProcessContainer.add("Delivery Status",status);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+
+    }//GEN-LAST:event_btnStatusActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -21,6 +21,14 @@ public class Orders {
     private String orderStatus;
     private double totalPrice;
 
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
     public Restaurant getRestaurant() {
         return restaurant;
     }

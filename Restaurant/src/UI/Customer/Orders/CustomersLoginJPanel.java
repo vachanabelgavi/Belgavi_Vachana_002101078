@@ -137,7 +137,7 @@ public class CustomersLoginJPanel extends javax.swing.JPanel {
 
         Customer cust = (Customer) cmbSupplier.getSelectedItem();
 
-        ChooseRestaurantJPanel choose = new ChooseRestaurantJPanel(userProcessContainer, cust, restaurantDir);
+        ChooseRestaurantJPanel choose = new ChooseRestaurantJPanel(userProcessContainer, cust, restaurantDir, ordersList);
         userProcessContainer.add("Customer Restaurant Choose", choose);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

@@ -12,6 +12,7 @@ import Model.OrdersList;
 import Model.RestaurantDirectory;
 import UI.Admin.AdminMainJPanel;
 import UI.Customer.Orders.CustomersLoginJPanel;
+import UI.Delivery.Orders.DeliveryManLoginJPanel;
 import UI.Restaurant.FoodItems.RestaurantLoginJPanel;
 import java.awt.CardLayout;
 
@@ -185,6 +186,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliveryActionPerformed
         // TODO add your handling code here:
+        
+        DeliveryManLoginJPanel delivery = new DeliveryManLoginJPanel(userProcessContainer, restaurantDir, customerDir, deliverymanDir, ordersList);
+        userProcessContainer.add("Customer Login",delivery);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnDeliveryActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed

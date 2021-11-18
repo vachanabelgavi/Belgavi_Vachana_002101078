@@ -5,7 +5,9 @@
  */
 package UI.Restaurant.FoodItems;
 
+import Model.OrdersList;
 import Model.Restaurant;
+import UI.Restaurant.Orders.ManageOrdersJPanel;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -20,12 +22,14 @@ public class ManageRestaurantFoodJPanel extends javax.swing.JPanel {
      */
     private JPanel userProcessContainer;
     private Restaurant restaurant;
+    private OrdersList orderList;
     
-    public ManageRestaurantFoodJPanel(JPanel userProcessContainer, Restaurant restaurant) {
+    public ManageRestaurantFoodJPanel(JPanel userProcessContainer, Restaurant restaurant, OrdersList orderList) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
         this.restaurant = restaurant;
+        this.orderList = orderList;
     }
 
     /**
@@ -40,7 +44,7 @@ public class ManageRestaurantFoodJPanel extends javax.swing.JPanel {
         btnFood = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnOrders = new javax.swing.JButton();
 
         btnFood.setText("Manage Food Menu");
         btnFood.addActionListener(new java.awt.event.ActionListener() {
@@ -55,7 +59,12 @@ public class ManageRestaurantFoodJPanel extends javax.swing.JPanel {
 
         btnBack.setText("<< Back");
 
-        jButton1.setText("Manage Orders");
+        btnOrders.setText("Manage Orders");
+        btnOrders.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrdersActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -73,7 +82,7 @@ public class ManageRestaurantFoodJPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnFood, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnOrders, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(142, 142, 142))
         );
         layout.setVerticalGroup(
@@ -86,7 +95,7 @@ public class ManageRestaurantFoodJPanel extends javax.swing.JPanel {
                 .addGap(113, 113, 113)
                 .addComponent(btnFood)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnOrders)
                 .addContainerGap(265, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -100,11 +109,20 @@ public class ManageRestaurantFoodJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnFoodActionPerformed
 
+    private void btnOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdersActionPerformed
+        // TODO add your handling code here:
+        
+        ManageOrdersJPanel manageMenu = new ManageOrdersJPanel(userProcessContainer, restaurant, orderList);
+        userProcessContainer.add("Manage Food Menu", manageMenu);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnOrdersActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnFood;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnOrders;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
