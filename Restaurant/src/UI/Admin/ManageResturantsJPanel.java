@@ -7,7 +7,7 @@ package UI.Admin;
 
 import Model.EcoSystem;
 import Model.Restaurant;
-import Model.RestaurantDirectory;
+import Model.UserAccount.UserAccount;
 import UI.Restaurant.AddRestaurantJPanel;
 import UI.Restaurant.SearchRestaurantsJPanel;
 import UI.Restaurant.ViewRestaurantsJPanel;
@@ -35,6 +35,7 @@ public class ManageResturantsJPanel extends javax.swing.JPanel {
         
         this.userProcessContainer = userProcessContainer;
         this.business = business;
+        
         refreshTable();
     }
 
@@ -163,7 +164,7 @@ public class ManageResturantsJPanel extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         
-        AddRestaurantJPanel newRestaurant = new AddRestaurantJPanel(userProcessContainer, business.getRestaurantDirectory());
+        AddRestaurantJPanel newRestaurant = new AddRestaurantJPanel(userProcessContainer, business);
         userProcessContainer.add("Add Restaurant", newRestaurant);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

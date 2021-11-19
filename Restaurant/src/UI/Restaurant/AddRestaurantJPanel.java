@@ -5,8 +5,10 @@
  */
 package UI.Restaurant;
 
+import Model.EcoSystem;
 import Model.Restaurant;
-import Model.RestaurantDirectory;
+import Model.Role.RestaurantRole;
+import Model.UserAccount.UserAccount;
 import UI.Admin.ManageResturantsJPanel;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -23,13 +25,13 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
      * Creates new form AddRestaurantJPanel
      */
     private JPanel userProcessContainer;
-    private RestaurantDirectory restaurantDir;
+    private EcoSystem business;
     
-    public AddRestaurantJPanel(JPanel userProcessContainer, RestaurantDirectory restaurantDir) {
+    public AddRestaurantJPanel(JPanel userProcessContainer, EcoSystem business) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
-        this.restaurantDir = restaurantDir;
+        this.business = business;
     }
 
     /**
@@ -163,22 +165,29 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
         String username = txtUsername.getText();
         String password = txtPassword.getText();
         
-        Restaurant rest = restaurantDir.addRestaurant();
-        rest.setName(name);
-        rest.setDescription(desc);
-        rest.setLocation(loc);
-        rest.setUsername(username);
-        rest.setPassword(password);
+        if (business.getUserAccountDirectory().checkIfUsernameIsUnique(txtUsername.getText())) {
+            
+            UserAccount userAccount = business.getUserAccountDirectory().createUserAccount(txtName.getText(), txtUsername.getText(), txtPassword.getText(), null, new RestaurantRole());
         
-        System.out.println(restaurantDir.getRestaurantList().size());
-        
-        //JOptionPane.showMessageDialog(null, "Supplier added successfully!!", "Info", JOptionPane.INFORMATION_MESSAGE);
-        
-        txtName.setText("");
-        txtDesc.setText("");
-        txtLocation.setText("");
-        txtUsername.setText("");
-        txtPassword.setText("");
+            Restaurant rest = business.getRestaurantDirectory().addRestaurant();
+            rest.setName(name);
+            rest.setDescription(desc);
+            rest.setLocation(loc);
+            rest.setUsername(username);
+            rest.setPassword(password);
+
+            System.out.println(business.getRestaurantDirectory().getRestaurantList().size());
+
+            //JOptionPane.showMessageDialog(null, "Supplier added successfully!!", "Info", JOptionPane.INFORMATION_MESSAGE);
+
+            txtName.setText("");
+            txtDesc.setText("");
+            txtLocation.setText("");
+            txtUsername.setText("");
+            txtPassword.setText("");
+        } else {
+            JOptionPane.showMessageDialog(null, "Please give a unique username for Restuarant.");
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

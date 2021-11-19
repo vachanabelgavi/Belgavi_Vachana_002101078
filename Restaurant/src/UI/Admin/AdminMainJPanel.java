@@ -52,10 +52,14 @@ public class AdminMainJPanel extends javax.swing.JPanel {
         btnCustomers = new javax.swing.JButton();
         btnDelivery = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Administrator");
 
+        btnRestaurants.setBackground(new java.awt.Color(54, 33, 89));
+        btnRestaurants.setForeground(new java.awt.Color(255, 255, 255));
         btnRestaurants.setText("Manage Restaurants");
         btnRestaurants.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,6 +67,8 @@ public class AdminMainJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnCustomers.setBackground(new java.awt.Color(54, 33, 89));
+        btnCustomers.setForeground(new java.awt.Color(255, 255, 255));
         btnCustomers.setText("Manage Customers");
         btnCustomers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +76,8 @@ public class AdminMainJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnDelivery.setBackground(new java.awt.Color(54, 33, 89));
+        btnDelivery.setForeground(new java.awt.Color(255, 255, 255));
         btnDelivery.setText("Manage Delivery");
         btnDelivery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,7 +125,7 @@ public class AdminMainJPanel extends javax.swing.JPanel {
     private void btnCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomersActionPerformed
         // TODO add your handling code here:
         
-        ManageCustomersJPanel manageCustomers = new ManageCustomersJPanel(userProcessContainer, business.getCustomerDirectory());
+        ManageCustomersJPanel manageCustomers = new ManageCustomersJPanel(userProcessContainer, business);
         userProcessContainer.add("Manage Customers", manageCustomers);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -126,7 +134,7 @@ public class AdminMainJPanel extends javax.swing.JPanel {
 
     private void btnDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliveryActionPerformed
         // TODO add your handling code here:        
-        ManageDeliveryJPanel manage = new ManageDeliveryJPanel(userProcessContainer, business.getDeliverymanDirectory());
+        ManageDeliveryJPanel manage = new ManageDeliveryJPanel(userProcessContainer, business);
         userProcessContainer.add("Manage Delivery Persons", manage);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

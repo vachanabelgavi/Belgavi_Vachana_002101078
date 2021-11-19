@@ -7,8 +7,7 @@ package UI.Admin;
 
 import Model.Customer;
 import Model.CustomerDirectory;
-import Model.Food;
-import Model.Restaurant;
+import Model.EcoSystem;
 import UI.Customer.AddCustomerJPanel;
 import UI.Customer.ViewCustomerJPanel;
 import java.awt.CardLayout;
@@ -26,13 +25,14 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
      * Creates new form ManageCustomersJPanel
      */
     private JPanel userProcessContainer;
-    private CustomerDirectory customerDir;
+    private EcoSystem business;
+    //private CustomerDirectory customerDir;
     
-    public ManageCustomersJPanel(JPanel userProcessContainer, CustomerDirectory customerDir) {
+    public ManageCustomersJPanel(JPanel userProcessContainer, EcoSystem business) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
-        this.customerDir = customerDir;
+        this.business = business;
         
         refreshTable();
     }
@@ -67,11 +67,11 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Customer Name", "Phone"
+                "Customer Name", "Phone", "Username", "Password"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -162,7 +162,7 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         
-        AddCustomerJPanel addCustomer = new AddCustomerJPanel(userProcessContainer, customerDir);
+        AddCustomerJPanel addCustomer = new AddCustomerJPanel(userProcessContainer, business);
         userProcessContainer.add("Add Customers", addCustomer);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -197,7 +197,7 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
             return;
         }
         Customer rest = (Customer) tableCustomers.getValueAt(row, 0);
-        customerDir.removeCustomer(rest);
+        business.getCustomerDirectory().removeCustomer(rest);
         refreshTable();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -225,7 +225,7 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
         //if(restaurant.getFoodDirectory()!= null){
-        for (Customer cust : customerDir.getCustomerList()) {
+        for (Customer cust : business.getCustomerDirectory().getCustomerList()) {
             Object row[] = new Object[2];
             row[0] = cust;
             row[1] = cust.getPhone();

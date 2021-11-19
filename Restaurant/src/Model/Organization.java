@@ -7,7 +7,6 @@ package Model;
 import Model.Employee.EmployeeDirectory;
 import Model.Role.Role;
 import Model.UserAccount.UserAccountDirectory;
-import Model.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
 /**
@@ -17,7 +16,6 @@ import java.util.ArrayList;
 public abstract class Organization {
 
     private String name;
-    private WorkQueue workQueue;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
@@ -40,7 +38,6 @@ public abstract class Organization {
 
     public Organization(String name) {
         this.name = name;
-        workQueue = new WorkQueue();
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
         organizationID = counter;
@@ -67,16 +64,8 @@ public abstract class Organization {
         return name;
     }
 
-    public WorkQueue getWorkQueue() {
-        return workQueue;
-    }
-
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setWorkQueue(WorkQueue workQueue) {
-        this.workQueue = workQueue;
     }
 
     @Override

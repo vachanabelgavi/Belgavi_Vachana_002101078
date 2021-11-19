@@ -5,15 +5,10 @@
  */
 package UI.Delivery.Orders;
 
-import Model.Customer;
-import Model.CustomerDirectory;
 import Model.Deliveryman;
-import Model.Food;
+import Model.EcoSystem;
 import Model.Orders;
-import Model.OrdersList;
-import Model.Restaurant;
-import Model.RestaurantDirectory;
-import java.awt.CardLayout;
+import Model.UserAccount.UserAccount;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -29,20 +24,16 @@ public class AssignDeliverymanJPanel extends javax.swing.JPanel {
      * Creates new form AssignDeliverymanJPanel
      */
     private JPanel userProcessContainer;
-    private Deliveryman delivery;
-    private RestaurantDirectory restaurantDir;
-    private CustomerDirectory customerDir;
-    private OrdersList ordersList;
+    private EcoSystem business;
+    private UserAccount userAccount;
     private ArrayList<Orders> cartList;
     
-    public AssignDeliverymanJPanel(JPanel userProcessContainer, RestaurantDirectory restaurantDir, CustomerDirectory customerDir, Deliveryman delivery, OrdersList ordersList) {
+    public AssignDeliverymanJPanel(JPanel userProcessContainer, UserAccount userAccount, EcoSystem business) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
-        this.customerDir = customerDir;
-        this.restaurantDir = restaurantDir;
-        this.delivery = delivery;
-        this.ordersList = ordersList;
+        this.business = business;
+        this.userAccount = userAccount;
         
         cartList = new ArrayList<Orders>();
         populateOrdersTable();
@@ -173,12 +164,27 @@ public class AssignDeliverymanJPanel extends javax.swing.JPanel {
 
     private void btnStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatusActionPerformed
         // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Order Delivered");
         
-        DeliveryStatusJPanel status = new DeliveryStatusJPanel(userProcessContainer, restaurantDir, customerDir, delivery, ordersList);
+        DefaultTableModel menuModel = (DefaultTableModel) tableOrders.getModel();
+        
+        int selectedRow = tableOrders.getSelectedRow();
+        
+        menuModel.setValueAt("Order Delivered", selectedRow, 4);
+        
+        Orders ord = (Orders) tableOrders.getValueAt(selectedRow, 0);
+        int number = Integer.parseInt((String) menuModel.getValueAt(selectedRow, 0));
+        //Deliveryman man = business.getDeliverymanDirectory().addDeliveryPerson();
+        if(ord.getOrderNumber() == number){
+            ord.setOrderStatus("Order Delivered");
+        }
+        
+        /*
+        DeliveryStatusJPanel status = new DeliveryStatusJPanel(userProcessContainer, business);
         userProcessContainer.add("Delivery Status",status);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-
+        */
     }//GEN-LAST:event_btnStatusActionPerformed
 
 
@@ -197,7 +203,7 @@ public class AssignDeliverymanJPanel extends javax.swing.JPanel {
         DefaultTableModel menuModel = (DefaultTableModel) tableOrders.getModel();
         menuModel.setRowCount(0);
        // Restaurant restaurant = ecosystem.getRestaurantDirectory().getRestaurant(userAccount.getUsername());
-        for (Orders order : ordersList.getOrdersList()) {
+        for (Orders order : business.getOrdersList().getOrdersList()) {
             Object[] row = new Object[5];
             row[0] = order.getOrderNumber();
             row[1] = order.getRestaurant().getName();

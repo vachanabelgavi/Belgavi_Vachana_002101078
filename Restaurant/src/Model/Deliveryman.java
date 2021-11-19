@@ -14,6 +14,8 @@ public class Deliveryman {
     private String name;
     private String vehicleNumber;
     private int phone;
+    private String username;
+    private String password;
 
     public String getName() {
         return name;
@@ -37,6 +39,22 @@ public class Deliveryman {
 
     public void setPhone(int phone) {
         this.phone = phone;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
     
     @Override

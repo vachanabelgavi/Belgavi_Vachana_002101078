@@ -141,12 +141,14 @@ public class DeliveryManLoginJPanel extends javax.swing.JPanel {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
 
+        /*
         Deliveryman delivery = (Deliveryman) cmbSupplier.getSelectedItem();
 
         AssignDeliverymanJPanel choose = new AssignDeliverymanJPanel(userProcessContainer, restaurantDir, customerDir, delivery, ordersList);
         userProcessContainer.add("Select Orders For Delivery", choose);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+        */
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void cmbSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSupplierActionPerformed

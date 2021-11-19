@@ -6,7 +6,8 @@
 package UI.Admin;
 
 import Model.Deliveryman;
-import Model.DeliverymanDirectory;
+import Model.EcoSystem;
+import Model.UserAccount.UserAccount;
 import UI.Delivery.AddDeliverymanJPanel;
 import UI.Delivery.ViewDeliverymanJPanel;
 import java.awt.CardLayout;
@@ -24,13 +25,14 @@ public class ManageDeliveryJPanel extends javax.swing.JPanel {
      * Creates new form ManageDeliveryJPanel
      */
     private JPanel userProcessContainer;
-    private DeliverymanDirectory deliverymanDir;
+    private EcoSystem business;
+    //private DeliverymanDirectory deliverymanDir;
     
-    public ManageDeliveryJPanel(JPanel userProcessContainer, DeliverymanDirectory deliverymanDir) {
+    public ManageDeliveryJPanel(JPanel userProcessContainer, EcoSystem business) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
-        this.deliverymanDir = deliverymanDir;
+        this.business = business;
         
         refreshTable();
     }
@@ -72,11 +74,11 @@ public class ManageDeliveryJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Delivery Person", "Phone", "Vehicle Number"
+                "Delivery Person", "Phone", "Vehicle Number", "Username", "Password"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -164,7 +166,7 @@ public class ManageDeliveryJPanel extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         
-        AddDeliverymanJPanel addCustomer = new AddDeliverymanJPanel(userProcessContainer, deliverymanDir);
+        AddDeliverymanJPanel addCustomer = new AddDeliverymanJPanel(userProcessContainer, business);
         userProcessContainer.add("Add Delivery People", addCustomer);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -198,7 +200,7 @@ public class ManageDeliveryJPanel extends javax.swing.JPanel {
             return;
         }
         Deliveryman rest = (Deliveryman) tableDelivery.getValueAt(row, 0);
-        deliverymanDir.removeDeliveryPerson(rest);
+        business.getDeliverymanDirectory().removeDeliveryPerson(rest);
         refreshTable();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -224,11 +226,13 @@ public class ManageDeliveryJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
         //if(restaurant.getFoodDirectory()!= null){
-        for (Deliveryman del : deliverymanDir.getDeliveryList()) {
-            Object row[] = new Object[3];
+        for (Deliveryman del : business.getDeliverymanDirectory().getDeliveryList()) {
+            Object row[] = new Object[5];
             row[0] = del;
             row[1] = del.getPhone();
             row[2] = del.getVehicleNumber();
+            row[3] = del.getUsername();
+            row[4] = del.getPassword();
                     
             model.addRow(row);
         }

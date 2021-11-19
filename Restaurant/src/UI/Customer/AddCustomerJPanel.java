@@ -7,10 +7,15 @@ package UI.Customer;
 
 import Model.Customer;
 import Model.CustomerDirectory;
+import Model.EcoSystem;
+import Model.Role.CustomerRole;
+import Model.Role.RestaurantRole;
+import Model.UserAccount.UserAccount;
 import UI.Admin.ManageCustomersJPanel;
 import UI.Admin.ManageDeliveryJPanel;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -23,13 +28,14 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
      * Creates new form AddCustomerJPanel
      */
     private JPanel userProcessContainer;
-    private CustomerDirectory customerDir;
+    private EcoSystem business;
+    //private CustomerDirectory customerDir;
     
-    public AddCustomerJPanel(JPanel userProcessContainer, CustomerDirectory customerDir) {
+    public AddCustomerJPanel(JPanel userProcessContainer, EcoSystem business) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
-        this.customerDir = customerDir;
+        this.business = business;
     }
 
     /**
@@ -147,13 +153,16 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
+        if (business.getUserAccountDirectory().checkIfUsernameIsUnique(txtUsername.getText())) {
+            
+            UserAccount userAccount = business.getUserAccountDirectory().createUserAccount(txtName.getText(), txtUsername.getText(), txtPassword.getText(), null, new CustomerRole());
         
         String name = txtName.getText();
         int phone = Integer.parseInt(txtPhone.getText());
         String username = txtUsername.getText();
         String password = txtPassword.getText();
         
-        Customer cust = customerDir.addCustomer();
+        Customer cust = business.getCustomerDirectory().addCustomer();
         cust.setName(name);
         cust.setPhone(phone);
         cust.setUsername(username);
@@ -167,6 +176,8 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
         txtPhone.setText("");
         txtUsername.setText("");
         txtPassword.setText("");
+        
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

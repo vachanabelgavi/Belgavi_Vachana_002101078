@@ -7,7 +7,6 @@ package Model.UserAccount;
 
 import Model.Employee.Employee;
 import Model.Role.Role;
-import Model.WorkQueue.WorkQueue;
 
 /**
  *
@@ -20,11 +19,6 @@ public class UserAccount {
     private String password;
     private Employee employee;
     private Role role;
-    private WorkQueue workQueue;
-
-    public UserAccount() {
-        workQueue = new WorkQueue();
-    }
 
     public String getName() {
         return name;
@@ -64,10 +58,6 @@ public class UserAccount {
 
     public Employee getEmployee() {
         return employee;
-    }
-
-    public WorkQueue getWorkQueue() {
-        return workQueue;
     }
 
     @Override
