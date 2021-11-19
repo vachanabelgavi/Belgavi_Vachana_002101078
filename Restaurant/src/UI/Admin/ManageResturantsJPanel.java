@@ -5,6 +5,7 @@
  */
 package UI.Admin;
 
+import Model.EcoSystem;
 import Model.Restaurant;
 import Model.RestaurantDirectory;
 import UI.Restaurant.AddRestaurantJPanel;
@@ -25,14 +26,15 @@ public class ManageResturantsJPanel extends javax.swing.JPanel {
      * Creates new form ManageResturantsJPanel
      */
     private JPanel userProcessContainer;
-    private RestaurantDirectory restaurantDir;
-    private Restaurant restaurant;
+    private EcoSystem business;
+    //private RestaurantDirectory restaurantDir;
+    //private Restaurant restaurant;
     
-    public ManageResturantsJPanel(JPanel userProcessContainer, RestaurantDirectory restaurantDir) {
+    public ManageResturantsJPanel(JPanel userProcessContainer, EcoSystem business) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
-        this.restaurantDir = restaurantDir;
+        this.business = business;
         refreshTable();
     }
 
@@ -70,11 +72,11 @@ public class ManageResturantsJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Restaurant Name", "Description", "Location"
+                "Restaurant Name", "Description", "Location", "Username", "Password"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -161,7 +163,7 @@ public class ManageResturantsJPanel extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         
-        AddRestaurantJPanel newRestaurant = new AddRestaurantJPanel(userProcessContainer, restaurantDir);
+        AddRestaurantJPanel newRestaurant = new AddRestaurantJPanel(userProcessContainer, business.getRestaurantDirectory());
         userProcessContainer.add("Add Restaurant", newRestaurant);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -193,7 +195,7 @@ public class ManageResturantsJPanel extends javax.swing.JPanel {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         
-        SearchRestaurantsJPanel search = new SearchRestaurantsJPanel(userProcessContainer, restaurantDir);
+        SearchRestaurantsJPanel search = new SearchRestaurantsJPanel(userProcessContainer, business.getRestaurantDirectory());
         userProcessContainer.add("Search Reastaurants", search);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -208,7 +210,7 @@ public class ManageResturantsJPanel extends javax.swing.JPanel {
             return;
         }
         Restaurant rest = (Restaurant) tableRestaurants.getValueAt(row, 0);
-        restaurantDir.removeRestaurant(rest);
+        business.getRestaurantDirectory().removeRestaurant(rest);
         refreshTable();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -230,11 +232,13 @@ public class ManageResturantsJPanel extends javax.swing.JPanel {
         for(int i = rowCount-1; i >= 0; i--){
             model.removeRow(i);
         }
-        for (Restaurant r : restaurantDir.getRestaurantList()) {
-            Object row[] = new Object[3];
+        for (Restaurant r : business.getRestaurantDirectory().getRestaurantList()) {
+            Object row[] = new Object[5];
             row[0] = r;
             row[1] = r.getDescription();
             row[2] = r.getLocation();
+            row[3] = r.getUsername();
+            row[4] = r.getPassword();
             
             model.addRow(row);
         }

@@ -15,6 +15,7 @@ import java.util.List;
 public class RestaurantDirectory {
     
     private List<Restaurant> restaurantList;
+    private Restaurant restaurant;
 
     public RestaurantDirectory() {
         restaurantList = new ArrayList<Restaurant>();
@@ -22,6 +23,19 @@ public class RestaurantDirectory {
 
     public List<Restaurant> getRestaurantList() {
         return restaurantList;
+    }
+    
+    public Restaurant getRestaurant(String restaurantUsername) {
+        for (Restaurant restaurant : restaurantList) {
+            if (restaurant.getUsername().equalsIgnoreCase(restaurantUsername)){
+                            return restaurant;
+            }
+        }
+        return null;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     public Restaurant addRestaurant() {

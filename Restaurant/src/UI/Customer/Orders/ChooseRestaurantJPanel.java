@@ -6,9 +6,11 @@
 package UI.Customer.Orders;
 
 import Model.Customer;
+import Model.EcoSystem;
 import Model.OrdersList;
 import Model.Restaurant;
 import Model.RestaurantDirectory;
+import Model.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -24,18 +26,28 @@ public class ChooseRestaurantJPanel extends javax.swing.JPanel {
      * Creates new form ChooseRestaurantJPanel
      */
     private JPanel userProcessContainer;
+    private UserAccount userAccount;
+    private EcoSystem business;
+    String customer;
+    /*
     private Customer customer;
     private RestaurantDirectory restaurantDir;
     private OrdersList ordersList;
-    
-    public ChooseRestaurantJPanel(JPanel userProcessContainer, Customer customer, RestaurantDirectory restaurantDir, OrdersList ordersList) {
+    */
+    public ChooseRestaurantJPanel(JPanel userProcessContainer, UserAccount userAccount, EcoSystem business) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
+        this.userAccount = userAccount;
+        this.business = business;
+        
+        customer = userAccount.getName();
+        
+        /*
         this.customer = customer;
         this.restaurantDir = restaurantDir;
         this.ordersList = ordersList;
-        
+        */
         populateTable();
     }
 
@@ -56,7 +68,6 @@ public class ChooseRestaurantJPanel extends javax.swing.JPanel {
         btnRefreshOrders = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableRestaurants = new javax.swing.JTable();
-        btnBack = new javax.swing.JButton();
 
         tableOrders.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -116,13 +127,6 @@ public class ChooseRestaurantJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tableRestaurants);
 
-        btnBack.setText("<< Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -130,9 +134,7 @@ public class ChooseRestaurantJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(btnBack)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(118, 118, 118)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(150, 150, 150)
@@ -155,13 +157,8 @@ public class ChooseRestaurantJPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(btnBack)))
+                .addGap(36, 36, 36)
+                .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -176,19 +173,13 @@ public class ChooseRestaurantJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        
-        backAction();
-    }//GEN-LAST:event_btnBackActionPerformed
-
     private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
         // TODO add your handling code here:
         
         int selectedRow = tableRestaurants.getSelectedRow();
         if (selectedRow >= 0) {
             Restaurant restaurant = (Restaurant) tableRestaurants.getValueAt(selectedRow, 0);
-            CustomerOrdersJPanel customerOrder = new CustomerOrdersJPanel(userProcessContainer, customer, restaurant, ordersList);
+            CustomerOrdersJPanel customerOrder = new CustomerOrdersJPanel(userProcessContainer, business.getCustomerDirectory().getCustomer(customer), restaurant, business.getOrdersList());
             userProcessContainer.add("Order Food", customerOrder);
             CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
             cardLayout.next(userProcessContainer);
@@ -211,7 +202,6 @@ public class ChooseRestaurantJPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnOrder;
     private javax.swing.JButton btnRefreshOrders;
     private javax.swing.JLabel jLabel1;
@@ -227,7 +217,7 @@ public class ChooseRestaurantJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tableRestaurants.getModel();
         model.setRowCount(0);
 
-        for (Restaurant rest : restaurantDir.getRestaurantList()) {
+        for (Restaurant rest : business.getRestaurantDirectory().getRestaurantList()) {
             Object row[] = new Object[3];
             row[0] = rest;
             row[1] = rest.getDescription();

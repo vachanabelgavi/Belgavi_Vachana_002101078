@@ -5,11 +5,7 @@
  */
 package UI.Admin;
 
-import Model.CustomerDirectory;
-import Model.DeliverymanDirectory;
-import Model.RestaurantDirectory;
-import UI.Customer.AddCustomerJPanel;
-import UI.Delivery.AddDeliverymanJPanel;
+import Model.EcoSystem;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -23,17 +19,23 @@ public class AdminMainJPanel extends javax.swing.JPanel {
      * Creates new form AdminMainJPanel
      */
     private JPanel userProcessContainer;
+    private EcoSystem business;
+    
+    /*
     private RestaurantDirectory restaurantDir;
     private CustomerDirectory customerDir;
     private DeliverymanDirectory deliverymanDir;
-    
-    public AdminMainJPanel(JPanel userProcessContainer, RestaurantDirectory restaurantDir, CustomerDirectory customerDir, DeliverymanDirectory deliverymanDir) {
+    */
+    public AdminMainJPanel(JPanel userProcessContainer, EcoSystem business) {
         initComponents();
         
+        this.business = business;
         this.userProcessContainer = userProcessContainer;
+        /*
         this.restaurantDir = restaurantDir;
         this.customerDir = customerDir;
         this.deliverymanDir = deliverymanDir;
+        */
     }
 
     /**
@@ -106,7 +108,7 @@ public class AdminMainJPanel extends javax.swing.JPanel {
     private void btnRestaurantsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurantsActionPerformed
         // TODO add your handling code here:
         
-        ManageResturantsJPanel manageRestaurants = new ManageResturantsJPanel(userProcessContainer, restaurantDir);
+        ManageResturantsJPanel manageRestaurants = new ManageResturantsJPanel(userProcessContainer, business);
         userProcessContainer.add("Manage Restaurants", manageRestaurants);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -115,7 +117,7 @@ public class AdminMainJPanel extends javax.swing.JPanel {
     private void btnCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomersActionPerformed
         // TODO add your handling code here:
         
-        ManageCustomersJPanel manageCustomers = new ManageCustomersJPanel(userProcessContainer, customerDir);
+        ManageCustomersJPanel manageCustomers = new ManageCustomersJPanel(userProcessContainer, business.getCustomerDirectory());
         userProcessContainer.add("Manage Customers", manageCustomers);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -124,7 +126,7 @@ public class AdminMainJPanel extends javax.swing.JPanel {
 
     private void btnDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliveryActionPerformed
         // TODO add your handling code here:        
-        ManageDeliveryJPanel manage = new ManageDeliveryJPanel(userProcessContainer, deliverymanDir);
+        ManageDeliveryJPanel manage = new ManageDeliveryJPanel(userProcessContainer, business.getDeliverymanDirectory());
         userProcessContainer.add("Manage Delivery Persons", manage);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

@@ -5,11 +5,8 @@
  */
 package Model;
 
-import Business.Customer.CustomerDirectory;
-import Business.DeliveryMan.DeliveryManDirectory;
-import Business.Restaurant.RestaurantDirectory;
-import Business.Role.Role;
-import Business.Role.SystemAdminRole;
+import Model.Role.Role;
+import Model.Role.AdminRole;
 import java.util.ArrayList;
 
 /**
@@ -22,12 +19,14 @@ public class EcoSystem extends Organization {
     private RestaurantDirectory restaurantDirectory;
     private CustomerDirectory customerDirectory;
     private DeliverymanDirectory deliveryManDirectory;
+    private OrdersList ordersList;
 
-    public EcoSystem(RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, DeliverymanDirectory deliveryManDirectory) {
+    public EcoSystem(RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, DeliverymanDirectory deliveryManDirectory, OrdersList ordersList) {
 
         this.restaurantDirectory = restaurantDirectory;
         this.customerDirectory = customerDirectory;
         this.deliveryManDirectory = deliveryManDirectory;
+        this.ordersList = ordersList;
     }
 
     public static EcoSystem getInstance() {
@@ -40,17 +39,15 @@ public class EcoSystem extends Organization {
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roleList = new ArrayList<Role>();
-        roleList.add(new SystemAdminRole());
+        roleList.add(new AdminRole());
         return roleList;
     }
 
     private EcoSystem() {
         super(null);
-        // networkList=new ArrayList<Network>();
     }
 
     public boolean checkIfUserIsUnique(String userName) {
-        //
         return false;
     }
 
@@ -84,14 +81,25 @@ public class EcoSystem extends Organization {
         this.customerDirectory = customerDirectory;
     }
 
-    public DeliveryManDirectory getDeliveryManDirectory() {
+    public DeliverymanDirectory getDeliverymanDirectory() {
         if(deliveryManDirectory == null) {
-            deliveryManDirectory = new DeliveryManDirectory();
+            deliveryManDirectory = new DeliverymanDirectory();
         }
         return deliveryManDirectory;
     }
 
-    public void setDeliveryManDirectory(DeliveryManDirectory deliveryManDirectory) {
+    public void setDeliverymanDirectory(DeliverymanDirectory deliveryManDirectory) {
         this.deliveryManDirectory = deliveryManDirectory;
+    }
+    
+    public OrdersList getOrdersList() {
+        if(ordersList == null) {
+            ordersList = new OrdersList();
+        }
+        return ordersList;
+    }
+
+    public void setOrdersList(OrdersList ordersList) {
+        this.ordersList = ordersList;
     }
 }

@@ -134,13 +134,14 @@ public class RestaurantLoginJPanel extends javax.swing.JPanel {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        
+        /*
         Restaurant rest = (Restaurant) cmbSupplier.getSelectedItem();
         
         ManageRestaurantFoodJPanel manageFood = new ManageRestaurantFoodJPanel(userProcessContainer, rest, ordersList);
         userProcessContainer.add("Manage Food Orders", manageFood);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+        */
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void cmbSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSupplierActionPerformed

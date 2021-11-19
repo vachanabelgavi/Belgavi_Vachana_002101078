@@ -15,6 +15,7 @@ import java.util.List;
 public class CustomerDirectory {
     
     private List<Customer> customerList;
+    private Customer customer;
     
     public CustomerDirectory(){
         
@@ -37,6 +38,19 @@ public class CustomerDirectory {
     
     public void removeCustomer(Customer customer){
         customerList.remove(customer);
+    }
+    
+    public Customer getCustomer(String customer){
+        for (Customer cust : customerList) {
+            if (cust.getUsername().equalsIgnoreCase(customer)){
+                            return cust;
+            }
+        }
+        return null;
+    }
+    
+    public void setCustomer(Customer customer){
+        this.customer = customer;
     }
 
 }

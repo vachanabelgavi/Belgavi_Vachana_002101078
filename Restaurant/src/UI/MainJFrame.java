@@ -6,15 +6,20 @@
 package UI;
 
 import Model.CustomerDirectory;
+import Model.DB4OUtil.DB4OUtil;
 import Model.DeliverymanDirectory;
+import Model.EcoSystem;
 import Model.FoodDirectory;
 import Model.OrdersList;
 import Model.RestaurantDirectory;
+import Model.UserAccount.UserAccount;
 import UI.Admin.AdminMainJPanel;
 import UI.Customer.Orders.CustomersLoginJPanel;
 import UI.Delivery.Orders.DeliveryManLoginJPanel;
 import UI.Restaurant.FoodItems.RestaurantLoginJPanel;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -25,19 +30,27 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
+    private EcoSystem system;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+    
+    
     RestaurantDirectory restaurantDir;
     CustomerDirectory customerDir;
     DeliverymanDirectory deliverymanDir;
     FoodDirectory foodDir;
     OrdersList ordersList;
     
+    
     public MainJFrame() {
         initComponents();
+        
+        system = dB4OUtil.retrieveSystem();
         
         restaurantDir = new RestaurantDirectory();
         customerDir = new CustomerDirectory();
         deliverymanDir = new DeliverymanDirectory();
         ordersList = new OrdersList();
+        
     }
 
     /**
@@ -56,6 +69,12 @@ public class MainJFrame extends javax.swing.JFrame {
         btnCustomer = new javax.swing.JButton();
         btnDelivery = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
+        txtUsername = new javax.swing.JTextField();
+        btnLogout = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
         userProcessContainer = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -95,6 +114,24 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Username");
+
+        jLabel2.setText("Password");
+
+        btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+
+        btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.setLayout(leftPanelLayout);
         leftPanelLayout.setHorizontalGroup(
@@ -102,12 +139,24 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(leftPanelLayout.createSequentialGroup()
                 .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnExit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnRestaurant, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnDelivery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(btnCustomer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRestaurant, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdmin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDelivery, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(leftPanelLayout.createSequentialGroup()
+                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtPassword)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtUsername, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap())
+            .addGroup(leftPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         leftPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAdmin, btnCustomer, btnDelivery, btnRestaurant});
@@ -115,7 +164,19 @@ public class MainJFrame extends javax.swing.JFrame {
         leftPanelLayout.setVerticalGroup(
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leftPanelLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addGap(17, 17, 17)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnLogin)
+                .addGap(12, 12, 12)
+                .addComponent(btnLogout)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addComponent(btnAdmin)
                 .addGap(18, 18, 18)
                 .addComponent(btnRestaurant)
@@ -123,12 +184,14 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(btnCustomer)
                 .addGap(18, 18, 18)
                 .addComponent(btnDelivery)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 296, Short.MAX_VALUE)
+                .addGap(79, 79, 79)
                 .addComponent(btnExit)
                 .addGap(27, 27, 27))
         );
 
         leftPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAdmin, btnCustomer, btnDelivery, btnRestaurant});
+
+        leftPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtPassword, txtUsername});
 
         splitPane.setLeftComponent(leftPanel);
 
@@ -158,11 +221,12 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
         // TODO add your handling code here:
-        
+        /*
         AdminMainJPanel adminMain = new AdminMainJPanel(userProcessContainer, restaurantDir, customerDir, deliverymanDir);
         userProcessContainer.add("AdminWorkAreaJPanel",adminMain);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+        */
     }//GEN-LAST:event_btnAdminActionPerformed
 
     private void btnRestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurantActionPerformed
@@ -198,6 +262,41 @@ public class MainJFrame extends javax.swing.JFrame {
         
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+        
+        try {
+            //System.out.println(txtUsername.getText()+txtPassword.getText());
+            UserAccount useraccount = system.getUserAccountDirectory().authenticateUser(txtUsername.getText(), txtPassword.getText());
+            System.out.println(txtUsername.getText()+txtPassword.getText());
+            CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+            userProcessContainer.add("Login", useraccount.getRole().createWorkArea(userProcessContainer, useraccount, system));
+            cardLayout.next(userProcessContainer);
+            btnLogout.setEnabled(true);
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Please enter the valid username and password");
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        // TODO add your handling code here:
+        
+        btnLogout.setEnabled(false);
+        txtUsername.setEnabled(true);
+        txtPassword.setEnabled(true);
+        btnLogin.setEnabled(true);
+
+        txtUsername.setText("");
+        txtPassword.setText("");
+
+        userProcessContainer.removeAll();
+        JPanel blankJP = new JPanel();
+        userProcessContainer.add("blank", blankJP);
+        CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
+        crdLyt.next(userProcessContainer);
+        dB4OUtil.storeSystem(system);
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,9 +338,15 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnCustomer;
     private javax.swing.JButton btnDelivery;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnRestaurant;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel leftPanel;
     private javax.swing.JSplitPane splitPane;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtUsername;
     private javax.swing.JPanel userProcessContainer;
     // End of variables declaration//GEN-END:variables
 }

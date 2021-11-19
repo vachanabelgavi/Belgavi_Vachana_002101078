@@ -5,9 +5,10 @@
  */
 package UI.Restaurant.FoodItems;
 
-import Model.Customer;
+import Model.EcoSystem;
 import Model.Food;
 import Model.Restaurant;
+import Model.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;

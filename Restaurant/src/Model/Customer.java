@@ -13,7 +13,8 @@ public class Customer {
     
     private String name;
     private int phone;
-    
+    private String username;
+    private String password;
     private Orders orders;
     private DeliverymanDirectory deliveryDirectory;
 
@@ -48,6 +49,22 @@ public class Customer {
     public void setDeliveryDirectory(DeliverymanDirectory deliveryDirectory) {
         this.deliveryDirectory = deliveryDirectory;
     }  
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
     
     @Override
     public String toString() {

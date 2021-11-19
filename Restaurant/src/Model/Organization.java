@@ -4,10 +4,10 @@
  */
 package Model;
 
-import Business.Employee.EmployeeDirectory;
-import Business.Role.Role;
-import Business.UserAccount.UserAccountDirectory;
-import Business.WorkQueue.WorkQueue;
+import Model.Employee.EmployeeDirectory;
+import Model.Role.Role;
+import Model.UserAccount.UserAccountDirectory;
+import Model.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
 /**

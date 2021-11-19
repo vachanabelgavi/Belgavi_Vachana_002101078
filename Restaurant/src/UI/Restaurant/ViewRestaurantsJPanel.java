@@ -35,10 +35,14 @@ public class ViewRestaurantsJPanel extends javax.swing.JPanel {
         txtName.setText(restaurant.getName());
         txtDesc.setText(restaurant.getDescription());
         txtLocation.setText(restaurant.getLocation());
+        txtUsername.setText(restaurant.getUsername());
+        txtPassword.setText(restaurant.getPassword());
         
         txtName.setEditable(false);
         txtDesc.setEditable(false);
         txtLocation.setEditable(false);
+        txtUsername.setEditable(false);
+        txtPassword.setEditable(false);
         btnSave.setEnabled(false);
     }
 
@@ -61,6 +65,10 @@ public class ViewRestaurantsJPanel extends javax.swing.JPanel {
         txtName = new javax.swing.JTextField();
         txtDesc = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
+        txtPassword = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtUsername = new javax.swing.JTextField();
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -93,6 +101,10 @@ public class ViewRestaurantsJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel5.setText("Username");
+
+        jLabel6.setText("Password");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,18 +117,27 @@ public class ViewRestaurantsJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(192, 192, 192)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtDesc)
-                                .addComponent(txtName)
-                                .addComponent(txtLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(btnSave, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnUpdate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addGap(40, 40, 40)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtDesc)
+                                        .addComponent(txtName)
+                                        .addComponent(txtLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5))
+                                .addGap(40, 40, 40)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtUsername)
+                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 209, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -146,11 +167,19 @@ public class ViewRestaurantsJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(btnUpdate)
                 .addGap(18, 18, 18)
                 .addComponent(btnSave)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addGap(91, 91, 91))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnSave, btnUpdate});
@@ -163,6 +192,8 @@ public class ViewRestaurantsJPanel extends javax.swing.JPanel {
         txtName.setEditable(true);
         txtDesc.setEditable(true);
         txtLocation.setEditable(true);
+        txtUsername.setEditable(true);
+        txtPassword.setEditable(true);
         btnSave.setEnabled(true);
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -188,11 +219,15 @@ public class ViewRestaurantsJPanel extends javax.swing.JPanel {
         String name = txtName.getText();
         String desc = txtDesc.getText();
         String loc = txtLocation.getText();
+        String username = txtUsername.getText();
+        String password = txtPassword.getText();
         
         System.out.println(restaurant.getName());
         restaurant.setName(name);
         restaurant.setDescription(desc);
         restaurant.setLocation(loc);
+        restaurant.setUsername(username);
+        restaurant.setPassword(password);
         /*
         Restaurant rest = restaurantDir.addRestaurant();
         rest.setName(name);
@@ -204,6 +239,8 @@ public class ViewRestaurantsJPanel extends javax.swing.JPanel {
         txtName.setText("");
         txtDesc.setText("");
         txtLocation.setText("");
+        txtUsername.setText("");
+        txtPassword.setText("");
     }//GEN-LAST:event_btnSaveActionPerformed
 
 
@@ -215,8 +252,12 @@ public class ViewRestaurantsJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField txtDesc;
     private javax.swing.JTextField txtLocation;
     private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }
