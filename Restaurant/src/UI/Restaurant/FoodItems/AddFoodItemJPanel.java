@@ -5,13 +5,12 @@
  */
 package UI.Restaurant.FoodItems;
 
+import Model.EcoSystem;
 import Model.Food;
 import Model.Restaurant;
 import java.awt.CardLayout;
 import java.awt.Component;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,6 +22,7 @@ public class AddFoodItemJPanel extends javax.swing.JPanel {
      * Creates new form AddFoodItemJPanel
      */
     private JPanel userProcessContainer;
+    //private EcoSystem business;
     private Restaurant restaurant;
     
     public AddFoodItemJPanel(JPanel userProcessContainer, Restaurant restaurant) {
@@ -129,6 +129,9 @@ public class AddFoodItemJPanel extends javax.swing.JPanel {
             int price = Integer.parseInt(stringPrice);
             item.setPrice(price);
         }
+        
+        txtName.setText("");
+        txtDesc.setText("");
         //JOptionPane.showMessageDialog(null, "Product added!", "Info", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnAddActionPerformed
 

@@ -20,13 +20,15 @@ public class EcoSystem extends Organization {
     private CustomerDirectory customerDirectory;
     private DeliverymanDirectory deliveryManDirectory;
     private OrdersList ordersList;
+    private FoodDirectory foodDirectory;
 
-    public EcoSystem(RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, DeliverymanDirectory deliveryManDirectory, OrdersList ordersList) {
+    public EcoSystem(RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, DeliverymanDirectory deliveryManDirectory, OrdersList ordersList, FoodDirectory foodDirectory) {
 
         this.restaurantDirectory = restaurantDirectory;
         this.customerDirectory = customerDirectory;
         this.deliveryManDirectory = deliveryManDirectory;
         this.ordersList = ordersList;
+        this.foodDirectory = foodDirectory;
     }
 
     public static EcoSystem getInstance() {
@@ -101,5 +103,16 @@ public class EcoSystem extends Organization {
 
     public void setOrdersList(OrdersList ordersList) {
         this.ordersList = ordersList;
+    }
+    
+    public FoodDirectory getFoodDirectory() {
+        if(foodDirectory == null) {
+            foodDirectory = new FoodDirectory();
+        }
+        return foodDirectory;
+    }
+
+    public void setFoodDirectory(FoodDirectory foodDirectory) {
+        this.foodDirectory = foodDirectory;
     }
 }

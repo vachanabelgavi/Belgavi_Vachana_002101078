@@ -52,7 +52,7 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         txtPhone = new javax.swing.JTextField();
-        btnAdd = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         txtUsername = new javax.swing.JTextField();
         txtPassword = new javax.swing.JTextField();
@@ -67,10 +67,10 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Phone");
 
-        btnAdd.setText("Add");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.setText("Add");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
+                btnSaveActionPerformed(evt);
             }
         });
 
@@ -106,7 +106,7 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(txtPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                                         .addComponent(txtName))
-                                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel6)
@@ -146,39 +146,45 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel6)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
-                .addComponent(btnAdd)
+                .addComponent(btnSave)
                 .addContainerGap(193, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        if (business.getUserAccountDirectory().checkIfUsernameIsUnique(txtUsername.getText())) {
-            
-            UserAccount userAccount = business.getUserAccountDirectory().createUserAccount(txtName.getText(), txtUsername.getText(), txtPassword.getText(), null, new CustomerRole());
-        
         String name = txtName.getText();
         int phone = Integer.parseInt(txtPhone.getText());
         String username = txtUsername.getText();
         String password = txtPassword.getText();
         
-        Customer cust = business.getCustomerDirectory().addCustomer();
-        cust.setName(name);
-        cust.setPhone(phone);
-        cust.setUsername(username);
-        cust.setPassword(password);
+        System.out.println("Add customer");
         
-        //System.out.println(restaurantDir.getRestaurantList().size());
-        
-        //JOptionPane.showMessageDialog(null, "Supplier added successfully!!", "Info", JOptionPane.INFORMATION_MESSAGE);
-        
-        txtName.setText("");
-        txtPhone.setText("");
-        txtUsername.setText("");
-        txtPassword.setText("");
+        if (business.getUserAccountDirectory().checkIfUsernameIsUnique(txtUsername.getText())) {
+            
+            System.out.println(business.getUserAccountDirectory().getUserAccountList().size());
+            
+            UserAccount userAccount = business.getUserAccountDirectory().createUserAccount(txtName.getText(), txtUsername.getText(), txtPassword.getText(), null, new CustomerRole());
+
+            System.out.println(userAccount);
+            
+            Customer cust = business.getCustomerDirectory().addCustomer();
+            cust.setName(name);
+            cust.setPhone(phone);
+            cust.setUsername(username);
+            cust.setPassword(password);
+            
+            System.out.println(business.getCustomerDirectory().getCustomerList());
+
+            //JOptionPane.showMessageDialog(null, "Supplier added successfully!!", "Info", JOptionPane.INFORMATION_MESSAGE);
+
+            txtName.setText("");
+            txtPhone.setText("");
+            txtUsername.setText("");
+            txtPassword.setText("");
         
         }
-    }//GEN-LAST:event_btnAddActionPerformed
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
@@ -196,8 +202,8 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

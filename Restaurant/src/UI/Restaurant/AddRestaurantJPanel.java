@@ -185,8 +185,6 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
             txtLocation.setText("");
             txtUsername.setText("");
             txtPassword.setText("");
-        } else {
-            JOptionPane.showMessageDialog(null, "Please give a unique username for Restuarant.");
         }
     }//GEN-LAST:event_btnAddActionPerformed
 

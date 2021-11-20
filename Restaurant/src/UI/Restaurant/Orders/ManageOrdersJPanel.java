@@ -5,6 +5,7 @@
  */
 package UI.Restaurant.Orders;
 
+import Model.EcoSystem;
 import Model.Orders;
 import Model.OrdersList;
 import Model.Restaurant;
@@ -23,6 +24,7 @@ public class ManageOrdersJPanel extends javax.swing.JPanel {
      * Creates new form ViewOrdersJPanel
      */
     private JPanel userProcessContainer;
+    //private EcoSystem business;
     private Restaurant restaurant;
     private OrdersList orderList;
     
@@ -64,11 +66,11 @@ public class ManageOrdersJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Order Number", "Status", "Customer Name"
+                "Order Number", "Status", "Customer Name", "Customer Comment"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -76,9 +78,6 @@ public class ManageOrdersJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(tableOrders);
-        if (tableOrders.getColumnModel().getColumnCount() > 0) {
-            tableOrders.getColumnModel().getColumn(2).setHeaderValue("Customer Name");
-        }
 
         btnOrderReady.setText("Order Ready");
         btnOrderReady.addActionListener(new java.awt.event.ActionListener() {
@@ -164,7 +163,7 @@ public class ManageOrdersJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnOrderReady)
                     .addComponent(btnViewOrder))
                 .addGap(56, 56, 56)
@@ -189,9 +188,13 @@ public class ManageOrdersJPanel extends javax.swing.JPanel {
         for(Orders o : orderList.getOrdersList()){
             
             if(o.getOrderNumber() == or.getOrderNumber()){
-                String status = "Order Ready";
-                o.setOrderStatus(status);
-                model.setValueAt(status, selectedRowIndex, 1);
+                if(o.getOrderStatus().equalsIgnoreCase("Order Placed")){
+                    String status = "Order Ready";
+                    o.setOrderStatus(status);
+                    model.setValueAt(status, selectedRowIndex, 1);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Order is already delivered!");
+                }
             }
         }
         
@@ -264,12 +267,13 @@ public class ManageOrdersJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
         for (Orders item : orderList.getOrdersList()) {
-            Object row[] = new Object[3];
+            Object row[] = new Object[4];
             
             if(item.getRestaurant() == restaurant){
-                row[0] = item.getOrderNumber();
+                row[0] = item;
                 row[1] = item.getOrderStatus();
-                row[2] = item.getCustomer();
+                row[2] = item.getCustomer().getName();
+                row[3] = item.getCustomerComment();
                     
                 model.addRow(row);
             }

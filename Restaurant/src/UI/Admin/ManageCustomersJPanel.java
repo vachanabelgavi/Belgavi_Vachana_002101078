@@ -14,7 +14,7 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-
+ 
 /**
  *
  * @author vachanabelgavi
@@ -204,9 +204,14 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         
-        
+        backAction();
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void backAction() {
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -226,9 +231,11 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
 
         //if(restaurant.getFoodDirectory()!= null){
         for (Customer cust : business.getCustomerDirectory().getCustomerList()) {
-            Object row[] = new Object[2];
+            Object row[] = new Object[4];
             row[0] = cust;
             row[1] = cust.getPhone();
+            row[2] = cust.getUsername();
+            row[3] = cust.getPassword();
                     
             model.addRow(row);
         }

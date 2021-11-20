@@ -3,9 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/Users/vachanabelgavi/Downloads/Restaurant/src/UI/Customer/Orders/ChooseRestaurantJPanel.java</file>
+            <file>file:/Users/vachanabelgavi/Downloads/Restaurant/src/UI/Restaurant/FoodItems/ManageRestaurantFoodJPanel.java</file>
             <file>file:/Users/vachanabelgavi/Downloads/Restaurant/src/UI/MainJFrame.java</file>
+            <file>file:/Users/vachanabelgavi/Downloads/Restaurant/src/UI/Customer/AddCustomerJPanel.java</file>
+            <file>file:/Users/vachanabelgavi/Downloads/Restaurant/src/UI/Customer/Orders/CustomerOrdersJPanel.java</file>
             <file>file:/Users/vachanabelgavi/Downloads/Restaurant/src/UI/Restaurant/FoodItems/ManageFoodMenuJPanel.java</file>
+            <file>file:/Users/vachanabelgavi/Downloads/Restaurant/src/UI/Customer/Orders/CustomerCommentJPanel.java</file>
             <file>file:/Users/vachanabelgavi/Downloads/Restaurant/src/UI/Restaurant/Orders/ManageOrdersJPanel.java</file>
+            <file>file:/Users/vachanabelgavi/Downloads/Restaurant/src/UI/Admin/ManageCustomersJPanel.java</file>
         </group>
     </open-files>
 </project-private>

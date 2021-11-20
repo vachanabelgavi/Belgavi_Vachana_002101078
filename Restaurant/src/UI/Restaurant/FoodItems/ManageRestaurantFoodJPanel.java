@@ -6,6 +6,8 @@
 package UI.Restaurant.FoodItems;
 
 import Model.EcoSystem;
+import Model.OrdersList;
+import Model.Restaurant;
 import Model.UserAccount.UserAccount;
 import UI.Restaurant.Orders.ManageOrdersJPanel;
 import java.awt.CardLayout;
@@ -23,11 +25,10 @@ public class ManageRestaurantFoodJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem business;
     private UserAccount userAccount;
-    private String restaurant;
-    /*
+   private String restaurantName;
     private Restaurant restaurant;
     private OrdersList orderList;
-    */
+   
     public ManageRestaurantFoodJPanel(JPanel userProcessContainer, UserAccount userAccount, EcoSystem business) {
         initComponents();
         
@@ -35,12 +36,17 @@ public class ManageRestaurantFoodJPanel extends javax.swing.JPanel {
         this.business = business;
         this.userAccount = userAccount;
         
-        restaurant = userAccount.getName();
-        txtRestaurantName.setText(restaurant);
-        /*
-        this.restaurant = restaurant;
-        this.orderList = orderList;
-        */
+        for (Restaurant rest : business.getRestaurantDirectory().getRestaurantList()){
+            if (userAccount.getUsername().equals(rest.getUsername())) {
+                restaurant = rest;
+                restaurantName = rest.getName();
+            }
+               
+        }
+            
+        txtRestaurantName.setText(restaurantName);
+        
+        //this.orderList = orderList;
     }
 
     /**
@@ -142,7 +148,7 @@ public class ManageRestaurantFoodJPanel extends javax.swing.JPanel {
     private void btnFoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFoodActionPerformed
         // TODO add your handling code here:
         
-        ManageFoodMenuJPanel manageMenu = new ManageFoodMenuJPanel(userProcessContainer, business.getRestaurantDirectory().getRestaurant(restaurant));
+        ManageFoodMenuJPanel manageMenu = new ManageFoodMenuJPanel(userProcessContainer, restaurant);
         userProcessContainer.add("Manage Food Menu", manageMenu);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -151,7 +157,7 @@ public class ManageRestaurantFoodJPanel extends javax.swing.JPanel {
     private void btnOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdersActionPerformed
         // TODO add your handling code here:
         
-        ManageOrdersJPanel manageMenu = new ManageOrdersJPanel(userProcessContainer, business.getRestaurantDirectory().getRestaurant(restaurant), business.getOrdersList());
+        ManageOrdersJPanel manageMenu = new ManageOrdersJPanel(userProcessContainer, restaurant, business.getOrdersList());
         userProcessContainer.add("Manage Food Menu", manageMenu);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

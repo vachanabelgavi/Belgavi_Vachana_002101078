@@ -24,6 +24,7 @@ public class ManageFoodMenuJPanel extends javax.swing.JPanel {
      * Creates new form ManageFoodMenuJPanel
      */
     private JPanel userProcessContainer;
+    private EcoSystem business;
     private Restaurant restaurant;
     
     public ManageFoodMenuJPanel(JPanel userProcessContainer, Restaurant restaurant) {
@@ -55,6 +56,8 @@ public class ManageFoodMenuJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         lblRestaurant = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         tableFoods.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

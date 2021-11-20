@@ -10,6 +10,7 @@ import Model.Food;
 import Model.Orders;
 import Model.OrdersList;
 import Model.Restaurant;
+import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -221,7 +222,12 @@ public class CustomerOrdersJPanel extends javax.swing.JPanel {
         order.addItem(cartList);
         order.setTotalPrice(totalPrice);
         
-        JOptionPane.showMessageDialog(null, "Total Price($): "+totalPrice);
+        //JOptionPane.showMessageDialog(null, "Total Price($): "+totalPrice);
+        CustomerCommentJPanel newRestaurant = new CustomerCommentJPanel(userProcessContainer, customer, restaurant, order);
+        userProcessContainer.add("Add Restaurant", newRestaurant);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+
     }//GEN-LAST:event_btnCheckOutActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed

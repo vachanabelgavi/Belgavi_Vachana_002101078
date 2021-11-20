@@ -54,7 +54,8 @@ public class AssignDeliverymanJPanel extends javax.swing.JPanel {
         btnAddOrders = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableDelivery = new javax.swing.JTable();
-        btnStatus = new javax.swing.JButton();
+        btnDeliver = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -78,7 +79,7 @@ public class AssignDeliverymanJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tableOrders);
 
-        btnAddOrders.setText("Add Orders");
+        btnAddOrders.setText("Pick Order");
         btnAddOrders.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddOrdersActionPerformed(evt);
@@ -103,10 +104,17 @@ public class AssignDeliverymanJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tableDelivery);
 
-        btnStatus.setText("Delivery Status");
-        btnStatus.addActionListener(new java.awt.event.ActionListener() {
+        btnDeliver.setText("Deliver Order");
+        btnDeliver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnStatusActionPerformed(evt);
+                btnDeliverActionPerformed(evt);
+            }
+        });
+
+        btnRefresh.setText("Refresh Tables");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
             }
         });
 
@@ -120,8 +128,11 @@ public class AssignDeliverymanJPanel extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(79, 79, 79)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnStatus)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnRefresh)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnDeliver))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(84, Short.MAX_VALUE))
@@ -142,7 +153,9 @@ public class AssignDeliverymanJPanel extends javax.swing.JPanel {
                 .addGap(38, 38, 38)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnStatus)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDeliver)
+                    .addComponent(btnRefresh))
                 .addContainerGap(62, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -152,9 +165,10 @@ public class AssignDeliverymanJPanel extends javax.swing.JPanel {
         
         int selectedRow = tableOrders.getSelectedRow();
         if(selectedRow >= 0) {
-            Orders selectedItem = (Orders) tableOrders.getValueAt(selectedRow, 0);
-            cartList.add(selectedItem);
-            
+            Orders rest = (Orders)tableOrders.getValueAt(selectedRow,0);
+            if(rest.getOrderStatus().equalsIgnoreCase("Order Ready")){
+                cartList.add(rest);
+            }
             populateCartTable();
         }
         else {
@@ -162,8 +176,13 @@ public class AssignDeliverymanJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnAddOrdersActionPerformed
 
-    private void btnStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatusActionPerformed
+    private void btnDeliverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliverActionPerformed
         // TODO add your handling code here:
+        int row = tableDelivery.getSelectedRow();
+        if(row<0){
+            JOptionPane.showMessageDialog(null, "Please select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         JOptionPane.showMessageDialog(null, "Order Delivered");
         
         DefaultTableModel menuModel = (DefaultTableModel) tableOrders.getModel();
@@ -173,11 +192,13 @@ public class AssignDeliverymanJPanel extends javax.swing.JPanel {
         menuModel.setValueAt("Order Delivered", selectedRow, 4);
         
         Orders ord = (Orders) tableOrders.getValueAt(selectedRow, 0);
-        int number = Integer.parseInt((String) menuModel.getValueAt(selectedRow, 0));
         //Deliveryman man = business.getDeliverymanDirectory().addDeliveryPerson();
-        if(ord.getOrderNumber() == number){
-            ord.setOrderStatus("Order Delivered");
+        for(int i=0; i < business.getOrdersList().getOrdersList().size(); i++){
+            if(ord.getOrderNumber() == business.getOrdersList().getOrdersList().get(i).getOrderNumber()){
+                ord.setOrderStatus("Order Delivered");
+            }
         }
+        System.out.println(ord.getOrderStatus());
         
         /*
         DeliveryStatusJPanel status = new DeliveryStatusJPanel(userProcessContainer, business);
@@ -185,12 +206,25 @@ public class AssignDeliverymanJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
         */
-    }//GEN-LAST:event_btnStatusActionPerformed
+    }//GEN-LAST:event_btnDeliverActionPerformed
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        // TODO add your handling code here:
+        populateOrdersTable();
+        
+        int rowCount = tableDelivery.getRowCount();
+        DefaultTableModel model = (DefaultTableModel) tableDelivery.getModel();
+        
+        for(int i = rowCount-1; i >= 0; i--){
+            model.removeRow(i);
+        }
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddOrders;
-    private javax.swing.JButton btnStatus;
+    private javax.swing.JButton btnDeliver;
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -205,7 +239,7 @@ public class AssignDeliverymanJPanel extends javax.swing.JPanel {
        // Restaurant restaurant = ecosystem.getRestaurantDirectory().getRestaurant(userAccount.getUsername());
         for (Orders order : business.getOrdersList().getOrdersList()) {
             Object[] row = new Object[5];
-            row[0] = order.getOrderNumber();
+            row[0] = order;
             row[1] = order.getRestaurant().getName();
             row[2] = order.getCustomer().getName();
             row[3] = order.getTotalPrice();
@@ -221,7 +255,7 @@ public class AssignDeliverymanJPanel extends javax.swing.JPanel {
         cartModel.setRowCount(0);
         for (Orders o : cartList) {
             Object[] row = new Object[5];
-            row[0] = o.getOrderNumber();
+            row[0] = o;
             row[1] = o.getRestaurant().getName();
             row[2] = o.getCustomer().getName();
             row[3] = o.getTotalPrice();

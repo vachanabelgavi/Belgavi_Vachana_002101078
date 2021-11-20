@@ -28,20 +28,33 @@ public class ChooseRestaurantJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount userAccount;
     private EcoSystem business;
-    String customer;
-    /*
+    String customerName;
+    
     private Customer customer;
     private RestaurantDirectory restaurantDir;
     private OrdersList ordersList;
-    */
+    
     public ChooseRestaurantJPanel(JPanel userProcessContainer, UserAccount userAccount, EcoSystem business) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.business = business;
-        
-        customer = userAccount.getName();
+        /*
+        System.out.println("Inside Customer Panel");
+        for (Customer cust : business.getCustomerDirectory().getCustomerList()){
+            System.out.println(business.getCustomerDirectory().getCustomerList());
+            
+            System.out.println(userAccount.getUsername());
+            System.out.println(cust.getUsername());
+            if (userAccount.getUsername().equals(cust.getUsername())) {
+                customer = cust;
+                customerName = cust.getName();
+            }
+            System.out.println(customerName);   
+        }
+        */
+        lblCustomer.setText(customerName);
         
         /*
         this.customer = customer;
@@ -49,6 +62,7 @@ public class ChooseRestaurantJPanel extends javax.swing.JPanel {
         this.ordersList = ordersList;
         */
         populateTable();
+        System.out.println("After populate Table: "+customerName);
     }
 
     /**
@@ -66,6 +80,8 @@ public class ChooseRestaurantJPanel extends javax.swing.JPanel {
         tableRestaurants = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        lblCustomer = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -116,39 +132,54 @@ public class ChooseRestaurantJPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
         );
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        jLabel1.setText("Customer: ");
+
+        lblCustomer.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        lblCustomer.setText("<value>");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(150, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnRefreshOrders)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(136, 136, 136))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnRefreshOrders)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(139, 139, 139))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblCustomer))
+                .addGap(41, 41, 41)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnOrder)
                     .addComponent(btnRefreshOrders))
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -158,7 +189,7 @@ public class ChooseRestaurantJPanel extends javax.swing.JPanel {
         int selectedRow = tableRestaurants.getSelectedRow();
         if (selectedRow >= 0) {
             Restaurant restaurant = (Restaurant) tableRestaurants.getValueAt(selectedRow, 0);
-            CustomerOrdersJPanel customerOrder = new CustomerOrdersJPanel(userProcessContainer, business.getCustomerDirectory().getCustomer(customer), restaurant, business.getOrdersList());
+            CustomerOrdersJPanel customerOrder = new CustomerOrdersJPanel(userProcessContainer, customer, restaurant, ordersList);
             userProcessContainer.add("Order Food", customerOrder);
             CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
             cardLayout.next(userProcessContainer);
@@ -183,9 +214,11 @@ public class ChooseRestaurantJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOrder;
     private javax.swing.JButton btnRefreshOrders;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblCustomer;
     private javax.swing.JTable tableRestaurants;
     // End of variables declaration//GEN-END:variables
 
@@ -194,7 +227,7 @@ public class ChooseRestaurantJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tableRestaurants.getModel();
         model.setRowCount(0);
 
-        for (Restaurant rest : business.getRestaurantDirectory().getRestaurantList()) {
+        for (Restaurant rest : restaurantDir.getRestaurantList()) {
             Object row[] = new Object[3];
             row[0] = rest;
             row[1] = rest.getDescription();

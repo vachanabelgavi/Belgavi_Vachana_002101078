@@ -20,6 +20,7 @@ public class Orders {
     private Customer customer;
     private String orderStatus;
     private double totalPrice;
+    private String customerComment;
 
     public double getTotalPrice() {
         return totalPrice;
@@ -85,5 +86,17 @@ public class Orders {
     public void setDeliveryDir(DeliverymanDirectory deliveryDir) {
         this.deliveryDir = deliveryDir;
     }
+
+    public String getCustomerComment() {
+        return customerComment;
+    }
+
+    public void setCustomerComment(String customerComment) {
+        this.customerComment = customerComment;
+    }
     
+    @Override
+    public String toString() {
+        return String.valueOf(orderNumber); 
+    }
 }

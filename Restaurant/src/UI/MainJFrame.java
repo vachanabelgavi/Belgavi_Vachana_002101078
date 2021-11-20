@@ -30,7 +30,7 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
-    private EcoSystem system;
+    private EcoSystem business;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     
     
@@ -44,7 +44,7 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
         
-        system = dB4OUtil.retrieveSystem();
+        business = dB4OUtil.retrieveSystem();
         
         restaurantDir = new RestaurantDirectory();
         customerDir = new CustomerDirectory();
@@ -276,10 +276,10 @@ public class MainJFrame extends javax.swing.JFrame {
         
         try {
             //System.out.println(txtUsername.getText()+txtPassword.getText());
-            UserAccount useraccount = system.getUserAccountDirectory().authenticateUser(txtUsername.getText(), txtPassword.getText());
+            UserAccount useraccount = business.getUserAccountDirectory().authenticateUser(txtUsername.getText(), txtPassword.getText());
             System.out.println(txtUsername.getText()+txtPassword.getText());
             CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
-            userProcessContainer.add("Login", useraccount.getRole().createWorkArea(userProcessContainer, useraccount, system));
+            userProcessContainer.add("Login", useraccount.getRole().createWorkArea(userProcessContainer, useraccount, business));
             cardLayout.next(userProcessContainer);
             btnLogout.setEnabled(true);
         } catch (NullPointerException e) {
@@ -303,7 +303,7 @@ public class MainJFrame extends javax.swing.JFrame {
         userProcessContainer.add("blank", blankJP);
         CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
         crdLyt.next(userProcessContainer);
-        dB4OUtil.storeSystem(system);
+        dB4OUtil.storeSystem(business);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
