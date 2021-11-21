@@ -64,10 +64,6 @@ public class MainJFrame extends javax.swing.JFrame {
 
         splitPane = new javax.swing.JSplitPane();
         leftPanel = new javax.swing.JPanel();
-        btnAdmin = new javax.swing.JButton();
-        btnRestaurant = new javax.swing.JButton();
-        btnCustomer = new javax.swing.JButton();
-        btnDelivery = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -76,40 +72,13 @@ public class MainJFrame extends javax.swing.JFrame {
         btnLogout = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
         userProcessContainer = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         leftPanel.setBackground(new java.awt.Color(54, 33, 89));
         leftPanel.setForeground(new java.awt.Color(255, 255, 255));
         leftPanel.setPreferredSize(new java.awt.Dimension(150, 584));
-
-        btnAdmin.setText("Admin");
-        btnAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdminActionPerformed(evt);
-            }
-        });
-
-        btnRestaurant.setText("Restaurant");
-        btnRestaurant.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRestaurantActionPerformed(evt);
-            }
-        });
-
-        btnCustomer.setText("Customer");
-        btnCustomer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCustomerActionPerformed(evt);
-            }
-        });
-
-        btnDelivery.setText("Delivery");
-        btnDelivery.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeliveryActionPerformed(evt);
-            }
-        });
 
         btnExit.setBackground(new java.awt.Color(54, 33, 89));
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
@@ -155,13 +124,6 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addComponent(txtUsername)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtPassword)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnRestaurant, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCustomer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDelivery, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(leftPanelLayout.createSequentialGroup()
                         .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -169,9 +131,6 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-
-        leftPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAdmin, btnCustomer, btnDelivery, btnRestaurant});
-
         leftPanelLayout.setVerticalGroup(
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leftPanelLayout.createSequentialGroup()
@@ -187,20 +146,10 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(btnLogin)
                 .addGap(12, 12, 12)
                 .addComponent(btnLogout)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                .addComponent(btnAdmin)
-                .addGap(18, 18, 18)
-                .addComponent(btnRestaurant)
-                .addGap(18, 18, 18)
-                .addComponent(btnCustomer)
-                .addGap(18, 18, 18)
-                .addComponent(btnDelivery)
-                .addGap(79, 79, 79)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 332, Short.MAX_VALUE)
                 .addComponent(btnExit)
                 .addGap(27, 27, 27))
         );
-
-        leftPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAdmin, btnCustomer, btnDelivery, btnRestaurant});
 
         leftPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtPassword, txtUsername});
 
@@ -208,9 +157,15 @@ public class MainJFrame extends javax.swing.JFrame {
 
         splitPane.setLeftComponent(leftPanel);
 
+        userProcessContainer.setBackground(new java.awt.Color(255, 255, 255));
         userProcessContainer.setForeground(new java.awt.Color(255, 255, 255));
         userProcessContainer.setMinimumSize(new java.awt.Dimension(675, 584));
         userProcessContainer.setLayout(new java.awt.CardLayout());
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setIcon(new javax.swing.ImageIcon("/Users/vachanabelgavi/Downloads/online-food-ordering-system-PHP.png")); // NOI18N
+        userProcessContainer.add(jLabel3, "card2");
+
         splitPane.setRightComponent(userProcessContainer);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -227,44 +182,6 @@ public class MainJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
-        // TODO add your handling code here:
-        /*
-        AdminMainJPanel adminMain = new AdminMainJPanel(userProcessContainer, restaurantDir, customerDir, deliverymanDir);
-        userProcessContainer.add("AdminWorkAreaJPanel",adminMain);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-        */
-    }//GEN-LAST:event_btnAdminActionPerformed
-
-    private void btnRestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurantActionPerformed
-        // TODO add your handling code here:
-        
-        RestaurantLoginJPanel restLogin = new RestaurantLoginJPanel(userProcessContainer, restaurantDir, ordersList);
-        userProcessContainer.add("Restaurant Login",restLogin);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnRestaurantActionPerformed
-
-    private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
-        // TODO add your handling code here:
-        
-        CustomersLoginJPanel custLogin = new CustomersLoginJPanel(userProcessContainer, customerDir, restaurantDir, ordersList);
-        userProcessContainer.add("Customer Login",custLogin);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-
-    }//GEN-LAST:event_btnCustomerActionPerformed
-
-    private void btnDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliveryActionPerformed
-        // TODO add your handling code here:
-        
-        DeliveryManLoginJPanel delivery = new DeliveryManLoginJPanel(userProcessContainer, restaurantDir, customerDir, deliverymanDir, ordersList);
-        userProcessContainer.add("Customer Login",delivery);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnDeliveryActionPerformed
-
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
         
@@ -277,7 +194,7 @@ public class MainJFrame extends javax.swing.JFrame {
         try {
             //System.out.println(txtUsername.getText()+txtPassword.getText());
             UserAccount useraccount = business.getUserAccountDirectory().authenticateUser(txtUsername.getText(), txtPassword.getText());
-            System.out.println(txtUsername.getText()+txtPassword.getText());
+            System.out.println(txtUsername.getText()+" "+txtPassword.getText());
             CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
             userProcessContainer.add("Login", useraccount.getRole().createWorkArea(userProcessContainer, useraccount, business));
             cardLayout.next(userProcessContainer);
@@ -342,15 +259,12 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdmin;
-    private javax.swing.JButton btnCustomer;
-    private javax.swing.JButton btnDelivery;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnLogout;
-    private javax.swing.JButton btnRestaurant;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel leftPanel;
     private javax.swing.JSplitPane splitPane;
     private javax.swing.JPasswordField txtPassword;

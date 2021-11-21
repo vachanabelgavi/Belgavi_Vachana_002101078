@@ -40,20 +40,22 @@ public class ChooseRestaurantJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.business = business;
-        /*
+        
         System.out.println("Inside Customer Panel");
-        for (Customer cust : business.getCustomerDirectory().getCustomerList()){
-            System.out.println(business.getCustomerDirectory().getCustomerList());
+        for(Customer cust : business.getCustomerDirectory().getCustomerList()){
+            System.out.println("List: "+business.getCustomerDirectory().getCustomerList());
             
-            System.out.println(userAccount.getUsername());
-            System.out.println(cust.getUsername());
+            System.out.println("User: "+userAccount.getUsername());
+            System.out.println("Customer: "+cust.getUsername());
             if (userAccount.getUsername().equals(cust.getUsername())) {
                 customer = cust;
                 customerName = cust.getName();
+                
+                System.out.println("Inside if: "+cust.getPhone());
             }
-            System.out.println(customerName);   
+            System.out.println(cust);
         }
-        */
+        
         lblCustomer.setText(customerName);
         
         /*
@@ -119,6 +121,7 @@ public class ChooseRestaurantJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tableRestaurants.setSelectionBackground(new java.awt.Color(54, 33, 89));
         jScrollPane2.setViewportView(tableRestaurants);
 
         jPanel1.setBackground(new java.awt.Color(54, 33, 89));
@@ -132,7 +135,7 @@ public class ChooseRestaurantJPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,7 +159,7 @@ public class ChooseRestaurantJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(btnRefreshOrders)
@@ -179,7 +182,7 @@ public class ChooseRestaurantJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnOrder)
                     .addComponent(btnRefreshOrders))
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
