@@ -43,26 +43,26 @@ public class ChooseRestaurantJPanel extends javax.swing.JPanel {
         
         System.out.println("Inside Customer Panel");
         for(Customer cust : business.getCustomerDirectory().getCustomerList()){
-            System.out.println("List: "+business.getCustomerDirectory().getCustomerList());
+            System.out.println("List c: "+business.getCustomerDirectory().getCustomerList());
             
-            System.out.println("User: "+userAccount.getUsername());
-            System.out.println("Customer: "+cust.getUsername());
+            System.out.println("User c: "+userAccount.getUsername());
+            System.out.println("Customer c: "+cust.getUsername());
             if (userAccount.getUsername().equals(cust.getUsername())) {
                 customer = cust;
                 customerName = cust.getName();
                 
-                System.out.println("Inside if: "+cust.getPhone());
+                System.out.println("Inside if c: "+cust.getPhone());
+                break;
             }
             System.out.println(cust);
         }
         
         lblCustomer.setText(customerName);
         
-        /*
-        this.customer = customer;
-        this.restaurantDir = restaurantDir;
-        this.ordersList = ordersList;
-        */
+        
+        this.restaurantDir = business.getRestaurantDirectory();
+        this.ordersList = business.getOrdersList();
+        
         populateTable();
         System.out.println("After populate Table: "+customerName);
     }

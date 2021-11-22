@@ -9,6 +9,7 @@ import Model.Customer;
 import Model.CustomerDirectory;
 import Model.EcoSystem;
 import UI.Customer.AddCustomerJPanel;
+import UI.Customer.SearchCustomersJPanel;
 import UI.Customer.ViewCustomerJPanel;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -201,6 +202,7 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
         }
         
         Customer cust = (Customer) tableCustomers.getValueAt(selectedRowIndex, 0);
+        
         ViewCustomerJPanel viewPanel = new ViewCustomerJPanel(userProcessContainer, cust);
         userProcessContainer.add("View Customers", viewPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -210,7 +212,10 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         
-        
+        SearchCustomersJPanel viewPanel = new SearchCustomersJPanel(userProcessContainer, business.getCustomerDirectory());
+        userProcessContainer.add("View Customers", viewPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed

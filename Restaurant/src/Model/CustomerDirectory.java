@@ -52,5 +52,14 @@ public class CustomerDirectory {
     public void setCustomer(Customer customer){
         this.customer = customer;
     }
+    
+    public Customer searchCustomer(String name) {
+        for (Customer cust : customerList) {
+            if (cust.getName().equalsIgnoreCase(name)) {
+                return cust;
+            }
+        }
+        return null;
+    }
 
 }

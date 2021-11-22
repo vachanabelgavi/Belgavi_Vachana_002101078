@@ -31,6 +31,7 @@ public class SearchRestaurantsJPanel extends javax.swing.JPanel {
         
         this.userProcessContainer = userProcessContainer;
         this.restaurantDir = restaurantDir;
+        
     }
 
     /**
@@ -146,7 +147,7 @@ public class SearchRestaurantsJPanel extends javax.swing.JPanel {
             String name = txtName.getText();
             rest = restaurantDir.searchRestaurant(name);
             if(rest!=null){
-                SearchResultsJPanel search = new SearchResultsJPanel(userProcessContainer, restaurantDir);
+                SearchResultsJPanel search = new SearchResultsJPanel(userProcessContainer, rest);
                 userProcessContainer.add("Search Results", search);
                 CardLayout layout = (CardLayout)userProcessContainer.getLayout();
                 layout.next(userProcessContainer);

@@ -13,6 +13,15 @@ public class Customer {
     
     private String name;
     private int phone;
+    private String address;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
     private String username;
     private String password;
     private Orders orders;

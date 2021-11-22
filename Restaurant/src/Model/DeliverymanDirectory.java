@@ -36,7 +36,7 @@ public class DeliverymanDirectory {
 
     public Deliveryman searchDeliveryPerson(String name) {
         for (Deliveryman delivery : deliveryList) {
-            if (delivery.getName().equals(name)) {
+            if (delivery.getName().equalsIgnoreCase(name)) {
                 return delivery;
             }
         }

@@ -5,11 +5,9 @@
  */
 package UI.Delivery;
 
-import UI.Restaurant.*;
-import Model.Restaurant;
-import Model.RestaurantDirectory;
+import Model.Deliveryman;
+import Model.DeliverymanDirectory;
 import java.awt.CardLayout;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -22,13 +20,18 @@ public class SearchDeliverymanResultsJPanel extends javax.swing.JPanel {
      * Creates new form SearchDeliverymanResultsJPanel
      */
     private JPanel userProcessContainer;
-    private RestaurantDirectory restaurantDir;
+    private Deliveryman deliveryman;
     
-    public SearchDeliverymanResultsJPanel(JPanel userProcessContainer, RestaurantDirectory restaurantDir) {
+    public SearchDeliverymanResultsJPanel(JPanel userProcessContainer, Deliveryman deliveryman) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
-        this.restaurantDir = restaurantDir;
+        this.deliveryman = deliveryman;
+            
+        txtName.setText(deliveryman.getName());
+        txtDesc.setText(String.valueOf(deliveryman.getPhone()));
+        txtLocation.setText(deliveryman.getVehicleNumber());
+
     }
 
     /**
@@ -162,13 +165,14 @@ public class SearchDeliverymanResultsJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         String name = txtName.getText();
-        String desc = txtDesc.getText();
-        String loc = txtLocation.getText();
+        int phone = Integer.parseInt(txtDesc.getText());
+        String vehi = txtLocation.getText();
 
-        Restaurant rest = restaurantDir.addRestaurant();
-        rest.setName(name);
+        deliveryman.setName(name);
+        deliveryman.setPhone(phone);
+        deliveryman.setVehicleNumber(vehi);
 
-        JOptionPane.showMessageDialog(null, "Supplier added successfully!!", "Info", JOptionPane.INFORMATION_MESSAGE);
+        //JOptionPane.showMessageDialog(null, "Supplier added successfully!!", "Info", JOptionPane.INFORMATION_MESSAGE);
 
         txtName.setText("");
         txtDesc.setText("");

@@ -6,7 +6,6 @@
 package UI.Restaurant;
 
 import Model.Restaurant;
-import Model.RestaurantDirectory;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -21,13 +20,22 @@ public class SearchResultsJPanel extends javax.swing.JPanel {
      * Creates new form SearchResultsJPanel
      */
     private JPanel userProcessContainer;
-    private RestaurantDirectory restaurantDir;
+    private Restaurant restaurant;
     
-    public SearchResultsJPanel(JPanel userProcessContainer, RestaurantDirectory restaurantDir) {
+    public SearchResultsJPanel(JPanel userProcessContainer, Restaurant restaurant) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
-        this.restaurantDir = restaurantDir;
+        this.restaurant = restaurant;
+        
+        txtName.setText(restaurant.getName());
+        txtDesc.setText(restaurant.getDescription());
+        txtLocation.setText(restaurant.getLocation());
+        
+        txtName.setEditable(false);
+        txtDesc.setEditable(false);
+        txtLocation.setEditable(false);
+        btnSave.setEnabled(false);
     }
 
     /**
@@ -164,8 +172,9 @@ public class SearchResultsJPanel extends javax.swing.JPanel {
         String desc = txtDesc.getText();
         String loc = txtLocation.getText();
 
-        Restaurant rest = restaurantDir.addRestaurant();
-        rest.setName(name);
+        restaurant.setName(name);
+        restaurant.setDescription(desc);
+        restaurant.setLocation(loc);
 
         JOptionPane.showMessageDialog(null, "Supplier added successfully!!", "Info", JOptionPane.INFORMATION_MESSAGE);
 

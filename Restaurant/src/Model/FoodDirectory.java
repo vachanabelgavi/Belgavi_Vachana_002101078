@@ -36,7 +36,7 @@ public class FoodDirectory {
 
     public Food searchFoodItem(String name) {
         for (Food item : foodDirectory) {
-            if (item.getFoodItem()== name) {
+            if (item.getFoodItem().equalsIgnoreCase(name)) {
                 return item;
             }
         }

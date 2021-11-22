@@ -5,9 +5,12 @@
  */
 package UI.Delivery;
 
+import Model.Deliveryman;
+import Model.DeliverymanDirectory;
 import UI.Restaurant.*;
 import Model.Restaurant;
 import Model.RestaurantDirectory;
+import UI.Admin.ManageDeliveryJPanel;
 import UI.Admin.ManageResturantsJPanel;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -24,14 +27,15 @@ public class SearchDeliverymanJPanel extends javax.swing.JPanel {
      * Creates new form SearchDeliverymanJPanel
      */
     JPanel userProcessContainer;
-    Restaurant restaurant;
-    RestaurantDirectory restaurantDir;
+    //Restaurant restaurant;
+    //RestaurantDirectory restaurantDir;
+    DeliverymanDirectory deliveryDir;
     
-    public SearchDeliverymanJPanel(JPanel userProcessContainer, RestaurantDirectory restaurantDir) {
+    public SearchDeliverymanJPanel(JPanel userProcessContainer, DeliverymanDirectory deliveryDir) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
-        this.restaurantDir = restaurantDir;
+        this.deliveryDir = deliveryDir;
     }
 
     /**
@@ -138,11 +142,11 @@ public class SearchDeliverymanJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         try{
-            Restaurant rest;
+            Deliveryman rest;
             String name = txtName.getText();
-            rest = restaurantDir.searchRestaurant(name);
+            rest = deliveryDir.searchDeliveryPerson(name);
             if(rest!=null){
-                SearchDeliverymanResultsJPanel search = new SearchDeliverymanResultsJPanel(userProcessContainer, restaurantDir);
+                SearchDeliverymanResultsJPanel search = new SearchDeliverymanResultsJPanel(userProcessContainer, rest);
                 userProcessContainer.add("Search Results", search);
                 CardLayout layout = (CardLayout)userProcessContainer.getLayout();
                 layout.next(userProcessContainer);
@@ -167,7 +171,7 @@ public class SearchDeliverymanJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        ManageResturantsJPanel manageRestaurants = (ManageResturantsJPanel) component;
+        ManageDeliveryJPanel manageRestaurants = (ManageDeliveryJPanel) component;
         manageRestaurants.refreshTable();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);

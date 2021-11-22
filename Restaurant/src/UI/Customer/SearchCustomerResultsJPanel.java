@@ -5,12 +5,8 @@
  */
 package UI.Customer;
 
-import UI.Restaurant.FoodItems.*;
-import UI.Restaurant.*;
-import Model.Restaurant;
-import Model.RestaurantDirectory;
+import Model.Customer;
 import java.awt.CardLayout;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -23,18 +19,20 @@ public class SearchCustomerResultsJPanel extends javax.swing.JPanel {
      * Creates new form SearchCustomerResultsJPanel
      */
     private JPanel userProcessContainer;
-    private RestaurantDirectory restaurantDir;
-    private Restaurant restaurant;
+    Customer customer;
     
-    public SearchCustomerResultsJPanel(JPanel userProcessContainer, Restaurant restaurant) {
+    public SearchCustomerResultsJPanel(JPanel userProcessContainer, Customer customer) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
-        this.restaurant = restaurant;
+        this.customer = customer;
         
-        txtName.setText(restaurant.getName());
-        txtDesc.setText(restaurant.getDescription());
-        txtLocation.setText(restaurant.getLocation());
+        txtName.setText(customer.getName());
+        txtDesc.setText(String.valueOf(customer.getPhone()));
+        
+        txtName.setEditable(false);
+        txtDesc.setEditable(false);
+        btnSave.setEnabled(false);
     }
 
     /**
@@ -47,12 +45,10 @@ public class SearchCustomerResultsJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         txtDesc = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
-        txtLocation = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -60,9 +56,7 @@ public class SearchCustomerResultsJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setText("Description");
-
-        jLabel4.setText("Location");
+        jLabel3.setText("Phone");
 
         btnSave.setBackground(new java.awt.Color(54, 33, 89));
         btnSave.setForeground(new java.awt.Color(255, 255, 255));
@@ -124,19 +118,17 @@ public class SearchCustomerResultsJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(186, 186, 186)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
                         .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtDesc)
-                                .addComponent(txtName)
-                                .addComponent(txtLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtDesc, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                                .addComponent(txtName))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(btnUpdate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnSave, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addContainerGap(256, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,15 +144,11 @@ public class SearchCustomerResultsJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
+                .addGap(55, 55, 55)
                 .addComponent(btnUpdate)
                 .addGap(18, 18, 18)
                 .addComponent(btnSave)
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addContainerGap(204, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -168,17 +156,15 @@ public class SearchCustomerResultsJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         String name = txtName.getText();
-        String desc = txtDesc.getText();
-        String loc = txtLocation.getText();
+        int phone = Integer.parseInt(txtDesc.getText());
 
-        Restaurant rest = restaurantDir.addRestaurant();
-        rest.setName(name);
+        customer.setName(name);
+        customer.setPhone(phone);
 
-        JOptionPane.showMessageDialog(null, "Supplier added successfully!!", "Info", JOptionPane.INFORMATION_MESSAGE);
+        //JOptionPane.showMessageDialog(null, "Supplier added successfully!!", "Info", JOptionPane.INFORMATION_MESSAGE);
 
         txtName.setText("");
         txtDesc.setText("");
-        txtLocation.setText("");
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -188,7 +174,6 @@ public class SearchCustomerResultsJPanel extends javax.swing.JPanel {
         
         txtName.setEditable(true);
         txtDesc.setEditable(true);
-        txtLocation.setEditable(true);
         btnSave.setEnabled(true);
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -211,10 +196,8 @@ public class SearchCustomerResultsJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtDesc;
-    private javax.swing.JTextField txtLocation;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 }

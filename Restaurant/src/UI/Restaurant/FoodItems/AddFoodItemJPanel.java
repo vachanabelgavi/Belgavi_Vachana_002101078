@@ -5,7 +5,6 @@
  */
 package UI.Restaurant.FoodItems;
 
-import Model.EcoSystem;
 import Model.Food;
 import Model.Restaurant;
 import java.awt.CardLayout;
@@ -146,7 +145,7 @@ public class AddFoodItemJPanel extends javax.swing.JPanel {
         String stringPrice = txtDesc.getText();
         
         if(stringPrice.isEmpty()==false){
-            int price = Integer.parseInt(stringPrice);
+            double price = Double.parseDouble(stringPrice);
             item.setPrice(price);
         }
         

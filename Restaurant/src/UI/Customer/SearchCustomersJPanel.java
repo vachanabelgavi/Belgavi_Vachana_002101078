@@ -5,6 +5,8 @@
  */
 package UI.Customer;
 
+import Model.Customer;
+import Model.CustomerDirectory;
 import UI.Restaurant.FoodItems.*;
 import UI.Restaurant.*;
 import Model.Restaurant;
@@ -25,14 +27,13 @@ public class SearchCustomersJPanel extends javax.swing.JPanel {
      * Creates new form SearchCustomersJPanel
      */
     JPanel userProcessContainer;
-    Restaurant restaurant;
-    RestaurantDirectory restaurantDir;
+    CustomerDirectory customerDirectory;
     
-    public SearchCustomersJPanel(JPanel userProcessContainer, RestaurantDirectory restaurantDir) {
+    public SearchCustomersJPanel(JPanel userProcessContainer, CustomerDirectory customerDirectory) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
-        this.restaurantDir = restaurantDir;
+        this.customerDirectory = customerDirectory;
     }
 
     /**
@@ -142,11 +143,11 @@ public class SearchCustomersJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         try{
-            Restaurant rest;
+            Customer rest;
             String name = txtName.getText();
-            rest = restaurantDir.searchRestaurant(name);
+            rest = customerDirectory.searchCustomer(name);
             if(rest!=null){
-                SearchCustomerResultsJPanel search = new SearchCustomerResultsJPanel(userProcessContainer, restaurant);
+                SearchCustomerResultsJPanel search = new SearchCustomerResultsJPanel(userProcessContainer, rest);
                 userProcessContainer.add("Search Results", search);
                 CardLayout layout = (CardLayout)userProcessContainer.getLayout();
                 layout.next(userProcessContainer);

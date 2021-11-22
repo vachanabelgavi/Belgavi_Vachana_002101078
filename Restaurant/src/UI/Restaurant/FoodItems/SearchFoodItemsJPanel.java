@@ -5,10 +5,8 @@
  */
 package UI.Restaurant.FoodItems;
 
-import UI.Restaurant.*;
+import Model.Food;
 import Model.Restaurant;
-import Model.RestaurantDirectory;
-import UI.Admin.ManageResturantsJPanel;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -25,13 +23,13 @@ public class SearchFoodItemsJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     Restaurant restaurant;
-    RestaurantDirectory restaurantDir;
+    //RestaurantDirectory restaurantDir;
     
-    public SearchFoodItemsJPanel(JPanel userProcessContainer, RestaurantDirectory restaurantDir) {
+    public SearchFoodItemsJPanel(JPanel userProcessContainer, Restaurant restaurant) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
-        this.restaurantDir = restaurantDir;
+        this.restaurant = restaurant;
     }
 
     /**
@@ -141,10 +139,12 @@ public class SearchFoodItemsJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         try{
-            Restaurant rest;
+            Food item = null;
             String name = txtName.getText();
-            rest = restaurantDir.searchRestaurant(name);
-            if(rest!=null){
+            
+            item = restaurant.getFoodDirectory().searchFoodItem(name);
+            
+            if(item!=null){
                 SearchFoodResultsJPanel search = new SearchFoodResultsJPanel(userProcessContainer, restaurant);
                 userProcessContainer.add("Search Results", search);
                 CardLayout layout = (CardLayout)userProcessContainer.getLayout();
@@ -170,7 +170,7 @@ public class SearchFoodItemsJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        ManageResturantsJPanel manageRestaurants = (ManageResturantsJPanel) component;
+        ManageFoodMenuJPanel manageRestaurants = (ManageFoodMenuJPanel) component;
         manageRestaurants.refreshTable();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);

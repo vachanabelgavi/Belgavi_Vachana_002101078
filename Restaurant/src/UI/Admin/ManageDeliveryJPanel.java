@@ -9,6 +9,7 @@ import Model.Deliveryman;
 import Model.EcoSystem;
 import Model.UserAccount.UserAccount;
 import UI.Delivery.AddDeliverymanJPanel;
+import UI.Delivery.SearchDeliverymanJPanel;
 import UI.Delivery.ViewDeliverymanJPanel;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -213,6 +214,11 @@ public class ManageDeliveryJPanel extends javax.swing.JPanel {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
+        
+        SearchDeliverymanJPanel viewPanel = new SearchDeliverymanJPanel(userProcessContainer, business.getDeliverymanDirectory());
+        userProcessContainer.add("View Customers", viewPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed

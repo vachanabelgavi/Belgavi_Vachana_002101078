@@ -8,7 +8,6 @@ package UI.Restaurant.FoodItems;
 import Model.EcoSystem;
 import Model.Food;
 import Model.Restaurant;
-import Model.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -33,6 +32,7 @@ public class ManageFoodMenuJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.restaurant = restaurant;
         
+        System.out.println("List of food items: "+restaurant.getFoodDirectory().getFoodDirectory());
         
         lblRestaurant.setText("Restaurant : " + restaurant.getName());
         refreshTable();
@@ -163,7 +163,7 @@ public class ManageFoodMenuJPanel extends javax.swing.JPanel {
                                 .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblRestaurant, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblRestaurant, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(btnBack)))
@@ -217,7 +217,10 @@ public class ManageFoodMenuJPanel extends javax.swing.JPanel {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
 
-        
+        SearchFoodItemsJPanel search = new SearchFoodItemsJPanel(userProcessContainer, restaurant);
+        userProcessContainer.add("Search Food Item", search);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed

@@ -191,17 +191,24 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         
-        try {
+      //  try {
             //System.out.println(txtUsername.getText()+txtPassword.getText());
             UserAccount useraccount = business.getUserAccountDirectory().authenticateUser(txtUsername.getText(), txtPassword.getText());
             System.out.println(txtUsername.getText()+" "+txtPassword.getText());
+                        System.out.println("role 1" + useraccount.getRole());
+
             CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+            System.out.println("role 2" + useraccount.getRole());
             userProcessContainer.add("Login", useraccount.getRole().createWorkArea(userProcessContainer, useraccount, business));
+                        System.out.println("role 3" + useraccount.getRole());
+
             cardLayout.next(userProcessContainer);
+                                    System.out.println("role 4" + useraccount.getRole());
+
             btnLogout.setEnabled(true);
-        } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(null, "Please enter the valid username and password");
-        }
+       // } catch (NullPointerException e) {
+       //     JOptionPane.showMessageDialog(null, "Please enter the valid username and password");
+      //  }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
