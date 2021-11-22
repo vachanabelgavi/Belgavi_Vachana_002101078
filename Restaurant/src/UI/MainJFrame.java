@@ -13,10 +13,6 @@ import Model.FoodDirectory;
 import Model.OrdersList;
 import Model.RestaurantDirectory;
 import Model.UserAccount.UserAccount;
-import UI.Admin.AdminMainJPanel;
-import UI.Customer.Orders.CustomersLoginJPanel;
-import UI.Delivery.Orders.DeliveryManLoginJPanel;
-import UI.Restaurant.FoodItems.RestaurantLoginJPanel;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -191,7 +187,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         
-      //  try {
+        try {
             //System.out.println(txtUsername.getText()+txtPassword.getText());
             UserAccount useraccount = business.getUserAccountDirectory().authenticateUser(txtUsername.getText(), txtPassword.getText());
             System.out.println(txtUsername.getText()+" "+txtPassword.getText());
@@ -206,9 +202,9 @@ public class MainJFrame extends javax.swing.JFrame {
                                     System.out.println("role 4" + useraccount.getRole());
 
             btnLogout.setEnabled(true);
-       // } catch (NullPointerException e) {
-       //     JOptionPane.showMessageDialog(null, "Please enter the valid username and password");
-      //  }
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Please enter the valid username and password");
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed

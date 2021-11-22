@@ -5,7 +5,6 @@
  */
 package UI.Restaurant.Orders;
 
-import Model.EcoSystem;
 import Model.Orders;
 import Model.OrdersList;
 import Model.Restaurant;

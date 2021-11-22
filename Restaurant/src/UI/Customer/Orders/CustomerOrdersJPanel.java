@@ -36,10 +36,14 @@ public class CustomerOrdersJPanel extends javax.swing.JPanel {
     public CustomerOrdersJPanel(JPanel userProcessContainer, Customer customer, Restaurant restaurant, OrdersList ordersList) {
         initComponents();
         
+        System.out.println("Inside Customer Orders: "+ordersList);
+        
         this.userProcessContainer = userProcessContainer;
         this.customer = customer;
         this.restaurant = restaurant;
         this.ordersList = ordersList;
+        
+        System.out.println("Inside Customer Orders: "+ordersList);
         
         cartList = new ArrayList<Food>();
         
@@ -289,10 +293,7 @@ public class CustomerOrdersJPanel extends javax.swing.JPanel {
 
     public void backAction(){
         userProcessContainer.remove(this);
-        Component [] componentArray = userProcessContainer.getComponents();
-        Component c = componentArray[componentArray.length-1];
-        ChooseRestaurantJPanel mr = (ChooseRestaurantJPanel) c;
-        mr.populateTable();
+        
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }

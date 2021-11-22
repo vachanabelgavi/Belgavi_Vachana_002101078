@@ -170,10 +170,7 @@ public class CustomerCommentJPanel extends javax.swing.JPanel {
 
     public void backAction(){
         userProcessContainer.remove(this);
-        Component [] componentArray = userProcessContainer.getComponents();
-        Component c = componentArray[componentArray.length-1];
-        ChooseRestaurantJPanel mr = (ChooseRestaurantJPanel) c;
-        mr.populateTable();
+
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }
