@@ -214,8 +214,9 @@ public class ManageOrdersJPanel extends javax.swing.JPanel {
                     String status = "Order Ready";
                     o.setOrderStatus(status);
                     model.setValueAt(status, selectedRowIndex, 1);
-                }else{
-                    JOptionPane.showMessageDialog(null, "Order is already delivered!");
+                    break;
+                }else if(o.getOrderStatus().equalsIgnoreCase("Order Ready")){
+                    JOptionPane.showMessageDialog(null, "Order is already ready!");
                 }
             }
         }
@@ -239,7 +240,7 @@ public class ManageOrdersJPanel extends javax.swing.JPanel {
             Object row[] = new Object[2];
             
             for(int i=0; i < item.getFoodDir().size(); i++){
-                if(item.getOrderNumber() == ord.getOrderNumber()){
+                if(ord.getOrderNumber() == item.getOrderNumber()){
                     row[0] = item.getFoodDir().get(i).getFoodItem();
                     row[1] = item.getFoodDir().get(i).getPrice();
 

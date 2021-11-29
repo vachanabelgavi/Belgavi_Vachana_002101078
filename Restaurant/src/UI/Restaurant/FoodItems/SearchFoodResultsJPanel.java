@@ -35,6 +35,10 @@ public class SearchFoodResultsJPanel extends javax.swing.JPanel {
             txtName.setText(restaurant.getFoodDirectory().getFoodDirectory().get(i).getFoodItem());
             txtDesc.setText(String.valueOf(restaurant.getFoodDirectory().getFoodDirectory().get(i).getPrice()));
         }
+        
+        txtName.setEditable(false);
+        txtDesc.setEditable(false);
+        btnSave.setEnabled(false);
     }
 
     /**

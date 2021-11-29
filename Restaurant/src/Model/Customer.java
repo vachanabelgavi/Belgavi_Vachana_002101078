@@ -12,7 +12,7 @@ package Model;
 public class Customer {
     
     private String name;
-    private int phone;
+    private long phone;
     private String address;
 
     public String getAddress() {
@@ -35,11 +35,11 @@ public class Customer {
         this.name = name;
     }
 
-    public int getPhone() {
+    public long getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(long phone) {
         this.phone = phone;
     }
 

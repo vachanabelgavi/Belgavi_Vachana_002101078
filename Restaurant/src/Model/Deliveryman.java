@@ -13,7 +13,7 @@ public class Deliveryman {
     
     private String name;
     private String vehicleNumber;
-    private int phone;
+    private long phone;
     private String username;
     private String password;
 
@@ -33,11 +33,11 @@ public class Deliveryman {
         this.vehicleNumber = vehicleNumber;
     }
 
-    public int getPhone() {
+    public long getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(long phone) {
         this.phone = phone;
     }
 

@@ -95,7 +95,7 @@ public class SearchDeliverymanResultsJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Restaurant Details");
+        jLabel1.setText("Deliveryman Details");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -165,7 +165,7 @@ public class SearchDeliverymanResultsJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         String name = txtName.getText();
-        int phone = Integer.parseInt(txtDesc.getText());
+        long phone = Long.parseLong(txtDesc.getText());
         String vehi = txtLocation.getText();
 
         deliveryman.setName(name);

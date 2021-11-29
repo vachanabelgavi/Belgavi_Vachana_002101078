@@ -156,7 +156,7 @@ public class SearchCustomerResultsJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         String name = txtName.getText();
-        int phone = Integer.parseInt(txtDesc.getText());
+        long phone = Long.parseLong(txtDesc.getText());
 
         customer.setName(name);
         customer.setPhone(phone);

@@ -196,7 +196,7 @@ public class ViewCustomerJPanel extends javax.swing.JPanel {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         
-        customer.setPhone(Integer.parseInt(txtPhone.getText()));
+        customer.setPhone(Long.parseLong(txtPhone.getText()));
         customer.setName(txtName.getText());
         customer.setUsername(txtUsername.getText());
         customer.setPassword(txtPassword.getText());

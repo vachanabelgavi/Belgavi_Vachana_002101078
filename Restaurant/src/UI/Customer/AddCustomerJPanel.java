@@ -170,7 +170,7 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         String name = txtName.getText();
-        int phone = Integer.parseInt(txtPhone.getText());
+        long phone = Long.parseLong(txtPhone.getText());
         String username = txtUsername.getText();
         String password = txtPassword.getText();
         

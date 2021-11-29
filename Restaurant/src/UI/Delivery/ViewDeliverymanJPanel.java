@@ -7,6 +7,7 @@ package UI.Delivery;
 
 import Model.Deliveryman;
 import UI.Admin.ManageCustomersJPanel;
+import UI.Admin.ManageDeliveryJPanel;
 import UI.Restaurant.FoodItems.ManageFoodMenuJPanel;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -183,7 +184,7 @@ public class ViewDeliverymanJPanel extends javax.swing.JPanel {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
 
-        delivery.setPhone(Integer.parseInt(txtPhone.getText()));
+        delivery.setPhone(Long.parseLong(txtPhone.getText()));
         delivery.setName(txtName.getText());
         delivery.setVehicleNumber(txtVehicle.getText());
         /*
@@ -209,7 +210,7 @@ public class ViewDeliverymanJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        ManageCustomersJPanel managefood = (ManageCustomersJPanel) component;
+        ManageDeliveryJPanel managefood = (ManageDeliveryJPanel) component;
         managefood.refreshTable();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);

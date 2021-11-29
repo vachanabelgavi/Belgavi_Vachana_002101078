@@ -7,11 +7,7 @@ package UI.Customer;
 
 import Model.Customer;
 import Model.CustomerDirectory;
-import UI.Restaurant.FoodItems.*;
-import UI.Restaurant.*;
-import Model.Restaurant;
-import Model.RestaurantDirectory;
-import UI.Admin.ManageResturantsJPanel;
+import UI.Admin.ManageCustomersJPanel;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -172,7 +168,7 @@ public class SearchCustomersJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        ManageResturantsJPanel manageRestaurants = (ManageResturantsJPanel) component;
+        ManageCustomersJPanel manageRestaurants = (ManageCustomersJPanel) component;
         manageRestaurants.refreshTable();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);

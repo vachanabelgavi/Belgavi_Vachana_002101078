@@ -183,7 +183,7 @@ public class AddDeliverymanJPanel extends javax.swing.JPanel {
             UserAccount userAccount = business.getUserAccountDirectory().createUserAccount(txtName.getText(), txtUsername.getText(), txtPassword.getText(), null, new DeliverymanRole());
         
             String name = txtName.getText();
-            int phone = Integer.parseInt(txtPhone.getText());
+            long phone = Long.parseLong(txtPhone.getText());
             String vehicle = txtVehicleNum.getText();
             String username = txtUsername.getText();
             String password = txtPassword.getText();

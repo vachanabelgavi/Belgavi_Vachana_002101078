@@ -214,7 +214,7 @@ public class AssignDeliverymanJPanel extends javax.swing.JPanel {
         if(ord.getOrderStatus().equalsIgnoreCase("Order Ready")){
         JOptionPane.showMessageDialog(null, "Order Delivered");
         
-        menuModel.setValueAt("Order Delivered", selectedRow, 4);
+        //menuModel.setValueAt("Order Delivered", selectedRow, 4);
         
         //Deliveryman man = business.getDeliverymanDirectory().addDeliveryPerson();
         for(int i=0; i < business.getOrdersList().getOrdersList().size(); i++){
@@ -225,7 +225,7 @@ public class AssignDeliverymanJPanel extends javax.swing.JPanel {
         System.out.println(ord.getOrderStatus());
         }
         else{
-            JOptionPane.showMessageDialog(null, "Please select the order with status 'Order placed'");
+            JOptionPane.showMessageDialog(null, "Please select the order with status 'Order Ready'");
         }
         /*
         DeliveryStatusJPanel status = new DeliveryStatusJPanel(userProcessContainer, business);
